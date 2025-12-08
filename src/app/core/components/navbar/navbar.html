@@ -1,0 +1,91 @@
+<nav class="bg-light  shadow-main fixed w-full z-20 top-0 start-0 border-b border-default">
+  <div class="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a routerLink="/home" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="./images/freshcart-logo.svg" class="h-7" alt="FreshCart Logo" />
+
+    </a>
+
+    <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
+      @if(islogin){
+
+      <li>
+        <a routerLink="/home" [queryParamsHandling]="'preserve'" class="text-gray-500 ">Home</a>
+      </li>
+      <li>
+        <a routerLink="/product" class="text-gray-500 ">Products</a>
+      </li>
+      <li>
+        <a class="text-gray-500 ">Cart</a>
+      </li>
+      <li>
+        <a routerLink="/categories" class="text-gray-500 ">Categories</a>
+      </li>
+      <li>
+        <a routerLink="/brand" class="text-gray-500 ">Brands</a>
+      </li>
+      }
+
+    </ul>
+    <div class="flex items-center space-x-6 rtl:space-x-reverse">
+      <a href="#" class="text-sm  text-body "><i class="fa-brands fa-square-instagram text-black"></i></a>
+      <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-brands fa-facebook text-black"></i></a>
+      <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-brands fa-twitter text-black"></i></a>
+      <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-solid fa-phone text-black"></i></a>
+      <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-brands fa-whatsapp text-black"></i></a>
+
+      <div>
+        @if (islogin) {
+
+        <a class="text-gray-500 cursor-pointer" (click)="logOut()">Sign Out <span><i
+              class="fa-solid fa-right-from-bracket"></i></span></a>
+        }
+        @else {
+        <a routerLink="/login" class="text-gray-500">Sign in <span><i
+              class="fa-solid fa-right-from-bracket"></i></span></a>
+        <a routerLink="/register" class="text-gray-500">register <span><i
+              class="fa-solid fa-right-from-bracket"></i></span></a>
+
+        }
+      </div>
+
+
+    </div>
+  </div>
+</nav>
+
+<!-- <nav class="bg-ligth shadow-main shadow-gray fixed w-full z-20 top-0 start-0">
+
+  <div class="flex flex-wrap justify-between items-center container mx-auto max-w-screen-xl p-4">
+    <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="./images/freshcart-logo.svg" class="h-7" alt="Flowbite Logo" />
+
+    </a>
+    <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
+      <li>
+        <a href="#" class="text-gray-500 ">Home</a>
+      </li>
+      <li>
+        <a href="#" class="text-gray-500 ">Products</a>
+      </li>
+      <li>
+        <a href="#" class="text-gray-500 ">Cart</a>
+      </li>
+      <li>
+        <a href="#" class="text-gray-500 ">Categories</a>
+      </li>
+      <li>
+        <a href="#" class="text-gray-500 ">Brands</a>
+      </li>
+    </ul>
+    <div class="flex items-center space-x-6 rtl:space-x-reverse">
+      <a href="#" class="text-sm  text-body "><i class="fa-brands fa-square-instagram text-black"></i></a>
+      <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-brands fa-facebook text-black"></i></a>
+      <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-brands fa-twitter text-black"></i></a>
+      <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-solid fa-phone text-black"></i></a>
+      <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-brands fa-whatsapp text-black"></i></a>
+    </div>
+    <div>
+      <a href="" class="text-gray-500">Sign Out <span><i class="fa-solid fa-right-from-bracket"></i></span></a>
+    </div>
+  </div>
+</nav> -->

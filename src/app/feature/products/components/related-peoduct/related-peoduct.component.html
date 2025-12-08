@@ -1,0 +1,23 @@
+<div class="py-5">
+  <app-section-title [title]="'Products related to this item'"></app-section-title>
+  <!-- class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-4" -->
+  @if (!productSerices.allProducts) {
+  <app-loading-screen></app-loading-screen>
+  }
+  @else {
+
+  <div>
+    <owl-carousel-o [options]="customOptions">
+
+      @for (product of productSerices.allProducts?.slice(0,20); track product._id) {
+      <ng-template carouselSlide [id]="product._id">
+        <app-product-card [product]="product"></app-product-card>
+
+      </ng-template>
+
+
+      }
+    </owl-carousel-o>
+  </div>
+  }
+</div>

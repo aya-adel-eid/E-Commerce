@@ -1,0 +1,54 @@
+<div class="bg-gray-200 rounded-2xl shadow-main md:w-1/2 mx-auto mt-14 flex-col justify-center items-center p-5">
+  <div>
+
+    <h2 class="text-3xl text-center py-5  font-bold">Register Now</h2>
+    <div>
+      <form action="" [formGroup]="registerForm" (ngSubmit)="sendData()">
+        <!-- name input -->
+        <app-input-form [id]="'name'" [label]="'Name'" [control]="registerForm.get('name')" type="'text'"
+          formControlName="name"></app-input-form>
+
+        <!-- email input -->
+        <app-input-form [id]="'email'" [label]="'Email'" [type]="'email'" [control]="registerForm.get('email')"
+          formControlName="email"></app-input-form>
+
+
+        <!-- Phone input -->
+        <app-input-form [id]="'phone'" [label]="'Phone'" [control]="registerForm.get('phone')" [type]="'tel'"
+          formControlName="phone"></app-input-form>
+
+        <!-- password input -->
+        <app-input-form [id]="'password'" [label]="'Password'" [control]="registerForm.get('password')"
+          formControlName="password"></app-input-form>
+
+        <!-- rePassword input -->
+        <app-input-form [id]="'rePassword'" [label]="'RePassword'" [control]="registerForm.get('rePassword')"
+          formControlName="rePassword" [group]="registerForm"></app-input-form>
+
+        <!-- err message -->
+        @if(errMessage){
+        <div
+          class="flex items-start sm:items-center text-center p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+          role="alert">
+          <svg class="w-4 h-4 me-2 shrink-0 mt-0.5 sm:mt-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          </svg>
+          <p><span class="font-medium me-1"> {{errMessage}}</span> </p>
+        </div>
+        }
+        <!-- success message -->
+
+        <!-- button submit -->
+        <button type="submit" [disabled]="isLoading" class="w-full btnn">register
+          @if(isLoading){
+
+          <i class="fas fa-spinner fa-spin"></i>
+          }
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>

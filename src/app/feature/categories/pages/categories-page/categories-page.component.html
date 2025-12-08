@@ -1,0 +1,14 @@
+<section class="content py-7">
+  <app-section-title [title]="'Categories'"></app-section-title>
+  @if(!categoriesService.allCategories){
+  <app-loading-screen></app-loading-screen>
+  }
+  @else {
+
+  <div class="system-Grid 2xl:grid-cols-5">
+    @for (category of categoriesService.allCategories; track category._id) {
+    <app-category-card [category]="category"></app-category-card>
+    }
+  </div>
+  }
+</section>

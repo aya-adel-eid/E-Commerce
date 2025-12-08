@@ -1,0 +1,31 @@
+@layer components {
+  .brandtext {
+    @apply text-gray-400 text-[18px] uppercase mt-4 inline-block font-medium;
+  }
+}
+@layer components {
+  .btn-cart {
+    @apply text-light bg-main-400 py-2 px-5 rounded-2xl text-nowrap capitalize cursor-pointer hover:bg-main-600  md:text-sm font-bold;
+  }
+  .content {
+    @apply w-[90%] mx-auto;
+  }
+  .system-Grid {
+    @apply grid 2xl:grid-cols-5 xl:grid-cols-4  lg:grid-cols-3 sm:grid-cols-2 gap-4;
+  }
+  .hover-card {
+    @apply hover:border-6  hover:border-main-400 transition-all duration-700;
+  }
+  .input-form {
+    @apply block rounded-t-base px-3 pb-3 pt-6 w-full text-sm text-heading bg-neutral-secondary-medium border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-main-700;
+  }
+  .label-input {
+    @apply absolute text-xl text-body duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-xl peer-focus:text-main-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto;
+  }
+  .btnn {
+    @apply text-xl py-2 disabled:bg-gray-400 bg-main-400 text-white rounded-2xl cursor-pointer hover:bg-main-600 text-center;
+  }
+}
+body {
+  background-image: url('/images/light-patten.svg');
+}

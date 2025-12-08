@@ -1,0 +1,14 @@
+<section class="content py-7">
+  <app-section-title [title]="'ALlBrands'"></app-section-title>
+  @if(!brandService.allBrands){
+  <app-loading-screen></app-loading-screen>
+  }
+  @else {
+
+  <div class="system-Grid ">
+    @for (brand of brandService.allBrands ; track brand._id) {
+    <app-brand-card [brand]="brand"></app-brand-card>
+    }
+  </div>
+  }
+</section>

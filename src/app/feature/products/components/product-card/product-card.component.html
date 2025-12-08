@@ -1,0 +1,54 @@
+<div class="bg-neutral-primary-soft block max-w-sm p-6 border-2 border-gray-300
+   rounded-base shadow-main  hover:border-2 group hover:border-main-400 transition-all duration-700"
+  (mouseenter)="currentImag.src=product.images[0]" (mouseleave)="currentImag.src=product.imageCover">
+  <div class="image  relative  overflow-hidden">
+    <a [routerLink]="['/details',product._id,product.slug]" class="cursor-pointer ">
+      <img class="rounded-base" [src]="product.imageCover" class="w-full h-[250px]  " [alt]="product.title"
+        #currentImag />
+    </a>
+    <div
+      class=" flex flex-col space-y-6 bg-gray/60 absolute top-2 -right-10 group-hover:right-0  transition-all duration-500 py-8 px-1 rounded-2xl text-center">
+      <span (click)="isLike=!isLike" class="cursor-pointer"><i class="fa-solid fa-heart text-xl  hover:text-main-400"
+          [class.text-main-400]="isLike" #iconFav></i></span>
+      <span (click)="isShow=!isShow" class="cursor-pointer"><i class="fa-solid fa-eye text-xl hover:text-main-400"
+          [class.text-main-400]="isShow"></i></span>
+    </div>
+    <!-- <div
+      class="flex justify-between space-x-4 px-4 absolute -bottom-12 group-hover:bottom-3 transition-all duration-500">
+      <button class="btn-cart"><span><i class="fa-solid fa-bag-shopping"></i></span> ADD
+        TO
+        CART</button>
+      <button class="py-2 px-4 border border-main-400 rounded cursor-pointer "><span><i
+            class="fa-regular fa-heart text-main-400 "></i></span></button>
+
+    </div> -->
+  </div>
+  <span class="brandtext">{{product.brand.name}}</span>
+  <!-- <span class="absolute top-4 start-3"><i class="fa-regular fa-heart text-main-400"></i></span> -->
+  <a href="#">
+    <h5
+      class="mt-1 mb-2 text-xl font-semibold tracking-tight text-heading group-hover:underline group-hover:text-main-400 line-clamp-1">
+      {{product.title}}
+    </h5>
+  </a>
+
+  <p class="mb-6 text-body line-clamp-2 h-[48px]">{{product.description}}</p>
+  <!-- <div class="flex justify-between space-x-4 px-4">
+    <button class="text-light bg-main-500 py-2 px-8 rounded"><span><i class="fa-solid fa-bag-shopping"></i></span> ADD
+      TO
+      CART</button>
+    <button class="py-2 px-4 border border-main-400 rounded"><span><i
+          class="fa-regular fa-heart text-main-400"></i></span></button>
+
+  </div> -->
+  <button class="btn-cart w-full"><span><i class="fa-solid fa-bag-shopping"></i></span> ADD
+    TO
+    CART</button>
+  <div class="mt-3 flex justify-between">
+    <span class="text-sm font-bold">{{product.price}} $</span>
+    <span class="rating text-rating">
+      <i class="far fa-star"></i> {{product.ratingsAverage}}
+    </span>
+  </div>
+
+</div>

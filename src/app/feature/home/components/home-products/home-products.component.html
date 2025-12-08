@@ -1,0 +1,13 @@
+<app-section-title [title]="'Products'"></app-section-title>
+@if(!productService.allProducts){
+<app-loading-screen></app-loading-screen>
+}
+@else {
+
+<div class="system-Grid py-7">
+  @for (product of productService.allProducts; track product._id) {
+
+  <app-product-card [product]="product"></app-product-card>
+  }
+</div>
+}

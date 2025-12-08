@@ -1,0 +1,7 @@
+::ng-deep .ngx-pagination a:hover {
+  border-radius: 50%;
+}
+::ng-deep .ngx-pagination .current {
+  background-color: var(--color-main-400) !important;
+  border-radius: 50%;
+}

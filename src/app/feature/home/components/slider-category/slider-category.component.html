@@ -1,0 +1,17 @@
+<div>
+  <app-section-title [title]="'Popular Categories'"></app-section-title>
+  <owl-carousel-o [options]="customOptions">
+
+    @for (category of categoryService.allCategories; track category._id) {
+    <ng-template carouselSlide [id]="category._id">
+      <div>
+        <div class="image">
+          <img [src]="category.image" [alt]="category.name" class="h-[230px]">
+        </div>
+        <h3 class="font-bold text-xl text-gray-600 pt-4 text-center">{{category.name}}</h3>
+      </div>
+    </ng-template>
+    }
+
+  </owl-carousel-o>
+</div>
