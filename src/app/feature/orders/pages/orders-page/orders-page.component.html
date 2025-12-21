@@ -1,0 +1,85 @@
+<section class="content py-8 mt-8">
+
+  @if (!ordersServices.allOrders) {
+  <app-loading-screen></app-loading-screen>
+  }
+  @else {
+
+  <div class="space-y-6">
+
+    @for (objOrder of ordersServices.allOrders.reverse(); track $index) {
+
+    <div class="bg-white rounded-3xl border border-gray-200
+                 shadow-sm px-8 py-6 space-y-6">
+
+      <!-- Order ID -->
+      <div class="flex justify-between">
+        <h2 class="text-base sm:text-lg font-semibold text-gray-800">
+          <span class="text-gray-600">Order ID:</span>
+          <span class="text-indigo-700 ms-2">{{ objOrder._id }}</span>
+        </h2>
+        <div class="space-x-4">
+          <span
+            class="bg-success-soft border border-success-subtle text-fg-success-strong text-xs font-medium px-4 py-1.5 rounded-full">
+            @if(objOrder.isPaid){
+            Paid
+            }
+            @else {
+            Not Paid
+            }
+          </span>
+          <span
+            class="bg-warning-soft border border-warning-subtle text-fg-warning text-xs font-medium px-4 py-1.5  rounded-full">
+            @if(objOrder.isDelivered){
+            Delivered
+            }
+            @else {
+            Not Delivered
+            }
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Customer & Shipping Info -->
+      <app-order-details [userDetails]="objOrder.user" [shippingAddress]="objOrder.shippingAddress">
+      </app-order-details>
+
+      <!-- Items -->
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+          Items
+        </h3>
+
+        <div class="space-y-4">
+          @for (itemCart of objOrder.cartItems; track $index) {
+          <app-orders-card [cartItem]="itemCart"></app-orders-card>
+          }
+        </div>
+      </div>
+
+      <!-- Total & Action -->
+      <div class="flex items-center justify-between
+                   border-t border-gray-200 pt-4">
+
+        <p class="text-base font-semibold text-gray-800">
+          Total:
+          <span class="text-indigo-700 ms-1">
+            {{ objOrder.totalOrderPrice }}
+          </span>
+        </p>
+
+        <button class="btnn px-6 py-2 text-sm font-medium">
+          Payment {{objOrder.paymentMethodType}}
+        </button>
+      </div>
+
+    </div>
+
+    }
+
+  </div>
+
+  }
+
+</section>

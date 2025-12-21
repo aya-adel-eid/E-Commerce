@@ -14,7 +14,7 @@
     @apply grid 2xl:grid-cols-5 xl:grid-cols-4  lg:grid-cols-3 sm:grid-cols-2 gap-4;
   }
   .hover-card {
-    @apply hover:border-6  hover:border-main-400 transition-all duration-700;
+    @apply hover:border-6 hover:shadow-xl hover:border-main-400 transition-all duration-700;
   }
   .input-form {
     @apply block rounded-t-base px-3 pb-3 pt-6 w-full text-sm text-heading bg-neutral-secondary-medium border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-main-700;

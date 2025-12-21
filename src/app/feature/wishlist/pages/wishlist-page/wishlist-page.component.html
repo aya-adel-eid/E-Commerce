@@ -1,0 +1,22 @@
+<section class="content">
+  <div class="title">
+    <h2 class="text-3xl font-bold my-4 uppercase py-4">wishlist</h2>
+  </div>
+  @if(!wishlistServices.wishlist){
+  <app-loading-screen></app-loading-screen>
+  }
+  @else {
+  @if (wishlistServices.wishlist.length==0) {
+  <h2 class="text-center text-6xl">Your wishlist is empty <span><i class="fa-solid fa-heart text-red-600"></i></span>
+  </h2>
+  }
+  @else{
+
+  <div class="system-Grid ">
+    @for (prod of wishlistServices.wishlist; track prod._id) {
+    <app-card-product-wishlist [product]="prod"></app-card-product-wishlist>
+    }
+  </div>
+  }
+  }
+</section>

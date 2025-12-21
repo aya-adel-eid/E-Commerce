@@ -1,0 +1,16 @@
+<div>
+  <form action="" [formGroup]="paymentUSer" (ngSubmit)="payment()">
+    <app-input-form [id]="'details'" [label]="'DetailsUser'" [control]="paymentUSer.get('details')" [type]="'text'"
+      formControlName="details"></app-input-form>
+    <app-input-form [id]="'phone'" [label]="'PhoneUser'" [control]="paymentUSer.get('phone')" [type]="'tel'"
+      formControlName="phone"></app-input-form>
+    <app-input-form [id]="'city'" [label]="'CityUser'" [control]="paymentUSer.get('city')" [type]="'text'"
+      formControlName="city"></app-input-form>
+    <div class="flex space-x-4">
+      <button class="btnn w-full" (click)="selectedPay='cash'"><i class="fa-solid fa-cash-register"></i> Cash On
+        Delivery</button>
+      <button class="btnn w-full" (click)="selectedPay='online'"><i class="fa-solid fa-cart-flatbed"></i>Online
+        payment</button>
+    </div>
+  </form>
+</div>

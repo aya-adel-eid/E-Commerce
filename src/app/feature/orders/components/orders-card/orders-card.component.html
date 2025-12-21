@@ -1,0 +1,40 @@
+<!-- <div class="grid sm:grid-cols-12 my-4 border-4 border-solid rounded-4xl border-gray-300 py-4 px-8 space-x-7 bg-white">
+  <div
+    class="image sm:col-span-3  lg:col-span-1 border-4 border-solid rounded-4xl border-gray-500 p-4 flex items-center">
+    <img [src]="cartItem.product.imageCover" [alt]="cartItem.product.title">
+  </div>
+  <div class="details sm:col-span-9 lg:col-span-11  p-4 space-y-4">
+    <h2>{{cartItem.product.title}}</h2>
+    <p><span>Price: </span>{{cartItem.price}}</p>
+    <p><span>Quantity: </span>{{cartItem.count}}</p>
+  </div>
+</div> -->
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-6 my-4 bg-white
+         border border-gray-200 rounded-3xl p-6 shadow-sm
+         text-sm sm:text-base text-gray-700">
+
+  <!-- Image -->
+  <div class="sm:col-span-3 lg:col-span-1
+           border border-gray-200 rounded-2xl p-3
+           flex items-center justify-center bg-gray-50">
+    <img [src]="cartItem.product.imageCover" [alt]="cartItem.product.title" class="w-full h-24 object-contain" />
+  </div>
+
+  <!-- Details -->
+  <div class="sm:col-span-9 lg:col-span-11 space-y-2">
+    <h2 class="text-base sm:text-lg font-semibold text-gray-800">
+      {{ cartItem.product.title }}
+    </h2>
+
+    <p>
+      <span class="font-medium text-gray-800">Price:</span>
+      {{ cartItem.price }}
+    </p>
+
+    <p>
+      <span class="font-medium text-gray-800">Quantity:</span>
+      {{ cartItem.count }}
+    </p>
+  </div>
+
+</div>

@@ -15,6 +15,8 @@ export class ProductsService extends BaseHttp {
   productsByCategory: Products[] = [];
   loadingPage = false;
   total: number = 0;
+  resultsCategory: number = 0;
+  resultsBrands: number = 0;
   getAllProducts(page: number = 1, limit: number | null = null) {
     this.loadingPage = true;
     return this.httpClient
@@ -43,6 +45,7 @@ export class ProductsService extends BaseHttp {
       .subscribe({
         next: (resp) => {
           this.productsByBrand = resp.data;
+          this.resultsBrands = resp.results;
           console.log(this.productsByBrand);
         },
       });
@@ -53,6 +56,7 @@ export class ProductsService extends BaseHttp {
       .subscribe({
         next: (resp) => {
           this.productsByCategory = resp.data;
+          this.resultsCategory = resp.results;
           console.log(this.productsByCategory, 'productCategory');
         },
       });

@@ -1,6 +1,7 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../feature/auth/services/auth.service';
+import { CartService } from '../../../feature/cart/services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +9,17 @@ import { AuthService } from '../../../feature/auth/services/auth.service';
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
-export class Navbar {
+export class Navbar implements OnInit {
   @Input({ required: true }) islogin!: boolean;
+  public readonly cartServices = inject(CartService);
   public readonly authService = inject(AuthService);
+  ngOnInit(): void {
+    this.getProductsCart();
+  }
   logOut() {
     this.authService.logOut();
+  }
+  getProductsCart() {
+    this.cartServices.getAllProductsInCart();
   }
 }

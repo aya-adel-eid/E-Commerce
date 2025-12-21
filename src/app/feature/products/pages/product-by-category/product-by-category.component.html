@@ -3,17 +3,32 @@
   <app-loading-screen></app-loading-screen>
   }
   @else {
-  @if(productService.productsByCategory){ <div class="py-8 w-full flex justify-center items-center">
-    <h3 class="text-3xl text-gray-800">There are no products available for this brand at the moment</h3>
+  @if(categoryService.category){
+
+  <div class="titl bg-[#F5F5F5]  flex justify-center py-10 mb-4">
+    <div class="image borded border-4 border-main-300 relative rounded-full">
+      <img [src]="categoryService.category.image" [alt]="categoryService.category.name"
+        class="rounded-full h-37.5 w-37.5">
+      <div
+        class="absolute inline-flex items-center justify-center w-12 h-12 text-xs font-bold text-white bg-main-300 border-2 border-buffer rounded-full -top-2 -end-2">
+        {{productService.resultsCategory}}</div>
+
+    </div>
+    <h3 class="text-center py-10 text-4xl px-6 font-bold text-main-600 items-end">{{categoryService.category.name}}</h3>
+  </div>
+  }
+  @if(productService.productsByCategory.length===0){
+  <div class="py-8 w-full flex flex-col justify-center items-center">
+    <h3 class="text-3xl text-gray-800 py-8 ">There are no products available for this brand at the moment</h3>
+    <button class="btnn px-8 py-6 cursor-pointer" routerLink="/categories">Back TO Page Categories</button>
   </div>
   }
   @else {
 
-  <div class="titl bg-[#F5F5F5] text-center py-10 text-3xl px-6">
-    <h3>{{title}}</h3>
-  </div>
-  <div class="system-Grid xl:grid-cols-5">
-    @for (product of productService.productsByCategory||[]; track $index) {
+
+
+  <div class="system-Grid xl:grid-cols-5 mt-6">
+    @for (product of productService.productsByCategory; track $index) {
     <app-product-card [product]="product"></app-product-card>
     }
   </div>

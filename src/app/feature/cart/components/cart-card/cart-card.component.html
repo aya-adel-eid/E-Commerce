@@ -1,0 +1,28 @@
+<div class="bg-white shadow-main p-6 rounded-3xl">
+  <div class="grid sm:grid-cols-12">
+    <div class="image sm:col-span-2 lg:col-span-1 mx-6">
+      <img [src]="cartData.imageCover" [alt]="cartData.title">
+    </div>
+    <div class="sm:col-span-10 lg:col-span-11 flex items-center justify-between">
+      <div>
+        <h3>{{cartData.title}}</h3>
+        <div class="flex items-center space-x-6 my-3">
+          <div class="bg-gray-200 border rounded-lg flex items-center space-x-10 py-1 px-2 ">
+            <button class="cursor-pointer " (click)="updateProductCount(count-1,cartData._id)"><i
+                class="fa fa-minus"></i></button>
+            <span>{{count}}</span>
+            <button class="cursor-pointer" (click)="updateProductCount(count+1,cartData._id)"><i
+                class="fa fa-plus"></i></button>
+          </div>
+          <button class="cursor-pointer " (click)="removeCartItem(cartData._id)"><i
+              class="fa fa-trash hover:text-red-600"></i></button>
+        </div>
+        <div>
+          <button class="cursor-pointer mt-2 space-x-6" (click)="isLike=!isLike"><i
+              class="fa-solid fa-heart hover:text-main-500" [class.text-main-500]="isLike"></i>Add wishlist</button>
+        </div>
+      </div>
+      <span>{{price*count}} Egp</span>
+    </div>
+  </div>
+</div>

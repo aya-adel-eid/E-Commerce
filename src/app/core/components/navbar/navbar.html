@@ -14,14 +14,24 @@
       <li>
         <a routerLink="/product" class="text-gray-500 ">Products</a>
       </li>
-      <li>
-        <a class="text-gray-500 ">Cart</a>
+      <li class="relative">
+        <a class="text-gray-500 " routerLink="/cart">Cart
+          @if(cartServices.numOfCartItems){
+
+          <div
+            class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-danger border-2 border-buffer rounded-full -top-4 -end-2">
+            {{cartServices.numOfCartItems}}</div>
+          }
+        </a>
       </li>
       <li>
         <a routerLink="/categories" class="text-gray-500 ">Categories</a>
       </li>
       <li>
         <a routerLink="/brand" class="text-gray-500 ">Brands</a>
+      </li>
+      <li>
+        <a routerLink="/wishlist" class="text-gray-500 ">ًwishlist</a>
       </li>
       }
 

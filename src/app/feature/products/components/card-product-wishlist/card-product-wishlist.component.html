@@ -1,0 +1,58 @@
+<button class="text-gray-700 hover:text-gray-400  text-xl cursor-pointer my-4 px-3"
+  (click)="removeProductInWishlist(product._id)"><i class="fa fa-multiply"></i>Remove</button>
+<div class="bg-neutral-primary-soft block max-w-sm p-6 border-2 border-gray-300
+   rounded-base shadow-main  hover:border-2 group hover:border-main-400 transition-all duration-700">
+  <div class="image  relative  overflow-hidden">
+    <a [routerLink]="['/details',product._id]" class="cursor-pointer ">
+      <img class="rounded-base" [src]="product.imageCover"
+        class="w-full h-[250px]  transition-all duration-300 hover:scale-110" [alt]="product.title" #currentImag />
+    </a>
+    <div
+      class=" flex flex-col space-y-6 bg-gray/60 absolute top-2 -right-10 group-hover:right-0  transition-all duration-500 py-8 px-1 rounded-2xl text-center">
+      <span (click)="addToWishlist(product._id)" class="cursor-pointer"><i
+          class="fa-solid fa-heart text-xl  hover:text-main-400" [class.text-main-400]="isLike" #iconFav></i></span>
+      <span (click)="isShow=!isShow" class="cursor-pointer"><i class="fa-solid fa-eye text-xl hover:text-main-400"
+          [class.text-main-400]="isShow"></i></span>
+    </div>
+    <div class="w-full space-x-4 px-4 absolute -bottom-12 group-hover:bottom-2 transition-all duration-500">
+      <button class="btn-cart w-full" (mouseenter)="hoveronBtn=!hoveronBtn" (mouseleave)="hoveronBtn=!hoveronBtn"
+        (click)="addProductToCart(product._id)">
+
+
+        @if(isLoading){
+        adding...<i class="fas fa-spinner fa-spin"></i>
+        }
+
+
+        @else {
+
+        <span><i class="fa-solid fa-bag-shopping"></i></span> ADD
+        TO
+        CART
+        }
+      </button>
+
+
+
+    </div>
+  </div>
+  <span class="brandtext">{{product.brand.name}}</span>
+
+  <a [routerLink]="['/details',product._id,product.slug]">
+    <h5
+      class="mt-1 mb-2 text-xl font-semibold tracking-tight text-heading group-hover:underline group-hover:text-main-400 line-clamp-1">
+      {{product.title}}
+    </h5>
+  </a>
+
+  <p class="mb-6 text-body line-clamp-2 h-[48px]">{{product.description}}</p>
+
+
+  <div class="mt-3 flex justify-between">
+    <span class="text-sm font-bold">{{product.price}} $</span>
+    <span class="rating text-rating">
+      <i class="far fa-star"></i> {{product.ratingsAverage}}
+    </span>
+  </div>
+
+</div>

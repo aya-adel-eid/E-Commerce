@@ -4,38 +4,38 @@
 @else {
 
 <div
-  class=" grid sm:gap-8 lg:gap-0 h-4/10 grid-cols-12 items-center bg-neutral-primary-soft p-6 border border-default rounded-base shadow-main w-full   py-10  sm:mt-12">
+  class=" grid sm:gap-8 lg:gap-0 h-4/10 grid-cols-12 justify-center   bg-neutral-primary-soft p-6 border border-default rounded-3xl shadow-main w-full   py-10  sm:mt-12">
   <div class="img xl:col-span-6 sm:col-span-12">
     <!-- <img class=" w-full rounded-base h-[600px]  mb-4 md:mb-0 " [src]="product.imageCover" alt=""> -->
 
 
-    <div class="  gap-2  items-center  space-y-4 sticky top-0">
+    <div class=" flex  gap-2  items-center  space-y-4 ">
       <!-- width20 -->
 
-      <div class="">
-        <img class=" max-w-full rounded-4xl h-[20%]" [src]="product.imageCover" alt="" #mainImage>
-      </div>
       <div class=" space-y-4   ">
-        <owl-carousel-o [options]="customOptions">
 
 
-          @for (image of product.images; track $index) {
-          <ng-template carouselSlide>
 
-            <div class="">
-              <img class="h-[100px] max-w-full rounded-3xl cursor-pointer" [src]="image" [alt]="product.title"
-                (mouseover)="mainImage.src=image">
-            </div>
-          </ng-template>
-          }
+        @for (image of product.images; track $index) {
 
-        </owl-carousel-o>
 
+        <div class="">
+          <img class="h-[90px] max-w-full rounded-3xl cursor-pointer" [src]="image" [alt]="product.title"
+            (mouseover)="mainImage.src=image">
+        </div>
+
+        }
+
+
+
+      </div>
+      <div class="">
+        <img class=" max-w-full rounded-4xl h-[500px]" [src]="product.imageCover" alt="" #mainImage>
       </div>
     </div>
 
   </div>
-  <div class="flex flex-col justify-between md:p-4 leading-normal xl:col-span-5 sm:col-span-12 px-6">
+  <div class="flex flex-col  md:p-4 leading-normal xl:col-span-5 sm:col-span-12 px-6">
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-heading py-7">{{product.title}}</h5>
     <div class="pb-5">
       <span><i class="fa-solid fa-star text-rating "></i></span>
@@ -81,7 +81,7 @@
     <div class="pb-6 flex justify-between w-5/6">
       <span class="text-3xl font-bold text-main-600">{{product.price}} $</span>
       <span (mouseenter)="icon.classList.add('text-main-400')"
-        (mouseleave)="!isLike &&icon.classList.remove('text-main-400')" (click)="isLike=!isLike"
+        (mouseleave)="!isLike &&icon.classList.remove('text-main-400')" (click)="addToWishlist(product._id)"
         class="cursor-pointer"><i class="fa-solid fa-heart text-3xl" #icon [class.text-main-400]="isLike"></i>
         <span class="text-xl font-bold capitalize text-gray-500"> Add to wishlist</span></span>
     </div>
@@ -103,7 +103,7 @@
 
 
     <div class="space-x-3">
-      <button type="button" class=" w-2/5 py-3 text-xl btn-cart  hover:bg-black">
+      <button type="button" class=" w-2/5 py-3 text-xl btn-cart  hover:bg-black" (click)=" addToCart(product._id)">
         <i class="fa-solid fa-cart-plus"></i> Add to cart
 
       </button>

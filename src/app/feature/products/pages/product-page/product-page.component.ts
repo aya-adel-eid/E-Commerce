@@ -6,6 +6,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
+import { Filter } from '../../../../shared/pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-product-page',
   imports: [
@@ -13,6 +15,8 @@ import { LoadingScreenComponent } from '../../../../shared/components/loading-sc
     SectionTitleComponent,
     NgxPaginationModule,
     LoadingScreenComponent,
+    Filter,
+    FormsModule,
   ],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.css',
@@ -22,7 +26,7 @@ export class ProductPageComponent implements OnInit {
   private readonly route = inject(Router);
   private readonly activeRoute = inject(ActivatedRoute);
   private readonly viewportScrolle = inject(ViewportScroller);
-
+  textSearch = '';
   //when change number of page
 
   page: number = 1;

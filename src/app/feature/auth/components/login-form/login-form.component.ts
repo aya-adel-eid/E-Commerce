@@ -2,7 +2,7 @@ import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { InputFormComponent } from '../input-form/input-form.component';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { platformBrowser } from '@angular/platform-browser';
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { interval, take } from 'rxjs';
 @Component({
   selector: 'app-login-form',
-  imports: [InputFormComponent, ReactiveFormsModule],
+  imports: [InputFormComponent, ReactiveFormsModule, RouterLink],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css',
 })
@@ -52,9 +52,9 @@ export class LoginFormComponent {
           this.isLoading = false;
           console.log(resp);
           const token = resp.token;
-          if (isPlatformBrowser(this.platId)) {
-            localStorage.setItem(STORED_KEYS.UserToken, token);
-          }
+
+          localStorage.setItem(STORED_KEYS.UserToken, token);
+
           this.authService.decodeToken(token);
           interval(1000)
             .pipe(take(5))

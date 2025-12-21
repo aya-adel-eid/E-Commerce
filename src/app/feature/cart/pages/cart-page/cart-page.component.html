@@ -1,0 +1,55 @@
+<section class="content py-7 px-4 md:px-8 ">
+  <h3 class="text-3xl font-bold py-5">Shopping Cart</h3>
+
+  @if(!cartService.userCart) {
+  <app-loading-screen></app-loading-screen>
+  }
+  @else {
+  @if(cartService.userCart.products.length == 0) {
+  <div class="text-center py-20 flex flex-col items-center justify-center ">
+    <i class="fa fa-shopping-cart text-gray-300 text-9xl mb-4"></i>
+    <p class="text-gray-400 text-xl">Your cart is empty</p>
+    <a routerLink="/product"
+      class="inline-block mt-4 bg-main-600 text-white py-3 px-8 rounded-lg cursor-pointer hover:bg-main-700 transition">
+      Continue Shopping
+    </a>
+  </div>
+  }
+  @else {
+  <div class="grid lg:grid-cols-12 gap-6 items-start">
+
+    <!-- Cart Items Column (Left Side) -->
+    <div class="lg:col-span-8 col-span-12 ">
+      <div class="space-y-6">
+        @for (item of cartService.userCart.products; track item.product._id) {
+        <div>
+
+          <app-cart-card [cartData]="item.product" [price]="item.price" [count]="item.count">
+          </app-cart-card>
+        </div>
+        }
+      </div>
+
+      <!-- Clear Cart Button -->
+      <div class="mt-6">
+        <button
+          class="bg-red-500 rounded-full hover:bg-red-600 text-white py-3 px-8  cursor-pointer transition duration-300 flex items-center gap-2"
+          (click)="clearCart()">
+          <i class="fa fa-trash"></i>
+          Clear Cart
+        </button>
+      </div>
+    </div>
+
+    <!-- Summary Card Column (Right Side - Sticky) -->
+    <div class="lg:col-span-4 col-span-12">
+      <div class="sticky top-24">
+        <app-summary-card [totalPrice]="cartService.userCart.totalCartPrice" [cartID]="cartService.userCart._id">
+        </app-summary-card>
+      </div>
+    </div>
+
+  </div>
+  }
+  }
+</section>

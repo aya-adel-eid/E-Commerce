@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Category } from '../../interfaces/IAllCategories';
+import { CategoriesService } from '../../services/categories.service';
 
 @Component({
   selector: 'app-category-card',
@@ -10,4 +11,5 @@ import { Category } from '../../interfaces/IAllCategories';
 })
 export class CategoryCardComponent {
   @Input({ required: true }) category!: Category;
+  public readonly categoriesServices = inject(CategoriesService);
 }

@@ -3,15 +3,29 @@
   <app-loading-screen></app-loading-screen>
   }
   @else {
-  @if(productsService.productsByBrand.length===0){ <div class="py-8 w-full flex justify-center items-center">
+  @if(brandsService.specificBrand){
+
+  <div class="titl bg-[#F5F5F5]  flex justify-center py-10 my-4">
+    <div class="image borded border-4 border-main-300 relative rounded-full">
+      <img [src]="brandsService.specificBrand.image" [alt]="brandsService.specificBrand.name"
+        class="rounded-full h-37.5 w-37.5">
+      <div
+        class="absolute inline-flex items-center justify-center w-12 h-12 text-xs font-bold text-white bg-main-300 border-2 border-buffer rounded-full -top-2 -end-2">
+        {{productsService.resultsBrands}}</div>
+
+    </div>
+    <h3 class="text-center py-10 text-4xl px-6 font-bold text-main-600 items-end">{{brandsService.specificBrand.name}}
+    </h3>
+  </div>
+  }
+  @if(productsService.productsByBrand.length===0){
+  <div class="py-8 w-full flex justify-center items-center">
     <h3 class="text-3xl text-gray-800">There are no products available for this brand at the moment</h3>
   </div>
   }
   @else {
 
-  <div class="titl bg-[#F5F5F5] text-center py-10 text-3xl px-6">
-    <h3>{{titleBrand}}</h3>
-  </div>
+
   <div class="system-Grid xl:grid-cols-5">
     @for (product of productsService.productsByBrand; track $index) {
     <app-product-card [product]="product"></app-product-card>

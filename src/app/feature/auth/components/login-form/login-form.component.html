@@ -3,6 +3,9 @@
     [type]="'email'"></app-input-form>
   <app-input-form [id]="'password'" [label]="'UserPassword'" [control]="loginForm.get('password')"
     formControlName="password" [type]="'password'"></app-input-form>
+  <div class=" flex justify-end p-4 text-xl">
+    <a routerLink="/forgetPassword" class="text-blue-700 underline cursor-pointer">ForgetPassword?</a>
+  </div>
   @if(messagErro){
   <div
     class="flex items-start sm:items-center text-center p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
