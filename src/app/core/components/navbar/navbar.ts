@@ -13,6 +13,8 @@ export class Navbar implements OnInit {
   @Input({ required: true }) islogin!: boolean;
   public readonly cartServices = inject(CartService);
   public readonly authService = inject(AuthService);
+  openMenuAuth = true;
+  openBar = true;
   ngOnInit(): void {
     this.getProductsCart();
   }

@@ -1,4 +1,4 @@
-<nav class="bg-light  shadow-main fixed w-full z-20 top-0 start-0 border-b border-default">
+<!-- <nav class="bg-light  shadow-main fixed w-full z-20 top-0 start-0 border-b border-default">
   <div class="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a routerLink="/home" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="./images/freshcart-logo.svg" class="h-7" alt="FreshCart Logo" />
@@ -61,41 +61,142 @@
 
     </div>
   </div>
-</nav>
+</nav> -->
 
-<!-- <nav class="bg-ligth shadow-main shadow-gray fixed w-full z-20 top-0 start-0">
 
-  <div class="flex flex-wrap justify-between items-center container mx-auto max-w-screen-xl p-4">
-    <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img src="./images/freshcart-logo.svg" class="h-7" alt="Flowbite Logo" />
 
+<!-- new -->
+
+
+<nav class="bg-neutral-primary fixed w-full z-50 top-0 start-0 border-b border-default">
+  <div class="content flex items-center justify-between mx-auto p-4">
+    <!-- Logo -->
+    <a routerLink="/home" class="flex items-center space-x-3">
+      <img src="./images/freshcart-logo.svg" class="h-7" alt="FreshCart Logo" />
     </a>
-    <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
-      <li>
-        <a href="#" class="text-gray-500 ">Home</a>
-      </li>
-      <li>
-        <a href="#" class="text-gray-500 ">Products</a>
-      </li>
-      <li>
-        <a href="#" class="text-gray-500 ">Cart</a>
-      </li>
-      <li>
-        <a href="#" class="text-gray-500 ">Categories</a>
-      </li>
-      <li>
-        <a href="#" class="text-gray-500 ">Brands</a>
-      </li>
-    </ul>
-    <div class="flex items-center space-x-6 rtl:space-x-reverse">
-      <a href="#" class="text-sm  text-body "><i class="fa-brands fa-square-instagram text-black"></i></a>
-      <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-brands fa-facebook text-black"></i></a>
-      <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-brands fa-twitter text-black"></i></a>
-      <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-solid fa-phone text-black"></i></a>
-      <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-brands fa-whatsapp text-black"></i></a>
+
+    <!-- Desktop Navigation Menu (Hidden on mobile) -->
+    <div class="hidden lg:block">
+      <ul class="flex flex-row items-center space-x-7">
+        @if(islogin){
+
+        <li>
+          <a routerLink="/home" class="text-gray-500 hover:text-gray-900">Home</a>
+        </li>
+
+        <li>
+          <a routerLink="/product" class="text-gray-500 hover:text-gray-900">Products</a>
+        </li>
+
+        <li>
+          <a routerLink="/categories" class="text-gray-500 hover:text-gray-900">Categories</a>
+        </li>
+
+        <li>
+          <a routerLink="/brand" class="text-gray-500 hover:text-gray-900">Brands</a>
+        </li>
+        }
+      </ul>
     </div>
-    <div>
-      <a href="" class="text-gray-500">Sign Out <span><i class="fa-solid fa-right-from-bracket"></i></span></a>
+
+    <div class="flex items-center space-x-7 rtl:space-x-reverse">
+      @if (islogin) {
+
+      <div class="hidden lg:block">
+        <a routerLink="/wishlist" class="flex flex-col items-center gap-1 hover:text-danger transition">
+          <i class="fa-solid fa-heart text-xl"></i>
+
+        </a>
+      </div>
+      <div class="relative hidden lg:block">
+        <a routerLink="/cart" class="flex flex-col items-center gap-1 hover:text-primary transition">
+
+          <i class="fa-solid fa-cart-shopping text-xl"></i>
+
+          @if (cartServices.numOfCartItems) {
+          <span class="absolute -top-1 -right-2 flex items-center justify-center
+                      w-5 h-5 text-2xs font-bold text-white
+                      bg-danger rounded-full">
+            {{ cartServices.numOfCartItems }}
+          </span>
+          }
+
+
+        </a>
+      </div>
+      }
+      <!-- User Account -->
+      <div class="relative">
+        <button type="button"
+          class="flex text-sm bg-neutral-primary rounded-full focus:ring-4 focus:ring-neutral-tertiary cursor-pointer"
+          (click)="openMenuAuth=!openMenuAuth">
+          <span class="sr-only">Open user menu</span>
+          <i class="fa-solid fa-circle-user fa-2x text-gray-800"></i>
+        </button>
+
+        <!-- Dropdown menu -->
+        <div
+          class="z-50 absolute top-full right-0 mt-2 bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
+          [class.hidden]="openMenuAuth">
+          @if (islogin) {
+          <div class="px-4 py-3 text-sm border-b border-default">
+            <span class="block text-heading font-medium">Joseph McFall</span>
+            <span class="block text-body truncate">name@flowbite.com</span>
+          </div>
+          }
+          <ul class="p-2 text-sm space-y-3">
+            @if(islogin){
+            <li>
+              <a class="cursor-pointer text-gray-500 hover:text-gray-900" (click)="logOut()">
+                Logout <i class="fa-solid fa-right-from-bracket"></i>
+              </a>
+            </li>
+            }
+            @else {
+            <li>
+              <a routerLink="/login" class="text-gray-500 hover:text-gray-900">Login</a>
+            </li>
+
+            <li>
+              <a routerLink="/register" class="text-gray-500 hover:text-gray-900">Register</a>
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Button (Only visible on mobile) - AFTER User Icon -->
+      @if (islogin) {
+      <button type="button"
+        class="inline-flex items-center p-2 cursor-pointer w-10 h-10 justify-center text-sm text-body rounded-base lg:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
+        (click)="openBar=!openBar">
+        <span class="sr-only">Open main menu</span>
+        <i class="fa-solid fa-bars fa-xl"></i>
+      </button>
+      }
     </div>
   </div>
-</nav> -->
+
+  <!-- Mobile Navigation Menu (Full width below navbar) -->
+  <div class="lg:hidden border-t border-default" [class.hidden]="openBar">
+    <div class="content mx-auto">
+      <ul class="flex flex-col p-4 space-y-3">
+        <li [class.hidden]="!islogin">
+          <a routerLink="/home" class="text-gray-500 hover:text-gray-900 block py-2">Home</a>
+        </li>
+
+        <li [class.hidden]="!islogin">
+          <a routerLink="/product" class="text-gray-500 hover:text-gray-900 block py-2">Products</a>
+        </li>
+
+        <li [class.hidden]="!islogin">
+          <a routerLink="/categories" class="text-gray-500 hover:text-gray-900 block py-2">Categories</a>
+        </li>
+
+        <li [class.hidden]="!islogin">
+          <a routerLink="/brand" class="text-gray-500 hover:text-gray-900 block py-2">Brands</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

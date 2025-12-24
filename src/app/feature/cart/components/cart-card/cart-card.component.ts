@@ -4,10 +4,11 @@ import { CartService } from '../../services/cart.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UpdataData } from '../../interfaces/IUptadeCartResp';
 import { CurrencyPipe } from '@angular/common';
+import { ImagePlaceHolderDirective } from '../../../../shared/directives/image-place-holder.directive';
 
 @Component({
   selector: 'app-cart-card',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, ImagePlaceHolderDirective],
   templateUrl: './cart-card.component.html',
   styleUrl: './cart-card.component.css',
 })

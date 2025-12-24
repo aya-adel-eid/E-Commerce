@@ -1,9 +1,9 @@
 <div class="bg-neutral-primary-soft block  border-2 border-gray-300 rounded-base text-center
    hover:border-2 shadow-main  hover:border-main-400 transition-all duration-700">
   <!-- [queryParams]="{'category[in]':category._id}"   [fragment]="category.name" -->
-  <a [routerLink]="['/categories',category._id]" (click)="categoriesServices.getSpecificCategory(category._id)">
-    <img class="rounded-t-base w-full h-[320px]" [src]="category.image" [alt]="category.name" />
-  </a>
+  <div [routerLink]="['/categories',category._id]" (click)="categoriesServices.getSpecificCategory(category._id)">
+    <img class="rounded-t-base w-full h-[320px]" [src]="category.image" [alt]="category.name" imagePlaceHolder />
+  </div>
   <div class="p-6 text-center">
 
     <a (click)="categoriesServices.getSpecificCategory(category._id)">

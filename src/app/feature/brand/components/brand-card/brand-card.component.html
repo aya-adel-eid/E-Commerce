@@ -1,9 +1,12 @@
 <div class="bg-neutral-primary-soft block  border-2 border-gray-300 rounded-base text-center
    hover:border-2 shadow-main  hover:border-main-400 transition-all duration-700">
   <!-- / [queryParams]="{'brand':brand._id}" [fragment]="brand.name" -->
-  <a [routerLink]="['/brands',brand._id]" (click)="getSpecificBrand(brand._id)">
-    <img class="rounded-t-base w-full h-[320px]" [src]="brand.image" [alt]="brand.name" />
-  </a>
+  <div [routerLink]="['/brands',brand._id]" (click)="getSpecificBrand(brand._id)">
+
+
+    <img class="rounded-t-base w-full h-[320px]" [src]="brand.image" [alt]="brand.name" imagePlaceHolder />
+
+  </div>
   <div class="p-6 text-center">
 
     <a (click)="getSpecificBrand(brand._id)">

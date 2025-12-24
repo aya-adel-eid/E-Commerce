@@ -5,10 +5,11 @@ import { WishlistService } from '../../../wishlist/services/wishlist.service';
 import { CartService } from '../../../cart/services/cart.service';
 import { Product } from '../../../wishlist/interfaces/IFavProdReq';
 import { RouterLink } from '@angular/router';
+import { ImagePlaceHolderDirective } from '../../../../shared/directives/image-place-holder.directive';
 
 @Component({
   selector: 'app-card-product-wishlist',
-  imports: [RouterLink],
+  imports: [RouterLink, ImagePlaceHolderDirective],
   templateUrl: './card-product-wishlist.component.html',
   styleUrl: './card-product-wishlist.component.css',
 })

@@ -6,10 +6,11 @@ import { CartService } from '../../../cart/services/cart.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { WishlistService } from '../../../wishlist/services/wishlist.service';
+import { ImagePlaceHolderDirective } from '../../../../shared/directives/image-place-holder.directive';
 
 @Component({
   selector: 'app-card-details-product',
-  imports: [LoadingScreenComponent, CarouselModule],
+  imports: [LoadingScreenComponent, CarouselModule, ImagePlaceHolderDirective],
   templateUrl: './card-details-product.component.html',
   styleUrl: './card-details-product.component.css',
 })

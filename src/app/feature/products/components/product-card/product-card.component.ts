@@ -6,11 +6,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { WishlistService } from '../../../wishlist/services/wishlist.service';
+import { ImagePlaceHolderDirective } from '../../../../shared/directives/image-place-holder.directive';
 // import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-card',
-  imports: [RouterLink],
+  imports: [RouterLink, ImagePlaceHolderDirective],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',
 })

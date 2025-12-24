@@ -2,10 +2,10 @@
    rounded-base shadow-main  hover:border-2 group hover:border-main-400 transition-all duration-700"
   (mouseenter)="currentImag.src=product.images[0]" (mouseleave)="currentImag.src=product.imageCover">
   <div class="image  relative  overflow-hidden">
-    <a [routerLink]="['/details',product._id,product.slug]" class="cursor-pointer ">
-      <img class="rounded-base" [src]="product.imageCover" class="w-full h-[250px]  " [alt]="product.title"
-        #currentImag />
-    </a>
+    <div [routerLink]="['/details',product._id,product.slug]" class="cursor-pointer ">
+      <img class="rounded-base" [src]="product.imageCover" class="w-full h-[250px]  " [alt]="product.title" #currentImag
+        imagePlaceHolder />
+    </div>
     <div
       class=" flex flex-col space-y-6 bg-gray/60 absolute top-2 -right-10 group-hover:right-0  transition-all duration-500 py-8 px-1 rounded-2xl text-center">
       <span (click)="addToWishlist(product._id)" class="cursor-pointer"><i
