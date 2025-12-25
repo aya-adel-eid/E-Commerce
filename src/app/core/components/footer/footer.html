@@ -1,0 +1,97 @@
+<div class="bg-neutral-primary border-t border-default py-10">
+  <div class="content">
+    <!-- Grid Container -->
+    <div class="grid grid-cols-12 gap-8">
+
+      <!-- info fresh cart -->
+      <div class="col-span-12 md:col-span-6 xl:col-span-3 space-y-4">
+        <a routerLink="/home" class="flex items-center space-x-3">
+          <img src="./images/freshcart-logo.svg" class="h-7" alt="FreshCart Logo" />
+        </a>
+        <p class="text-gray-500 text-sm">
+          Your one-stop destination for the latest technology, fashion,
+          and lifestyle products. Quality guaranteed with fast shipping and excellent customer service.
+        </p>
+
+        <!-- Contact Info -->
+        <div class="space-y-2">
+          <!-- location -->
+          <div class="flex items-start gap-2 text-gray-500 text-sm">
+            <i class="fa-solid fa-location-dot mt-1"></i>
+            <span>123 Shop Street, October City, DC 12345</span>
+          </div>
+
+          <!-- mobile -->
+          <div class="flex items-center gap-2 text-gray-500 text-sm">
+            <i class="fa-solid fa-phone"></i>
+            <span>(+20) 01093333333</span>
+          </div>
+
+          <!-- email -->
+          <div class="flex items-center gap-2 text-gray-500 text-sm">
+            <i class="fa-solid fa-envelope"></i>
+            <span>support@shopmart.com</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shop Categories -->
+      <div class="col-span-12 md:col-span-6 xl:col-span-2">
+        <h2 class="text-heading font-bold text-lg mb-4">Shop</h2>
+        @if (categoriesService.allCategories) {
+        <ul class="space-y-2">
+          @for (category of categoriesService.allCategories.slice(0,6); track category._id) {
+          <li>
+            <a routerLink="/categories/{{category._id}}"
+              class="text-gray-500 hover:text-main-500 text-sm transition-colors cursor-pointer">
+              {{category.name}}
+            </a>
+          </li>
+          }
+        </ul>
+        }
+      </div>
+
+      <!-- POLICIES -->
+      <div class="col-span-12 md:col-span-6 xl:col-span-2">
+        <h2 class="text-heading font-bold text-lg mb-4">POLICIES</h2>
+        <div class="flex flex-col space-y-2">
+          <a href="#" class="text-gray-500 hover:text-main-500 text-sm transition-colors">Privacy Policy</a>
+          <a href="#" class="text-gray-500 hover:text-main-500 text-sm transition-colors">Terms Of Services</a>
+          <a href="#" class="text-gray-500 hover:text-main-500 text-sm transition-colors">Cookie Policy</a>
+          <a href="#" class="text-gray-500 hover:text-main-500 text-sm transition-colors">Shipping Policy</a>
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="col-span-12 md:col-span-12 xl:col-span-5">
+        <div class="bg-gray-100 rounded-2xl p-6 space-y-4">
+          <h2 class="text-main-500 font-bold text-2xl">Subscribe Newsletter</h2>
+          <p class="text-gray-500 text-sm">
+            Join our mailing list to receive the latest updates and promotions.
+          </p>
+
+          <!-- Email Input & Button -->
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input type="email" class="flex-1 bg-white border border-gray-300 text-heading text-sm rounded-lg
+                     focus:ring-2 focus:ring-main-500 focus:border-main-500 px-4 py-3
+                     placeholder:text-gray-400 outline-none transition-all" placeholder="Your email address"
+              required />
+            <button class="bg-main-500 hover:bg-main-600 text-white font-medium px-6 py-3
+                           rounded-lg transition-colors whitespace-nowrap">
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="mt-10 pt-6 border-t border-default text-center">
+      <p class="text-gray-500 text-sm">
+        © 2025 FreshCart. All rights reserved.
+      </p>
+    </div>
+  </div>
+</div>
