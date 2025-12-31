@@ -17,13 +17,13 @@
     @apply hover:border-6 hover:shadow-xl hover:border-main-400 transition-all duration-700;
   }
   .input-form {
-    @apply block rounded-t-base px-3 pb-3 pt-6 w-full text-sm text-heading bg-neutral-secondary-medium border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-main-700;
+    @apply block rounded-t-base px-3 pb-3 pt-6 w-full text-sm text-heading bg-white border-0 border-b-2 border-main-700 appearance-none focus:outline-none focus:ring-0 focus:border-main-700;
   }
   .label-input {
-    @apply absolute text-xl text-body duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-xl peer-focus:text-main-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto;
+    @apply absolute text-sm text-body font-semibold duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-xl peer-focus:text-main-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto;
   }
   .btnn {
-    @apply text-xl py-2 disabled:bg-gray-400 bg-main-400 text-white rounded-2xl cursor-pointer hover:bg-main-600 text-center;
+    @apply text-xl py-2 disabled:bg-gray-400 bg-main-500 text-white rounded-2xl cursor-pointer hover:bg-main-600 text-center;
   }
 }
 body {

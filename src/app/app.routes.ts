@@ -16,6 +16,8 @@ import { CART_ROUTES } from './feature/cart/cart.routes';
 import { PAYMENTS_ROUTES } from './feature/payment/payments.routes';
 import { ORDERS_ROUTES } from './feature/orders/orderes.routes';
 import { WISHLIST_ROUTES } from './feature/wishlist/wishlist.routes';
+import { GustLayout } from './core/layout/gust-layout/gust-layout';
+import { HomePageComponent } from './feature/home/pages/home-page/home-page.component';
 
 export const routes: Routes = [
   //auth
@@ -31,7 +33,7 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [authGuard],
-    // canActivate: [loogedGuard],
+
     component: MainLayout,
     children: [
       { path: 'home', children: HOME_ROUTES },
@@ -50,6 +52,33 @@ export const routes: Routes = [
       { path: 'payment/:CartId', children: PAYMENTS_ROUTES },
       { path: 'allorders', children: ORDERS_ROUTES },
       { path: 'wishlist', children: WISHLIST_ROUTES },
+    ],
+  },
+  //gust
+  {
+    path: '',
+    component: GustLayout,
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        component: HomePageComponent,
+      },
+      {
+        path: 'product',
+        children: PRODUCTS_ROUTes,
+      },
+      { path: 'details/:id', component: ProductDetailsComponent },
+      { path: 'details/:id/:slug', component: ProductDetailsComponent },
+      { path: 'categories', children: Categories_Routes },
+      { path: 'brand', children: BRANDS_ROUTES },
+      { path: 'brands/:id', component: ProductsByBrandsComponent },
+      //
+      { path: 'categories/:id', component: ProductByCategoryComponent },
     ],
   },
   //not

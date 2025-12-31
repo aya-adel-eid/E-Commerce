@@ -7,7 +7,33 @@
   --rating-color: #ffc908;
 } */
 @theme {
-  --color-main-200: #9dde9d;
+  --color-main-200: #afdcd5;
+  --color-main-100: #d7eeea;
+  --color-main-300: #86cbc1;
+  --color-main-400: #5eb9ac;
+  --color-main-500: #36a897;
+  --color-main-600: #2b8679;
+  --color-main-700: #20655b;
+  --color-main-800: #16433c;
+  --color-main-900: #0b221e;
+  --font-family-main: 'Encode Sans Expanded', sans-serif;
+  --shadow-main: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
+    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px, rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+  --color-rating: #ffc908;
+  --color-light: #f0f3f2;
+}
+/* teal: {
+    100: "#d7eeea",
+    200: "#afdcd5",
+    300: "#86cbc1",
+    400: "#5eb9ac",
+    500: "#36a897",
+    600: "#2b8679",
+    700: "#20655b",
+    800: "#16433c",
+    900: "#0b221e"
+}, */
+/* --color-main-200: #9dde9d;
   --color-main-100: #ceefce;
   --color-main-300: #6cce6c;
   --color-main-400: #3bbd3b;
@@ -15,13 +41,7 @@
   --color-main-600: #088a08;
   --color-main-700: #066806;
   --color-main-800: #044504;
-  --color-main-900: #022302;
-  --font-family-main: 'Encode Sans Expanded', sans-serif;
-  --shadow-main: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
-    rgba(145, 158, 171, 0.14) 0px 4px 5px 0px, rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
-  --color-rating: #ffc908;
-  --color-light: #f0f3f2;
-}
+  --color-main-900: #022302; */
 
 /*  --color-main-200: #f3b7be;
   --color-main-100: #f9dbde;

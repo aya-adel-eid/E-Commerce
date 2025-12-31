@@ -4,8 +4,9 @@
 
     @for (category of categoryService.allCategories; track category._id) {
     <ng-template carouselSlide [id]="category._id">
-      <div>
-        <div class="image">
+      <div class="cursor-pointer">
+        <div class="image" [routerLink]="['/categories',category._id]"
+          (click)="categoryService.getSpecificCategory(category._id)">
           <img [src]="category.image" [alt]="category.name" class="h-[230px]">
         </div>
         <h3 class="font-bold text-xl text-gray-600 pt-4 text-center">{{category.name}}</h3>

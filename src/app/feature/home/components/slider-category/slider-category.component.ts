@@ -4,10 +4,11 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { getOwlOptions } from '../../../../core/services/utilites/owlCoursl.service';
 import { SectionTitleComponent } from '../../../../shared/components/section-title/section-title.component';
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-slider-category',
-  imports: [CarouselModule, SectionTitleComponent, LoadingScreenComponent],
+  imports: [CarouselModule, SectionTitleComponent, LoadingScreenComponent, RouterLink],
   templateUrl: './slider-category.component.html',
   styleUrl: './slider-category.component.css',
 })

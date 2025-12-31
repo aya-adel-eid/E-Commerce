@@ -1,16 +1,22 @@
-<div class="bg-neutral-primary-soft block  border-2 border-gray-300 rounded-base text-center
-   hover:border-2 shadow-main  hover:border-main-400 transition-all duration-700">
+<div class="bg-neutral-primary-soft block border-3 border-gray-300 rounded-base text-center cursor-pointer
+         shadow-md group overflow-hidden
+         transition-all
+         duration-200 ease-out
+         hover:shadow-xl hover:border-main-500">
   <!-- / [queryParams]="{'brand':brand._id}" [fragment]="brand.name" -->
   <div [routerLink]="['/brands',brand._id]" (click)="getSpecificBrand(brand._id)">
 
 
-    <img class="rounded-t-base w-full h-[320px]" [src]="brand.image" [alt]="brand.name" imagePlaceHolder />
+    <img class="rounded-t-base w-full h-[320px] object-cover
+             transition-transform duration-300 ease-out
+             group-hover:scale-105" [src]="brand.image" [alt]="brand.name" imagePlaceHolder />
 
   </div>
   <div class="p-6 text-center">
 
     <a (click)="getSpecificBrand(brand._id)">
-      <h5 class="mt-3 mb-6 text-2xl font-semibold tracking-tight text-heading">{{brand.name}}</h5>
+      <h5 class="mt-3 mb-6 text-2xl font-semibold
+      tracking-tight text-heading group-hover:font-bold group-hover:text-main-500">{{brand.name}}</h5>
     </a>
     <span class='text-gray-500'>
       {{brand.createdAt}}

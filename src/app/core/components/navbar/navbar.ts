@@ -10,7 +10,8 @@ import { CartService } from '../../../feature/cart/services/cart.service';
   styleUrl: './navbar.css',
 })
 export class Navbar implements OnInit {
-  @Input({ required: true }) islogin!: boolean;
+  @Input() islogin: boolean = true;
+  @Input() user: boolean = true;
   public readonly cartServices = inject(CartService);
   public readonly authService = inject(AuthService);
   openMenuAuth = true;

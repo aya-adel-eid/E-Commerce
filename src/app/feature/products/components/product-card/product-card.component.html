@@ -1,17 +1,27 @@
-<div class="bg-neutral-primary-soft block max-w-sm p-6 border-2 border-gray-300
+<div class="bg-neutral-primary-soft block max-w-sm p-6 border-2 border-gray-300 relative overflow-hidden
    rounded-base shadow-main  hover:border-2 group hover:border-main-400 transition-all duration-700"
   (mouseenter)="currentImag.src=product.images[0]" (mouseleave)="currentImag.src=product.imageCover">
+  @if (product.price|checkprice) {
+  <span class="absolute top-4 -left-8.75 z-30
+         bg-danger text-white text-xs font-bold
+         px-12 py-1
+         -rotate-45
+         shadow-lg">
+    {{product.price|checkprice}}
+  </span>
+
+  }
   <div class="image  relative  overflow-hidden">
     <div [routerLink]="['/details',product._id,product.slug]" class="cursor-pointer ">
-      <img class="rounded-base" [src]="product.imageCover" class="w-full h-[250px]  " [alt]="product.title" #currentImag
+      <img class="rounded-base" [src]="product.imageCover" class="w-full h-62.5  " [alt]="product.title" #currentImag
         imagePlaceHolder />
     </div>
     <div
       class=" flex flex-col space-y-6 bg-gray/60 absolute top-2 -right-10 group-hover:right-0  transition-all duration-500 py-8 px-1 rounded-2xl text-center">
       <span (click)="addToWishlist(product._id)" class="cursor-pointer"><i
           class="fa-solid fa-heart text-xl  hover:text-main-400" [class.text-main-400]="isLike" #iconFav></i></span>
-      <span (click)="isShow=!isShow" class="cursor-pointer"><i class="fa-solid fa-eye text-xl hover:text-main-400"
-          [class.text-main-400]="isShow"></i></span>
+      <span (click)="isShow=!isShow" class="cursor-pointer" [routerLink]="['/details',product._id,product.slug]"><i
+          class="fa-solid fa-eye text-xl hover:text-main-400" [class.text-main-400]="isShow"></i></span>
     </div>
     <div class="w-full space-x-4 px-4 absolute -bottom-12 group-hover:bottom-2 transition-all duration-500">
       <button class="btn-cart w-full" (mouseenter)="hoveronBtn=!hoveronBtn" (mouseleave)="hoveronBtn=!hoveronBtn"
@@ -44,7 +54,7 @@
     </h5>
   </a>
 
-  <p class="mb-6 text-body line-clamp-2 h-[48px]">{{product.description}}</p>
+  <p class="mb-6 text-body line-clamp-2 h-12">{{product.description}}</p>
 
 
   <div class="mt-3 flex justify-between">
@@ -53,5 +63,6 @@
       <i class="far fa-star"></i> {{product.ratingsAverage}}
     </span>
   </div>
+
 
 </div>

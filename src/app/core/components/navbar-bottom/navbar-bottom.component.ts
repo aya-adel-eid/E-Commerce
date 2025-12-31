@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './navbar-bottom.component.css',
 })
 export class NavbarBottomComponent {
-  @Input({ required: true }) islogin!: boolean;
+  @Input() islogin: boolean = true;
+  @Input() user: boolean = true;
   public readonly cartServices = inject(CartService);
 }

@@ -4,6 +4,7 @@ import { environment } from '../../../../environments/environment.development';
 import { APIS_KYS } from '../../../core/contstants/APIS_KYS';
 import { Details, IPRoductDetails } from '../interfaces/IPRoductDetails';
 import { IAllProducts, Products } from '../interfaces/IAllProducts';
+import { log } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +27,18 @@ export class ProductsService extends BaseHttp {
           this.allProducts = resp.data;
           this.total = resp.results;
           console.log(this.allProducts);
+          console.log(this.allProducts);
 
           this.loadingPage = false;
+        },
+      });
+  }
+  filterProductByPrice(price: number) {
+    return this.httpClient
+      .get<IAllProducts>(`${APIS_KYS.PRODUCTS.allProducts}?price[gte]=${price}`)
+      .subscribe({
+        next: (resp) => {
+          this.allProducts = resp.data;
         },
       });
   }
