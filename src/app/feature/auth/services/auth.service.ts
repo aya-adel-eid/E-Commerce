@@ -22,12 +22,17 @@ export class AuthService extends BaseHttp {
   logOut() {
     localStorage.removeItem(STORED_KEYS.UserToken);
     localStorage.removeItem(STORED_KEYS.UserId);
+    localStorage.removeItem('userName');
     this.router.navigate(['/login']);
   }
   decodeToken(token: string): void | boolean {
     try {
       const id = (jwtDecode(token) as { id: string })?.id;
       localStorage.setItem(STORED_KEYS.UserId, id);
+      const name = (jwtDecode(token) as { name: string })?.name;
+      console.log(jwtDecode(token), 'decode');
+
+      localStorage.setItem('userName', name);
       return true;
     } catch {
       this.logOut();

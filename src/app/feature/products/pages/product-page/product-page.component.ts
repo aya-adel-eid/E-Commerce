@@ -8,6 +8,9 @@ import { ViewportScroller } from '@angular/common';
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
 import { Filter } from '../../../../shared/pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { MainSliderProdComponent } from '../../components/main-slider-prod/main-slider-prod.component';
+import { CategoriesService } from '../../../categories/services/categories.service';
+import { CategpryProdComponent } from '../../../categories/components/categpry-prod/categpry-prod.component';
 @Component({
   selector: 'app-product-page',
   imports: [
@@ -17,6 +20,8 @@ import { FormsModule } from '@angular/forms';
     LoadingScreenComponent,
     Filter,
     FormsModule,
+    MainSliderProdComponent,
+    CategpryProdComponent,
   ],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.css',
@@ -26,6 +31,7 @@ export class ProductPageComponent implements OnInit {
   private readonly route = inject(Router);
   private readonly activeRoute = inject(ActivatedRoute);
   private readonly viewportScrolle = inject(ViewportScroller);
+  public readonly categoryServices = inject(CategoriesService);
   textSearch = '';
   //when change number of page
 
@@ -41,9 +47,13 @@ export class ProductPageComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getAllProducts();
+    this.getAllCategory();
   }
   getAllProducts() {
     this.productsService.getAllProducts(this.page, this.limit);
+  }
+  getAllCategory() {
+    this.categoryServices.getAllCategories();
   }
   pageChange($event: number) {
     this.page = $event;

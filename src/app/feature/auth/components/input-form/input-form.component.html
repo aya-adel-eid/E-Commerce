@@ -1,4 +1,4 @@
-<div class="relative mb-7">
+<div class="relative mb-5">
   <input [type]="type" [id]="id" class="input-form  peer" placeholder=" " [value]="value"
     (input)="value=$event.target.value;onChange(value)" [disabled]="disabled" (blur)="onTouched()"
     [class.border-red-500]="(control?.getError('required')

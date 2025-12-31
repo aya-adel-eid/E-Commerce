@@ -36,6 +36,11 @@ export const routes: Routes = [
 
     component: MainLayout,
     children: [
+      // {
+      //   path: '',
+      //   redirectTo: 'home',
+      //   pathMatch: 'full',
+      // },
       { path: 'home', children: HOME_ROUTES },
       {
         path: 'product',
@@ -55,32 +60,34 @@ export const routes: Routes = [
     ],
   },
   //gust
-  {
-    path: '',
-    component: GustLayout,
-    children: [
-      {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
-      },
-      {
-        path: 'home',
-        component: HomePageComponent,
-      },
-      {
-        path: 'product',
-        children: PRODUCTS_ROUTes,
-      },
-      { path: 'details/:id', component: ProductDetailsComponent },
-      { path: 'details/:id/:slug', component: ProductDetailsComponent },
-      { path: 'categories', children: Categories_Routes },
-      { path: 'brand', children: BRANDS_ROUTES },
-      { path: 'brands/:id', component: ProductsByBrandsComponent },
-      //
-      { path: 'categories/:id', component: ProductByCategoryComponent },
-    ],
-  },
+  // {
+  //   path: '',
+  //   component: GustLayout,
+  //   canActivate: [loogedGuard],
+  //   children: [
+  //     {
+  //       path: '',
+  //       redirectTo: 'home',
+  //       pathMatch: 'full',
+  //     },
+  //     {
+  //       path: 'home',
+  //       component: HomePageComponent,
+  //     },
+  //     {
+  //       path: 'product',
+  //       children: PRODUCTS_ROUTes,
+  //     },
+  //     { path: 'details/:id', component: ProductDetailsComponent },
+  //     { path: 'details/:id/:slug', component: ProductDetailsComponent },
+  //     { path: 'categories', children: Categories_Routes },
+  //     { path: 'brand', children: BRANDS_ROUTES },
+  //     { path: 'brands/:id', component: ProductsByBrandsComponent },
+  //     //
+  //     { path: 'categories/:id', component: ProductByCategoryComponent },
+  //   ],
+  // },
+
   //not
   // {
   //   path:'**',component:

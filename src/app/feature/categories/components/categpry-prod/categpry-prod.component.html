@@ -1,0 +1,8 @@
+<div class="text-center cursor-pointer" [routerLink]="['/categories',category._id]"
+  (click)="categoryServices.getSpecificCategory(category._id)">
+  <div class="bg-white">
+    <img [src]="category.image" class=" rounded-full size-35" [alt]="category.name" />
+
+  </div>
+  <h2 class="py-5">{{category.name}}</h2>
+</div>
