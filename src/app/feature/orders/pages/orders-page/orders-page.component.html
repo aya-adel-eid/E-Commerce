@@ -1,7 +1,7 @@
 <section class="content py-8 mt-8">
   <div class=" p-5">
 
-    <app-bread-crumb [arrPaths]="['allOrders']"></app-bread-crumb>
+    <app-bread-crumb [arrPaths]="['allorders']"></app-bread-crumb>
   </div>
   @if (!ordersServices.allOrders) {
   <app-loading-screen></app-loading-screen>
@@ -10,7 +10,7 @@
 
   <div class="space-y-6">
 
-    @for (objOrder of ordersServices.allOrders.reverse(); track $index) {
+    @for (objOrder of ordersServices.allOrders.reverse(); track objOrder._id) {
 
     <div class="bg-main-100/70 rounded-3xl border border-gray-200
                  shadow-sm px-8 py-6 space-y-6">
@@ -55,7 +55,7 @@
         </h3>
 
         <div class="space-y-4">
-          @for (itemCart of objOrder.cartItems; track $index) {
+          @for (itemCart of objOrder.cartItems; track itemCart._id) {
           <app-orders-card [cartItem]="itemCart"></app-orders-card>
           }
         </div>

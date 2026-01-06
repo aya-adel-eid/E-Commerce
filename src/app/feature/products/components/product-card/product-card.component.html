@@ -20,19 +20,19 @@
       class=" flex flex-col space-y-6 bg-gray/60 absolute top-2 -right-10 group-hover:right-0  transition-all duration-500 py-8 px-1 rounded-2xl text-center">
       @if (this.authServices.isAuth()) {
       @if (this.wishlistServices.isInWishlist()(product._id)) {
-      <button (click)="removeProductInWishlist(product._id)">
+      <button (click)="removeProductInWishlist(product._id)" class="cursor-pointer">
         <i class="fa-solid fa-heart text-xl text-red-500 hover:text-red-300" #iconFav></i>
       </button>
       }
       @else {
-      <button (click)="addToWishlist(product._id)">
+      <button (click)="addToWishlist(product._id)" class="cursor-pointer">
         <i class="fa-solid fa-heart text-xl  hover:text-main-400" #iconFav></i>
       </button>
 
       }
       }
       @else {
-      <button (click)="addToWishlist(product._id)">
+      <button (click)="addToWishlist(product._id)" class="cursor-pointer">
         <i class="fa-solid fa-heart text-xl  hover:text-main-400" #iconFav></i>
       </button>
       }

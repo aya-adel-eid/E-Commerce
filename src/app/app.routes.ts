@@ -25,14 +25,6 @@ export const routes: Routes = [
   //auth
   {
     path: '',
-    loadComponent: () => import('./core/layout/auth-layout/auth-layout').then((m) => m.AuthLayout),
-    canActivate: [loogedGuard],
-
-    loadChildren: () => import('./feature/auth/auth.routes').then((c) => c.AUth_ROutES),
-  },
-  //gust
-  {
-    path: '',
     loadComponent: () => import('./core/layout/gust-layout/gust-layout').then((c) => c.GustLayout),
     children: [
       {
@@ -42,10 +34,7 @@ export const routes: Routes = [
       },
       {
         path: 'home',
-        loadComponent: () =>
-          import('./feature/home/pages/home-page/home-page.component').then(
-            (c) => c.HomePageComponent
-          ),
+        component: HomePageComponent,
       },
       {
         path: 'product',
@@ -93,6 +82,14 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: '',
+    loadComponent: () => import('./core/layout/auth-layout/auth-layout').then((m) => m.AuthLayout),
+    canActivate: [loogedGuard],
+
+    loadChildren: () => import('./feature/auth/auth.routes').then((c) => c.AUth_ROutES),
+  },
+  //gust
 
   //user
   {

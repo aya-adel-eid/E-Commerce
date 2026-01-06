@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { OrdersCardComponent } from '../../components/orders-card/orders-card.component';
 import { OrderDetailsComponent } from '../../components/order-details/order-details.component';
 import { OrdrsService } from '../../services/ordrs.service';
@@ -14,12 +14,14 @@ import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/b
     BreadCrumbComponent,
   ],
   templateUrl: './orders-page.component.html',
+
   styleUrl: './orders-page.component.css',
 })
 export class OrdersPageComponent implements OnInit {
   public readonly ordersServices = inject(OrdrsService);
   ngOnInit(): void {
     this.getAllOrders();
+    console.log(55);
   }
   getAllOrders() {
     this.ordersServices.getOrders();
