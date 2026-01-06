@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { MainSliderProdComponent } from '../../components/main-slider-prod/main-slider-prod.component';
 import { CategoriesService } from '../../../categories/services/categories.service';
 import { CategpryProdComponent } from '../../../categories/components/categpry-prod/categpry-prod.component';
+import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/bread-crumb.component';
 @Component({
   selector: 'app-product-page',
   imports: [
@@ -22,6 +23,7 @@ import { CategpryProdComponent } from '../../../categories/components/categpry-p
     FormsModule,
     MainSliderProdComponent,
     CategpryProdComponent,
+    BreadCrumbComponent,
   ],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.css',
@@ -43,7 +45,6 @@ export class ProductPageComponent implements OnInit {
     //   this.page = +parm['page'];
     // });
     this.page = page ? page : 1;
-    console.log(this.page);
   }
   ngOnInit(): void {
     this.getAllProducts();
@@ -59,7 +60,7 @@ export class ProductPageComponent implements OnInit {
     this.page = $event;
 
     this.getAllProducts();
-    console.log(this.page);
+
     this.viewportScrolle.scrollToPosition([0, 0], {
       behavior: 'smooth',
     });

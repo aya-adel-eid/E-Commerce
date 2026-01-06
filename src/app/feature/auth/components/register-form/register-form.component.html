@@ -20,11 +20,11 @@
 
         <!-- password input -->
         <app-input-form [id]="'password'" [label]="'Password'" [control]="registerForm.get('password')"
-          formControlName="password"></app-input-form>
+          formControlName="password" [type]="'password'"></app-input-form>
 
         <!-- rePassword input -->
         <app-input-form [id]="'rePassword'" [label]="'RePassword'" [control]="registerForm.get('rePassword')"
-          formControlName="rePassword" [group]="registerForm"></app-input-form>
+          formControlName="rePassword" [group]="registerForm" [type]="'password'"></app-input-form>
 
         <!-- err message -->
         @if(errMessage){
@@ -48,6 +48,10 @@
           <i class="fas fa-spinner fa-spin"></i>
           }
         </button>
+        <div class="flex justify-center p-6">
+          <span>already have an account? </span>
+          <a routerLink="/login" class="text-main-500 underline font-semibold"> LogIn Now</a>
+        </div>
       </form>
     </div>
   </div>

@@ -1,6 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { CartService } from '../../../feature/cart/services/cart.service';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../feature/auth/services/auth.service';
 
 @Component({
   selector: 'app-navbar-bottom',
@@ -12,4 +13,5 @@ export class NavbarBottomComponent {
   @Input() islogin: boolean = true;
   @Input() user: boolean = true;
   public readonly cartServices = inject(CartService);
+  public readonly authServices = inject(AuthService);
 }

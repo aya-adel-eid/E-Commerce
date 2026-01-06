@@ -3,10 +3,16 @@ import { OrdersCardComponent } from '../../components/orders-card/orders-card.co
 import { OrderDetailsComponent } from '../../components/order-details/order-details.component';
 import { OrdrsService } from '../../services/ordrs.service';
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
+import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/bread-crumb.component';
 
 @Component({
   selector: 'app-orders-page',
-  imports: [OrdersCardComponent, OrderDetailsComponent, LoadingScreenComponent],
+  imports: [
+    OrdersCardComponent,
+    OrderDetailsComponent,
+    LoadingScreenComponent,
+    BreadCrumbComponent,
+  ],
   templateUrl: './orders-page.component.html',
   styleUrl: './orders-page.component.css',
 })

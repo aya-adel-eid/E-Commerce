@@ -4,6 +4,7 @@ import { WishlistPageComponent } from './pages/wishlist-page/wishlist-page.compo
 export const WISHLIST_ROUTES: Routes = [
   {
     path: '',
-    component: WishlistPageComponent,
+    loadComponent: () =>
+      import('./pages/wishlist-page/wishlist-page.component').then((c) => c.WishlistPageComponent),
   },
 ];

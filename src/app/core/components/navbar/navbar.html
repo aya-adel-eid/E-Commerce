@@ -78,39 +78,40 @@
     <!-- Desktop Navigation Menu (Hidden on mobile) -->
     <div class="hidden lg:block">
       <ul class="flex flex-row items-center space-x-7">
-        @if(islogin){
-
         <li>
-          <a routerLink="/home" class="text-gray-500 hover:text-gray-900">Home</a>
+          <a routerLink="/home" routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
+            class="text-gray-500 hover:text-gray-900">Home</a>
         </li>
-
         <li>
-          <a routerLink="/product" class="text-gray-500 hover:text-gray-900">Products</a>
+          <a routerLink="/product" routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
+            class="text-gray-500 hover:text-gray-900">Products</a>
         </li>
-
         <li>
-          <a routerLink="/categories" class="text-gray-500 hover:text-gray-900">Categories</a>
+          <a routerLink="/categories" class="text-gray-500 hover:text-gray-900"
+            routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white">Categories</a>
         </li>
-
         <li>
-          <a routerLink="/brand" class="text-gray-500 hover:text-gray-900">Brands</a>
+          <a routerLink="/brand" class="text-gray-500 hover:text-gray-900"
+            routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white">Brands</a>
         </li>
-        }
       </ul>
     </div>
 
     <div class="flex items-center space-x-7 rtl:space-x-reverse">
-      @if (islogin) {
 
+
+      @if (authService.isAuth()) {
+
+      <!-- Wishlist -->
       <div class="hidden lg:block">
         <a routerLink="/wishlist" class="flex flex-col items-center gap-1 hover:text-danger transition">
           <i class="fa-solid fa-heart text-xl"></i>
-
         </a>
       </div>
+
+      <!-- Cart -->
       <div class="relative hidden lg:block">
         <a routerLink="/cart" class="flex flex-col items-center gap-1 hover:text-primary transition">
-
           <i class="fa-solid fa-cart-shopping text-xl"></i>
 
           @if (cartServices.numOfCartItems) {
@@ -120,82 +121,124 @@
             {{ cartServices.numOfCartItems }}
           </span>
           }
-
-
         </a>
       </div>
+
       }
+
       <!-- User Account -->
       <div class="relative">
-        <button type="button"
-          class="flex text-sm bg-neutral-primary rounded-full focus:ring-4 focus:ring-neutral-tertiary cursor-pointer"
-          (click)="openMenuAuth=!openMenuAuth">
-          <span class="sr-only">Open user menu</span>
-          <i class="fa-solid fa-circle-user fa-2x text-gray-800"></i>
-        </button>
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full
+         bg-gray-100 hover:bg-gray-200 transition cursor-pointer" (click)="openMenuAuth = !openMenuAuth">
+
+          <!-- Avatar -->
+          <button type="button" class="w-9 h-9 flex items-center justify-center rounded-full
+           bg-main-500 text-white">
+
+            <i class="fa-solid fa-user text-sm"></i>
+          </button>
+
+          <!-- Name -->
+          @if (authService.isAuth()) {
+          <span class="text-sm font-medium capitalize hidden sm:inline cursor-pointer">
+            {{ authService.useInfo?.name }}
+          </span>
+          } @else {
+          <span class="text-sm font-medium text-gray-500 hidden sm:inline cursor-pointer">
+            Guest
+          </span>
+          }
+
+        </div>
+
 
         <!-- Dropdown menu -->
         <div
           class="z-50 absolute top-full right-0 mt-2 bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
           [class.hidden]="openMenuAuth">
-          @if (islogin) {
-          <div class="px-4 py-3 text-sm border-b border-default">
-            <span class="block text-main-700 font-semibold text-xl">{{name}}</span>
-            <span class="block text-body truncate"></span>
-          </div>
-          }
+
           <ul class="p-2 text-sm space-y-3">
-            @if(islogin){
+
+            @if(authService.isAuth()) {
             <li>
-              <a class="cursor-pointer text-gray-500 hover:text-gray-900" (click)="logOut()">
+              <a class="cursor-pointer text-gray-500 hover:text-gray-900 block py-2" (click)="logOut()"
+                routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white">
                 Logout <i class="fa-solid fa-right-from-bracket"></i>
               </a>
             </li>
+            <li>
+              <a class="cursor-pointer text-gray-500 hover:text-gray-900 block py-2" routerLink="/profile"
+                routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white">
+                <i class="fa-regular fa-address-card"></i> Profile
+              </a>
+            </li>
             }
+
             @else {
             <li>
-              <a routerLink="/login" class="text-gray-500 hover:text-gray-900">Login</a>
+              <a routerLink="/login" class="text-gray-500 hover:text-gray-900 block py-2"
+                routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white">Login</a>
             </li>
-
             <li>
-              <a routerLink="/register" class="text-gray-500 hover:text-gray-900">Register</a>
+              <a routerLink="/register" class="text-gray-500 hover:text-gray-900 block py-2"
+                routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white">Register</a>
             </li>
             }
           </ul>
         </div>
       </div>
 
-      <!-- Mobile Menu Button (Only visible on mobile) - AFTER User Icon -->
-      @if (islogin) {
+      <!-- Mobile Menu Button -->
+
       <button type="button"
         class="inline-flex items-center p-2 cursor-pointer w-10 h-10 justify-center text-sm text-body rounded-base lg:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
         (click)="openBar=!openBar">
         <span class="sr-only">Open main menu</span>
         <i class="fa-solid fa-bars fa-xl"></i>
       </button>
-      }
+
     </div>
   </div>
 
-  <!-- Mobile Navigation Menu (Full width below navbar) -->
+  <!-- Mobile Navigation Menu -->
   <div class="lg:hidden border-t border-default" [class.hidden]="openBar">
     <div class="content mx-auto">
       <ul class="flex flex-col p-4 space-y-3">
-        <li [class.hidden]="!islogin">
-          <a routerLink="/home" class="text-gray-500 hover:text-gray-900 block py-2">Home</a>
+        <li>
+          <a routerLink="/home" class="text-gray-500 hover:text-gray-900 block py-2"
+            routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white">Home</a>
+        </li>
+        <li>
+          <a routerLink="/product" class="text-gray-500 hover:text-gray-900 block py-2"
+            routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white">Products</a>
+        </li>
+        <li>
+          <a routerLink="/categories" class="text-gray-500 hover:text-gray-900 block py-2"
+            routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white">Categories</a>
+        </li>
+        <li>
+          <a routerLink="/brand" class="text-gray-500 hover:text-gray-900 block py-2"
+            routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white">Brands</a>
         </li>
 
-        <li [class.hidden]="!islogin">
-          <a routerLink="/product" class="text-gray-500 hover:text-gray-900 block py-2">Products</a>
+        <!-- Mobile Cart & Wishlist -->
+        <!-- @if (authService.isAuth) {
+        <li>
+          <a routerLink="/wishlist" class="text-gray-500 hover:text-gray-900 block py-2">
+            <i class="fa-solid fa-heart"></i> Wishlist
+          </a>
         </li>
-
-        <li [class.hidden]="!islogin">
-          <a routerLink="/categories" class="text-gray-500 hover:text-gray-900 block py-2">Categories</a>
+        <li>
+          <a routerLink="/cart" class="text-gray-500 hover:text-gray-900 block py-2">
+            <i class="fa-solid fa-cart-shopping"></i> Cart
+            @if (cartServices.numOfCartItems) {
+            <span class="bg-danger text-white text-xs px-2 py-1 rounded-full ml-2">
+              {{ cartServices.numOfCartItems }}
+            </span>
+            }
+          </a>
         </li>
-
-        <li [class.hidden]="!islogin">
-          <a routerLink="/brand" class="text-gray-500 hover:text-gray-900 block py-2">Brands</a>
-        </li>
+        } -->
       </ul>
     </div>
   </div>

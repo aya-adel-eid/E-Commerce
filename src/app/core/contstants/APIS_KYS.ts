@@ -17,6 +17,7 @@ export const APIS_KYS = {
     forgetPass: `${environment.baseURL}auth/forgotPasswords`,
     verifyCode: `${environment.baseURL}auth/verifyResetCode`,
     resetPass: `${environment.baseURL}auth/resetPassword`,
+    userInfo: `${environment.baseURL}users`,
   },
   CART: {
     data: `${environment.baseURL}cart`,

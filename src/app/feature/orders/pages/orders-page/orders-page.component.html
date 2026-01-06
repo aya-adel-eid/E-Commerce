@@ -1,5 +1,8 @@
 <section class="content py-8 mt-8">
+  <div class=" p-5">
 
+    <app-bread-crumb [arrPaths]="['allOrders']"></app-bread-crumb>
+  </div>
   @if (!ordersServices.allOrders) {
   <app-loading-screen></app-loading-screen>
   }
@@ -9,7 +12,7 @@
 
     @for (objOrder of ordersServices.allOrders.reverse(); track $index) {
 
-    <div class="bg-white rounded-3xl border border-gray-200
+    <div class="bg-main-100/70 rounded-3xl border border-gray-200
                  shadow-sm px-8 py-6 space-y-6">
 
       <!-- Order ID -->

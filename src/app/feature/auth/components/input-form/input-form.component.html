@@ -7,7 +7,7 @@
     ||control?.getError('pattern')||control?.getError('email'))
     &&control?.touched" />
   <label [for]="id" class="label-input">{{label}}</label>
-  <button (click)="toggle()" class="absolute top-1/2 end-4 -translate-y-1/2 cursor-pointer">
+  <button (click)="toggle()" class="absolute top-1/2 end-4 -translate-y-1/2 cursor-pointer" type="button">
     @if(id=='password'||id=="rePassword"){
 
     @if (flag) {

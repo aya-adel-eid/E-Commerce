@@ -14,7 +14,6 @@ export class CategoriesService extends BaseHttp {
     return this.httpClient.get<IAllCategories>(APIS_KYS.CATEGORIEs.allCategory).subscribe({
       next: (resp) => {
         this.allCategories = resp.data;
-        console.log(this.allCategories);
       },
     });
   }

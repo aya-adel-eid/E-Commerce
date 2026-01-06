@@ -4,6 +4,7 @@ import { BrandsPageComponent } from './pages/brands-page/brands-page.component';
 export const BRANDS_ROUTES: Routes = [
   {
     path: '',
-    component: BrandsPageComponent,
+    loadComponent: () =>
+      import('./pages/brands-page/brands-page.component').then((c) => c.BrandsPageComponent),
   },
 ];

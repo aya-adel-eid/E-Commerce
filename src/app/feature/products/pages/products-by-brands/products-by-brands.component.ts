@@ -5,10 +5,11 @@ import { ProductCardComponent } from '../../components/product-card/product-card
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
 import { Products } from '../../interfaces/IAllProducts';
 import { BrandsService } from '../../../brand/services/brands.service';
+import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/bread-crumb.component';
 
 @Component({
   selector: 'app-products-by-brands',
-  imports: [ProductCardComponent, LoadingScreenComponent],
+  imports: [ProductCardComponent, LoadingScreenComponent, BreadCrumbComponent],
   templateUrl: './products-by-brands.component.html',
   styleUrl: './products-by-brands.component.css',
 })

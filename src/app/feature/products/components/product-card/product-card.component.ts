@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 
 import { Products } from '../../interfaces/IAllProducts';
 import { CartService } from '../../../cart/services/cart.service';
@@ -9,6 +9,9 @@ import { WishlistService } from '../../../wishlist/services/wishlist.service';
 import { ImagePlaceHolderDirective } from '../../../../shared/directives/image-place-holder.directive';
 import { CardDetailsProductComponent } from '../card-details-product/card-details-product.component';
 import { CheckpricePipe } from '../../../../shared/pipes/checkprice-pipe';
+import { AuthService } from '../../../auth/services/auth.service';
+import { Product } from '../../../wishlist/interfaces/IFavProdReq';
+
 // import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -17,10 +20,20 @@ import { CheckpricePipe } from '../../../../shared/pipes/checkprice-pipe';
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnInit {
   @Input({ required: true }) product!: Products;
   private readonly cartServices = inject(CartService);
-  private readonly wishlistServices = inject(WishlistService);
+  public readonly wishlistServices = inject(WishlistService);
+  public readonly authServices = inject(AuthService);
+
+  ngOnInit() {
+    if (this.authServices.isAuth()) {
+      // this.wishlistServices.wishlistID();
+      this.wishlistServices.getAllProductsInWishlist();
+    } else {
+      this.wishlistServices.reset();
+    }
+  }
   //spinner
   // private readonly ngxSpinnerService = inject(NgxSpinnerService);
   isLike = false;
@@ -30,10 +43,13 @@ export class ProductCardComponent {
   private readonly toaster = inject(ToastrService);
   addProductToCart(_productId: string) {
     // this.ngxSpinnerService.show('ball-scale');
+    if (!this.authServices.isAuth()) {
+      (window as any).openAuthModal();
+      return;
+    }
     this.isLoading = true;
     this.cartServices.sendProductInCart({ productId: _productId }).subscribe({
       next: (resp) => {
-        console.log(resp);
         this.cartServices.numOfCartItems = resp.numOfCartItems;
         this.toaster.success('<h5 class="text-xl">Product added Successfully!</h5>', undefined, {
           enableHtml: true,
@@ -43,7 +59,6 @@ export class ProductCardComponent {
         // this.ngxSpinnerService.hide('ball-scale');
       },
       error: (err: HttpErrorResponse) => {
-        console.log(err.error.message);
         this.toaster.error('Failed to add product!');
         this.isLoading = false;
         // this.ngxSpinnerService.hide('ball-scale');
@@ -51,23 +66,23 @@ export class ProductCardComponent {
     });
   }
   addToWishlist(productID: string) {
+    if (!this.authServices.isAuth()) {
+      (window as any).openAuthModal();
+      return;
+    }
     this.isLike = false;
-    this.wishlistServices.addProductToWishlist({ productId: productID }).subscribe({
-      next: (resp) => {
-        this.isLike = true;
-        this.toaster.success(
-          '<h5 class="text-xl">Product added To WishList Successfully!</h5>',
-          undefined,
-          {
-            enableHtml: true,
-            progressBar: true,
-          }
-        );
-      },
-      error: (err: HttpErrorResponse) => {
-        this.isLike = false;
-        this.toaster.error('Failed To Add Product!');
-      },
-    });
+    this.wishlistServices.addProductToWishlist({ productId: productID });
   }
+  removeProductInWishlist(id: string) {
+    this.wishlistServices.deleteProductInWishlist(id);
+  }
+  // checkItemFound(id: string) {
+  //   if (this.arrWishList.includes(id)) {
+  //     this.isLike = false;
+  //     this.removeProductInWishlist(id);
+  //   } else {
+  //     this.addProductToCart(id);
+  //     this.isLike = true;
+  //   }
+  // }
 }

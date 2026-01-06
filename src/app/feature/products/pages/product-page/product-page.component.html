@@ -39,8 +39,11 @@
 
 
 
-    <app-section-title [title]="'common products'"></app-section-title>
+    <div class="bg-red p-8">
 
+      <app-bread-crumb [arrPaths]="['Products']"></app-bread-crumb>
+    </div>
+    <app-section-title [title]="'common products'"></app-section-title>
     @if (!productsService.allProducts||productsService.loadingPage) {
     <app-loading-screen></app-loading-screen>
     }
@@ -82,6 +85,9 @@
     </div>
     }
   </div>
+
+
+
 
 
 </section>

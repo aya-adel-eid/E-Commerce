@@ -1,6 +1,9 @@
 <section class="content">
-  <div class=" my-10">
+  <div class=" mt-10">
+    <div class="mb-6 ">
 
+      <app-bread-crumb [arrPaths]="['details',`${productDetails.slug} / ${productDetails._id} `]"></app-bread-crumb>
+    </div>
 
     <app-card-details-product [product]="productDetails" [loading]="load"></app-card-details-product>
 

@@ -1,7 +1,11 @@
-<section class="lg:bg-white min-h-screen flex items-center">
+<section class="lg:bg-white min-h-screen flex-col items-center">
+  <div class="content p-5 mt-10">
 
+    <app-bread-crumb [arrPaths]="['Register']"></app-bread-crumb>
+  </div>
   <div class="content lg:grid lg:grid-cols-2 lg:items-center lg:h-full lg:gap-3 ">
     <div class="w-full ">
+
 
       <app-register-form></app-register-form>
     </div>

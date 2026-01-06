@@ -4,10 +4,11 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
 import { CategoriesService } from '../../../categories/services/categories.service';
+import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/bread-crumb.component';
 
 @Component({
   selector: 'app-product-by-category',
-  imports: [ProductCardComponent, LoadingScreenComponent, RouterLink],
+  imports: [ProductCardComponent, LoadingScreenComponent, RouterLink, BreadCrumbComponent],
   templateUrl: './product-by-category.component.html',
   styleUrl: './product-by-category.component.css',
 })

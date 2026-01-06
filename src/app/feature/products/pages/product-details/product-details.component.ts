@@ -6,10 +6,16 @@ import { RelatedPeoductComponent } from '../../components/related-peoduct/relate
 import { ViewportScroller } from '@angular/common';
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
 import { Details } from '../../interfaces/IPRoductDetails';
+import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/bread-crumb.component';
 
 @Component({
   selector: 'app-product-details',
-  imports: [CardDetailsProductComponent, RelatedPeoductComponent, LoadingScreenComponent],
+  imports: [
+    CardDetailsProductComponent,
+    RelatedPeoductComponent,
+    LoadingScreenComponent,
+    BreadCrumbComponent,
+  ],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
@@ -28,7 +34,6 @@ export class ProductDetailsComponent {
       this.getProductByID();
     });
     this.getProductByID();
-    console.log(this.productsService.productDetails);
   }
   getProductByID() {
     this.load = true;

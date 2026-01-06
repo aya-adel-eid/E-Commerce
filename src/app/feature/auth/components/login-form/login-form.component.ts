@@ -1,4 +1,4 @@
-import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { Component, EventEmitter, inject, Output, PLATFORM_ID } from '@angular/core';
 import { InputFormComponent } from '../input-form/input-form.component';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +23,7 @@ export class LoginFormComponent {
   private readonly router = inject(Router);
   private readonly platId = inject(PLATFORM_ID);
   private readonly toastrService = inject(ToastrService);
+  @Output() loginSuccess = new EventEmitter<void>();
   messagErro = '';
   constructor() {
     this.signIn();
@@ -50,9 +51,10 @@ export class LoginFormComponent {
       this.authService.signIn(this.loginForm.value).subscribe({
         next: (resp: signIn) => {
           this.isLoading = false;
-          console.log(resp);
-          const token = resp.token;
 
+          this.authService.isAuth.set(true);
+          const token = resp.token;
+          this.loginSuccess.emit();
           localStorage.setItem(STORED_KEYS.UserToken, token);
 
           this.authService.decodeToken(token);
@@ -64,6 +66,7 @@ export class LoginFormComponent {
           this.showSuccessMessage('Login Successfully');
         },
         error: (err: HttpErrorResponse) => {
+          this.authService.isAuth.set(false);
           this.messagErro = err.error.message;
           this.isLoading = false;
         },

@@ -17,6 +17,10 @@
     <h3 class="text-center py-10 text-4xl px-6 font-bold text-main-600 items-end">{{brandsService.specificBrand.name}}
     </h3>
   </div>
+  <div class="bg-red p-5">
+
+    <app-bread-crumb [arrPaths]="['Brand',brandsService.specificBrand.name]"></app-bread-crumb>
+  </div>
   }
   @if(productsService.productsByBrand.length===0){
   <div class="py-8 w-full flex justify-center items-center">

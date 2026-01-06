@@ -23,7 +23,6 @@ export class PaymentsService extends BaseHttp {
       })
       .subscribe({
         next: (resp) => {
-          console.log(resp);
           this.router.navigateByUrl('/allorders');
           this.cartServices.numOfCartItems = 0;
         },
@@ -43,7 +42,6 @@ export class PaymentsService extends BaseHttp {
       )
       .subscribe({
         next: (resp) => {
-          console.log(resp);
           if (resp.status == 'success') {
             window.location.assign(resp.session.url);
           }

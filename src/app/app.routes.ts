@@ -18,17 +18,82 @@ import { ORDERS_ROUTES } from './feature/orders/orderes.routes';
 import { WISHLIST_ROUTES } from './feature/wishlist/wishlist.routes';
 import { GustLayout } from './core/layout/gust-layout/gust-layout';
 import { HomePageComponent } from './feature/home/pages/home-page/home-page.component';
+import { UserInfoComponent } from './feature/auth/pages/user-info/user-info.component';
+import { NotFoundComponent } from './feature/staticPages/not-found/not-found.component';
 
 export const routes: Routes = [
   //auth
   {
     path: '',
-
-    component: AuthLayout,
+    loadComponent: () => import('./core/layout/auth-layout/auth-layout').then((m) => m.AuthLayout),
     canActivate: [loogedGuard],
 
-    children: AUth_ROutES,
+    loadChildren: () => import('./feature/auth/auth.routes').then((c) => c.AUth_ROutES),
   },
+  //gust
+  {
+    path: '',
+    loadComponent: () => import('./core/layout/gust-layout/gust-layout').then((c) => c.GustLayout),
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        loadComponent: () =>
+          import('./feature/home/pages/home-page/home-page.component').then(
+            (c) => c.HomePageComponent
+          ),
+      },
+      {
+        path: 'product',
+        loadChildren: () =>
+          import('./feature/products/PROdUCTS.routes').then((c) => c.PRODUCTS_ROUTes),
+      },
+      {
+        path: 'details/:id',
+
+        loadComponent: () =>
+          import('./feature/products/pages/product-details/product-details.component').then(
+            (c) => c.ProductDetailsComponent
+          ),
+      },
+      {
+        path: 'details/:id/:slug',
+        loadComponent: () =>
+          import('./feature/products/pages/product-details/product-details.component').then(
+            (c) => c.ProductDetailsComponent
+          ),
+      },
+      {
+        path: 'categories',
+        loadChildren: () =>
+          import('./feature/categories/categories.routes').then((c) => c.Categories_Routes),
+      },
+      {
+        path: 'brand',
+        loadChildren: () => import('./feature/brand/brand.routes').then((c) => c.BRANDS_ROUTES),
+      },
+      {
+        path: 'brands/:id',
+        loadComponent: () =>
+          import('./feature/products/pages/products-by-brands/products-by-brands.component').then(
+            (c) => c.ProductsByBrandsComponent
+          ),
+      },
+      //
+      {
+        path: 'categories/:id',
+        loadComponent: () =>
+          import('./feature/products/pages/product-by-category/product-by-category.component').then(
+            (c) => c.ProductByCategoryComponent
+          ),
+      },
+    ],
+  },
+
   //user
   {
     path: '',
@@ -36,60 +101,54 @@ export const routes: Routes = [
 
     component: MainLayout,
     children: [
+      // { path: 'home', children: HOME_ROUTES },
       // {
-      //   path: '',
-      //   redirectTo: 'home',
-      //   pathMatch: 'full',
+      //   path: 'product',
+      //   children: PRODUCTS_ROUTes,
       // },
-      { path: 'home', children: HOME_ROUTES },
+      // { path: 'details/:id', component: ProductDetailsComponent },
+      // { path: 'details/:id/:slug', component: ProductDetailsComponent },
+      // { path: 'categories', children: Categories_Routes },
+      // { path: 'brand', children: BRANDS_ROUTES },
+      // { path: 'brands/:id', component: ProductsByBrandsComponent },
+
+      // { path: 'categories/:id', component: ProductByCategoryComponent },
       {
-        path: 'product',
-        children: PRODUCTS_ROUTes,
+        path: 'cart',
+        loadChildren: () => import('./feature/cart/cart.routes').then((c) => c.CART_ROUTES),
       },
-      { path: 'details/:id', component: ProductDetailsComponent },
-      { path: 'details/:id/:slug', component: ProductDetailsComponent },
-      { path: 'categories', children: Categories_Routes },
-      { path: 'brand', children: BRANDS_ROUTES },
-      { path: 'brands/:id', component: ProductsByBrandsComponent },
-      //
-      { path: 'categories/:id', component: ProductByCategoryComponent },
-      { path: 'cart', children: CART_ROUTES },
-      { path: 'payment/:CartId', children: PAYMENTS_ROUTES },
-      { path: 'allorders', children: ORDERS_ROUTES },
-      { path: 'wishlist', children: WISHLIST_ROUTES },
+      {
+        path: 'payment/:CartId',
+        loadChildren: () =>
+          import('./feature/payment/payments.routes').then((c) => c.PAYMENTS_ROUTES),
+      },
+      {
+        path: 'allorders',
+        loadChildren: () => import('./feature/orders/orderes.routes').then((c) => c.ORDERS_ROUTES),
+      },
+      {
+        path: 'wishlist',
+        loadChildren: () =>
+          import('./feature/wishlist/wishlist.routes').then((c) => c.WISHLIST_ROUTES),
+      },
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import('./feature/auth/pages/user-info/user-info.component').then(
+            (c) => c.UserInfoComponent
+          ),
+      },
     ],
   },
   //gust
-  // {
-  //   path: '',
-  //   component: GustLayout,
-  //   canActivate: [loogedGuard],
-  //   children: [
-  //     {
-  //       path: '',
-  //       redirectTo: 'home',
-  //       pathMatch: 'full',
-  //     },
-  //     {
-  //       path: 'home',
-  //       component: HomePageComponent,
-  //     },
-  //     {
-  //       path: 'product',
-  //       children: PRODUCTS_ROUTes,
-  //     },
-  //     { path: 'details/:id', component: ProductDetailsComponent },
-  //     { path: 'details/:id/:slug', component: ProductDetailsComponent },
-  //     { path: 'categories', children: Categories_Routes },
-  //     { path: 'brand', children: BRANDS_ROUTES },
-  //     { path: 'brands/:id', component: ProductsByBrandsComponent },
-  //     //
-  //     { path: 'categories/:id', component: ProductByCategoryComponent },
-  //   ],
-  // },
 
   //not
-  // {
-  //   path:'**',component:
-  // }
+  {
+    path: 'not-found',
+    component: NotFoundComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  },
 ];

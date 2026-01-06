@@ -2,10 +2,11 @@ import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DiscountCartPipe } from '../../../../shared/pipes/discount-cart-pipe';
 import { WayDeliveryPipe } from '../../../../shared/pipes/way-delivery-pipe';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-summary-card',
-  imports: [RouterLink, DiscountCartPipe, WayDeliveryPipe],
+  imports: [RouterLink, DiscountCartPipe, WayDeliveryPipe, CurrencyPipe],
   templateUrl: './summary-card.component.html',
   styleUrl: './summary-card.component.css',
 })

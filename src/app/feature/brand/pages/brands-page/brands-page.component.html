@@ -1,5 +1,9 @@
 <section class="content py-7">
   <app-section-title [title]="'ALlBrands'"></app-section-title>
+  <div class=" p-5">
+
+    <app-bread-crumb [arrPaths]="['Brand']"></app-bread-crumb>
+  </div>
   @if(!brandService.allBrands){
   <app-loading-screen></app-loading-screen>
   }

@@ -54,18 +54,12 @@ export class ForgetPasswordFormComponent {
     this.successMsg = '';
     this.errorMsg = '';
     if (this.email.valid) {
-      console.log(this.email.value);
-
       this.authService.forgetPass(this.email.value).subscribe({
         next: (resp) => {
           this.step = 2;
           this.successMsg = resp.message;
-
-          console.log(resp);
         },
         error: (err: HttpErrorResponse) => {
-          console.log(err.error.message);
-
           this.errorMsg = err.error.message;
         },
       });
@@ -80,10 +74,8 @@ export class ForgetPasswordFormComponent {
         next: (resp) => {
           this.step = 3;
           this.successMsg = resp.message;
-          console.log(resp);
         },
         error: (err: HttpErrorResponse) => {
-          console.log(err.error.message);
           this.errorMsg = err.error.message;
         },
       });
@@ -102,7 +94,6 @@ export class ForgetPasswordFormComponent {
         },
         error: (err: HttpErrorResponse) => {
           this.errorMsg = err.error.message;
-          console.log(err.error.message);
         },
       });
     }

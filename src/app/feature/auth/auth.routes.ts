@@ -4,8 +4,21 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 
 export const AUth_ROutES: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'forgetPassword', component: ForgetPasswordComponent },
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.component').then((c) => c.LoginComponent),
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./pages/register/register.component').then((c) => c.RegisterComponent),
+  },
+  {
+    path: 'forgetPassword',
+    loadComponent: () =>
+      import('./pages/forget-password/forget-password.component').then(
+        (c) => c.ForgetPasswordComponent
+      ),
+  },
 ];

@@ -5,10 +5,17 @@ import { CartService } from '../../services/cart.service';
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
 import { RouterLink } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/bread-crumb.component';
 
 @Component({
   selector: 'app-cart-page',
-  imports: [CartCardComponent, SummaryCardComponent, LoadingScreenComponent, RouterLink],
+  imports: [
+    CartCardComponent,
+    SummaryCardComponent,
+    LoadingScreenComponent,
+    RouterLink,
+    BreadCrumbComponent,
+  ],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.css',
 })

@@ -42,22 +42,22 @@
 
       <div class="flex justify-between text-sm">
         <span class="text-gray-800">Original Price</span>
-        <span class="font-medium text-gray-900">{{totalPrice}} EGP</span>
+        <span class="font-medium text-gray-900">{{totalPrice |currency:'EGP'}} </span>
       </div>
 
       <div class="flex justify-between text-sm bg-green-50 -mx-6 px-6 py-2">
         <span class="text-gray-800">Discount</span>
-        <span class="font-bold text-main-600">{{totalPrice|discountCart}}EGP</span>
+        <span class="font-bold text-main-600">{{totalPrice | discountCart | currency:' EGP'}}</span>
       </div>
 
       <div class="flex justify-between text-sm">
         <span class="text-gray-800">Delivery</span>
-        <span class="font-medium text-gray-900">{{totalPrice|wayDelivery}}</span>
+        <span class="font-medium text-gray-900">{{totalPrice|wayDelivery |currency:'EGP'}}</span>
       </div>
 
       <div class="flex justify-between text-sm">
         <span class="text-gray-800">Tax (14%)</span>
-        <span class="font-medium text-gray-900">280 EGP</span>
+        <span class="font-medium text-gray-900">{{ 280 | currency:'EGP'}}</span>
       </div>
 
     </div>
@@ -70,11 +70,10 @@
       <div class="flex justify-between items-center px-6">
         <div>
           <p class="text-xs text-gray-600 uppercase font-semibold">Total</p>
-          <p class="text-2xl font-bold text-gray-900 mt-1">{{totalPrice-(totalPrice|discountCart)}} <span
-              class="text-lg"> EGP</span></p>
+          <p class="text-2xl font-bold text-gray-900 mt-1">{{totalPrice-(totalPrice|discountCart)| currency:'EGP'}} </p>
         </div>
         <div class="text-right">
-          <p class="text-xs text-main-600 font-semibold">Save {{totalPrice|discountCart}} <span> EGP</span></p>
+          <p class="text-xs text-main-600 font-semibold">Save {{totalPrice|discountCart | currency:'EGP'}} </p>
           <p class="text-xs text-gray-500">Including taxes</p>
         </div>
       </div>

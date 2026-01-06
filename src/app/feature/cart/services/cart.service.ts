@@ -19,7 +19,7 @@ export class CartService extends BaseHttp {
       return this.httpClient.get<ICartResp>(APIS_KYS.CART.data).subscribe({
         next: (resp) => {
           this.userCart = resp.data;
-          console.log(this.userCart);
+
           this.numOfCartItems = resp.numOfCartItems;
         },
       });
@@ -34,11 +34,8 @@ export class CartService extends BaseHttp {
       next: (resp) => {
         this.userCart = resp.data;
         this.numOfCartItems = resp.numOfCartItems;
-        console.log(resp.data);
       },
-      error: (err) => {
-        // console.log(err.error.message);
-      },
+      error: (err) => {},
     });
   }
   removeCartItem(id: string) {
@@ -46,11 +43,8 @@ export class CartService extends BaseHttp {
       next: (resp) => {
         this.userCart = resp.data;
         this.numOfCartItems = resp.numOfCartItems;
-        console.log(resp.data);
       },
-      error: (err) => {
-        // console.log(err.error.message);
-      },
+      error: (err) => {},
     });
   }
   deleteCartProducts() {
@@ -58,11 +52,8 @@ export class CartService extends BaseHttp {
       next: (resp) => {
         this.userCart.products = [];
         this.numOfCartItems = resp.numOfCartItems;
-        console.log(resp.data);
       },
-      error: (err) => {
-        console.log(err.error.message);
-      },
+      error: (err) => {},
     });
   }
 }

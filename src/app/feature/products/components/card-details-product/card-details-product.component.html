@@ -80,10 +80,32 @@
 
     <div class="pb-6 flex justify-between w-5/6">
       <span class="text-3xl font-bold text-main-600">{{product.price}} $</span>
-      <span (mouseenter)="icon.classList.add('text-main-400')"
+      @if (this.authServices.isAuth()) {
+      @if (this.wishlistServices.isInWishlist()(product._id)) {
+      <button (click)="removeProductInWishlist(product._id)">
+        <i class="fa-solid fa-heart text-xl text-red-500 hover:text-red-300" #iconFav></i>
+        <span class="text-xl font-bold capitalize text-gray-500"> Add to wishlist</span>
+      </button>
+      }
+      @else {
+      <button (click)="addToWishlist(product._id)">
+        <i class="fa-solid fa-heart text-xl  hover:text-main-400" #iconFav></i>
+        <span class="text-xl font-bold capitalize text-gray-500"> Add to wishlist</span>
+      </button>
+
+      }
+      }
+      @else {
+      <button (click)="addToWishlist(product._id)">
+        <i class="fa-solid fa-heart text-xl  hover:text-main-400" #iconFav></i>
+        <span class="text-xl font-bold capitalize text-gray-500"> Add to wishlist</span>
+      </button>
+      }
+
+      <!-- <span (mouseenter)="icon.classList.add('text-main-400')"
         (mouseleave)="!isLike &&icon.classList.remove('text-main-400')" (click)="addToWishlist(product._id)"
         class="cursor-pointer"><i class="fa-solid fa-heart text-3xl" #icon [class.text-main-400]="isLike"></i>
-        <span class="text-xl font-bold capitalize text-gray-500"> Add to wishlist</span></span>
+        <span class="text-xl font-bold capitalize text-gray-500"> Add to wishlist</span></span> -->
     </div>
     <!-- quantity -->
 
@@ -104,7 +126,18 @@
 
     <div class="space-x-3">
       <button type="button" class=" w-2/5 py-3 text-xl btn-cart  hover:bg-black" (click)=" addToCart(product._id)">
-        <i class="fa-solid fa-cart-plus"></i> Add to cart
+
+        @if(isLoading){
+        adding...<i class="fas fa-spinner fa-spin"></i>
+        }
+
+
+        @else {
+
+        <span><i class="fa-solid fa-cart-plus"></i></span> ADD
+        TO
+        CART
+        }
 
       </button>
       <button type="button" class=" w-4/9 py-3 text-xl btn-cart  bg-black hover:bg-main-500">

@@ -5,7 +5,7 @@ import { finalize } from 'rxjs';
 
 export const loadingSpinnerInterceptor: HttpInterceptorFn = (req, next) => {
   const ngxSpinnerService = inject(NgxSpinnerService);
-  console.log(req, 'loading');
+
   if (req.urlWithParams.includes('categories') || req.urlWithParams.includes('brands'))
     return next(req);
   ngxSpinnerService.show('ball-scale');

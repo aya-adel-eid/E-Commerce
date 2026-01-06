@@ -10,12 +10,12 @@ import {
 import { AuthService } from '../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { interval, take } from 'rxjs';
 import { InputFormComponent } from '../input-form/input-form.component';
 @Component({
   selector: 'app-register-form',
-  imports: [ReactiveFormsModule, InputFormComponent],
+  imports: [ReactiveFormsModule, InputFormComponent, RouterLink],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.css',
 })
@@ -66,9 +66,8 @@ export class RegisterFormComponent implements OnInit {
   }
   sendData() {
     this.registerForm.markAllAsTouched();
-    console.log(this.registerForm);
+
     if (this.isLoading) return;
-    console.log('send');
 
     this.errMessage = '';
 
@@ -77,7 +76,7 @@ export class RegisterFormComponent implements OnInit {
       this.authService.signUp(this.registerForm.value).subscribe({
         next: (resp) => {
           this.isLoading = false;
-          console.log(resp);
+
           interval(1000)
             .pipe(take(5))
             .subscribe(() => {
@@ -91,12 +90,10 @@ export class RegisterFormComponent implements OnInit {
         },
         error: (err: HttpErrorResponse) => {
           this.isLoading = false;
-          console.log(err);
+
           this.errMessage = err.error.message;
         },
       });
-      console.log(this.registerForm);
-      console.log(this.registerForm.value);
     }
   }
   confirmPassword(control: AbstractControl) {

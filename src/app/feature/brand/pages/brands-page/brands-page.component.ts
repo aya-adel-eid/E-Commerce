@@ -3,10 +3,11 @@ import { BrandsService } from '../../services/brands.service';
 import { BrandCardComponent } from '../../components/brand-card/brand-card.component';
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
 import { SectionTitleComponent } from '../../../../shared/components/section-title/section-title.component';
+import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/bread-crumb.component';
 
 @Component({
   selector: 'app-brands-page',
-  imports: [BrandCardComponent, LoadingScreenComponent, SectionTitleComponent],
+  imports: [BrandCardComponent, LoadingScreenComponent, SectionTitleComponent, BreadCrumbComponent],
   templateUrl: './brands-page.component.html',
   styleUrl: './brands-page.component.css',
 })

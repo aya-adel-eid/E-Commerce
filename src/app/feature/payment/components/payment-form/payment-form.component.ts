@@ -34,9 +34,6 @@ export class PaymentFormComponent {
   }
   payment() {
     if (this.paymentUSer.valid) {
-      console.log(this.paymentUSer.value);
-      console.log(this.selectedPay);
-
       switch (this.selectedPay) {
         case 'cash': {
           this.cashPayment();

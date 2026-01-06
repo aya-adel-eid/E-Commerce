@@ -4,6 +4,7 @@ import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 export const ORDERS_ROUTES: Routes = [
   {
     path: '',
-    component: OrdersPageComponent,
+    loadComponent: () =>
+      import('./pages/orders-page/orders-page.component').then((c) => c.OrdersPageComponent),
   },
 ];

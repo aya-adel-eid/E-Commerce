@@ -64,9 +64,9 @@
           <div class="flex lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-2">
             <span class="text-sm text-gray-500 lg:hidden">Total:</span>
             <div class="text-right">
-              <p class="text-2xl sm:text-3xl font-bold text-gray-900">{{price*count}} <span class="text-lg">EGP</span>
+              <p class="text-2xl sm:text-3xl font-bold text-gray-900">{{price*count |currency:'EGP'}}
               </p>
-              <p class="text-sm text-gray-500 mt-1">{{price}} EGP each</p>
+              <p class="text-sm text-gray-500 mt-1">{{price | currency:'EGP'}} each</p>
             </div>
           </div>
 

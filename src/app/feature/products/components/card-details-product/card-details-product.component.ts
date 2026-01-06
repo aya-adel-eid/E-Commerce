@@ -7,6 +7,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { WishlistService } from '../../../wishlist/services/wishlist.service';
 import { ImagePlaceHolderDirective } from '../../../../shared/directives/image-place-holder.directive';
+import { AuthService } from '../../../auth/services/auth.service';
+import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/bread-crumb.component';
 
 @Component({
   selector: 'app-card-details-product',
@@ -18,9 +20,11 @@ export class CardDetailsProductComponent {
   @Input({ required: true }) product!: Details;
   @Input() loading!: boolean;
   private readonly cartServices = inject(CartService);
-  private readonly wishlistServices = inject(WishlistService);
+  public readonly wishlistServices = inject(WishlistService);
   private readonly toaster = inject(ToastrService);
+  public readonly authServices = inject(AuthService);
   isLike = false;
+  isLoading: boolean = false;
   quantityOfItem = 0;
 
   totalQuantity = 0;
@@ -28,27 +32,33 @@ export class CardDetailsProductComponent {
     if (this.product) {
       this.totalQuantity = this.product.quantity;
     }
+    this.wishlistServices.getAllProductsInWishlist();
   }
   incrementITem() {
     if (this.quantityOfItem < this.totalQuantity) {
       this.quantityOfItem += 1;
       this.totalQuantity -= 1;
-      console.log('icrement', this.quantityOfItem);
-      console.log(this.totalQuantity);
     }
   }
   decrementtITem() {
     if (this.quantityOfItem > 0) {
       this.quantityOfItem -= 1;
       this.totalQuantity += 1;
-      console.log('decrement', this.quantityOfItem);
-      console.log(this.totalQuantity);
     }
   }
   //
+  removeProductInWishlist(id: string) {
+    this.wishlistServices.deleteProductInWishlist(id);
+  }
   addToCart(productID: string) {
+    if (!this.authServices.isAuth()) {
+      (window as any).openAuthModal();
+      return;
+    }
+    this.isLoading = true;
     this.cartServices.sendProductInCart({ productId: productID }).subscribe({
       next: (resp) => {
+        this.isLoading = false;
         this.isLike = true;
         this.cartServices.numOfCartItems = resp.numOfCartItems;
         this.toaster.success('<h5 class="text-xl">Product added Successfully!</h5>', undefined, {
@@ -59,55 +69,17 @@ export class CardDetailsProductComponent {
       error: (err: HttpErrorResponse) => {
         this.isLike = false;
         this.toaster.error('Failed To Add Product!');
+        this.isLoading = false;
       },
     });
   }
   // wisghlist
   addToWishlist(productID: string) {
+    if (!this.authServices.isAuth()) {
+      (window as any).openAuthModal();
+      return;
+    }
     this.isLike = false;
-    this.wishlistServices.addProductToWishlist({ productId: productID }).subscribe({
-      next: (resp) => {
-        this.isLike = true;
-        this.toaster.success(
-          '<h5 class="text-xl">Product added To WishList Successfully!</h5>',
-          undefined,
-          {
-            enableHtml: true,
-            progressBar: true,
-          }
-        );
-      },
-      error: (err: HttpErrorResponse) => {
-        this.isLike = false;
-        this.toaster.error('Failed To Add Product!');
-      },
-    });
+    this.wishlistServices.addProductToWishlist({ productId: productID });
   }
-  // customOptions: OwlOptions = {
-  //   loop: true,
-  //   margin: 10,
-  //   mouseDrag: true,
-  //   touchDrag: true,
-  //   pullDrag: true,
-  //   dots: false,
-  //   navSpeed: 700,
-  //   navText: ['', ''],
-  //   responsive: {
-  //     0: {
-  //       items: 1,
-  //     },
-  //     200: {
-  //       items: 3,
-  //     },
-  //     300: {
-  //       items: 3,
-  //     },
-  //     400: {
-  //       items: 4,
-  //     },
-  //   },
-  //   nav: true,
-
-  //   rtl: false,
-  // };
 }

@@ -6,6 +6,7 @@ import { CartService } from '../../../cart/services/cart.service';
 import { Product } from '../../../wishlist/interfaces/IFavProdReq';
 import { RouterLink } from '@angular/router';
 import { ImagePlaceHolderDirective } from '../../../../shared/directives/image-place-holder.directive';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-card-product-wishlist',
@@ -16,9 +17,14 @@ import { ImagePlaceHolderDirective } from '../../../../shared/directives/image-p
 export class CardProductWishlistComponent {
   @Input({ required: true }) product!: Product;
   private readonly cartServices = inject(CartService);
-  private readonly wishlistServices = inject(WishlistService);
+  public readonly wishlistServices = inject(WishlistService);
+  public readonly authServices = inject(AuthService);
   //spinner
   // private readonly ngxSpinnerService = inject(NgxSpinnerService);
+  ngOnInit() {
+    // this.wishlistServices.wishlistID();
+    this.wishlistServices.getAllProductsInWishlist();
+  }
   isLike = false;
   isShow = false;
   hoveronBtn = false;
@@ -29,7 +35,6 @@ export class CardProductWishlistComponent {
     this.isLoading = true;
     this.cartServices.sendProductInCart({ productId: _productId }).subscribe({
       next: (resp) => {
-        console.log(resp);
         this.cartServices.numOfCartItems = resp.numOfCartItems;
         this.toaster.success('<h5 class="text-xl">Product added Successfully!</h5>', undefined, {
           enableHtml: true,
@@ -39,7 +44,6 @@ export class CardProductWishlistComponent {
         // this.ngxSpinnerService.hide('ball-scale');
       },
       error: (err: HttpErrorResponse) => {
-        console.log(err.error.message);
         this.toaster.error('Failed to add product!');
         this.isLoading = false;
         // this.ngxSpinnerService.hide('ball-scale');
@@ -48,41 +52,9 @@ export class CardProductWishlistComponent {
   }
   addToWishlist(productID: string) {
     this.isLike = false;
-    this.wishlistServices.addProductToWishlist({ productId: productID }).subscribe({
-      next: (resp) => {
-        this.isLike = true;
-        this.toaster.success(
-          '<h5 class="text-xl">Product added To WishList Successfully!</h5>',
-          undefined,
-          {
-            enableHtml: true,
-            progressBar: true,
-          }
-        );
-      },
-      error: (err: HttpErrorResponse) => {
-        this.isLike = false;
-        this.toaster.error('Failed To Add Product!');
-      },
-    });
+    this.wishlistServices.addProductToWishlist({ productId: productID });
   }
   removeProductInWishlist(id: string) {
-    this.wishlistServices.deleteProductInWishlist(id).subscribe({
-      next: (resp) => {
-        // this.wishlistServices.wishlist = resp.data;
-        //update list wish
-        this.wishlistServices.getAllProductsInWishlist();
-        console.log(resp);
-
-        this.toaster.success(
-          '<h5 class="text-xl">Item removed from your wishlist!</h5>',
-          undefined,
-          {
-            enableHtml: true,
-            progressBar: true,
-          }
-        );
-      },
-    });
+    this.wishlistServices.deleteProductInWishlist(id);
   }
 }
