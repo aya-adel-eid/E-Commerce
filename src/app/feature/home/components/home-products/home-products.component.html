@@ -90,7 +90,7 @@
           @for (brand of brandServices.allBrands; track brand._id) {
           <ng-template carouselSlide [id]="brand._id">
             <div class="cursor-pointer border-4 border-main-500 bg-white p-4 rounded-3xl">
-              <div class="image" [routerLink]="['/brand',brand._id]"
+              <div class="image" [routerLink]="['/brands',brand._id]"
                 (click)="brandServices.getSpecificBrand(brand._id)">
                 <img [src]="brand.image" [alt]="brand.name" class="h-[230px]">
               </div>
