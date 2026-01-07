@@ -61,7 +61,7 @@ export class EditInfoComponent {
     }
   }
   sendData() {
-    console.log(this.editInfo.value);
+    this.isLoading = true;
 
     if (this.editInfo.valid) {
       this.isLoading = true;
@@ -69,8 +69,6 @@ export class EditInfoComponent {
         next: (resp) => {
           this.isLoading = false;
           localStorage.setItem(STORED_KEYS.UserToken, resp.token);
-          console.log(resp.token);
-
           this.toast.success('<h5 class="text-xl">Change Password Successfully!</h5>', undefined, {
             enableHtml: true,
             progressBar: true,
