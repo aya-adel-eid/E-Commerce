@@ -1,55 +1,57 @@
 @if (authServices.useInfo) {
+<div class="content mb-5">
 
-<div class="w-2/3 mx-auto bg-white rounded-3xl shadow-xl overflow-hidden mt-12 ">
+  <div class="w-full lg:w-2/3 mx-auto bg-white rounded-3xl shadow-xl overflow-hidden mt-12 ">
 
-  <!-- Top Section -->
-  <div class="bg-gradient-to-r from-main-500 to-main-700 h-32 relative">
-    <div
-      class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-lg">
-      <span class="text-3xl font-bold text-main-500 uppercase">
-        {{ authServices.useInfo.name[0] }}
-      </span>
-    </div>
-  </div>
-
-  <!-- Content -->
-  <div class="pt-16 pb-8 px-8 text-center">
-    <h2 class="text-2xl font-semibold capitalize">
-      {{ authServices.useInfo.name }}
-    </h2>
-
-    <span class="inline-block mt-2 px-4 py-1 rounded-full text-sm" [class]="authServices.useInfo.role === 'admin'
-        ? 'bg-red-100 text-red-600'
-        : 'bg-main-100 text-main-600'">
-      {{ authServices.useInfo.role }}
-    </span>
-
-    <!-- Divider -->
-    <div class="my-6 border-t"></div>
-
-    <!-- Info -->
-    <div class="space-y-4 text-sm max-w-md mx-auto">
-      <div class="flex items-center justify-between">
-        <span class="text-gray-400">Email</span>
-        <span class="font-medium">{{ authServices.useInfo.email }}</span>
-      </div>
-
-      <div class="flex items-center justify-between">
-        <span class="text-gray-400">Phone</span>
-        <span class="font-medium">{{ authServices.useInfo.phone }}</span>
-      </div>
-
-      <div class="flex items-center justify-between">
-        <span class="text-gray-400">Status</span>
-        <span class="font-semibold" [class]="authServices.useInfo.active
-            ? 'text-green-600'
-            : 'text-red-600'">
-          {{ authServices.useInfo.active ? 'Active' : 'Inactive' }}
+    <!-- Top Section -->
+    <div class="bg-gradient-to-r from-main-500 to-main-700 h-32 relative">
+      <div
+        class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-lg">
+        <span class="text-3xl font-bold text-main-500 uppercase">
+          {{ authServices.useInfo.name[0] }}
         </span>
       </div>
     </div>
-  </div>
 
+    <!-- Content -->
+    <div class="pt-16 pb-8 px-8 text-center">
+      <h2 class="text-2xl font-semibold capitalize">
+        {{ authServices.useInfo.name }}
+      </h2>
+
+      <span class="inline-block mt-2 px-4 py-1 rounded-full text-sm" [class]="authServices.useInfo.role === 'admin'
+          ? 'bg-red-100 text-red-600'
+          : 'bg-main-100 text-main-600'">
+        {{ authServices.useInfo.role }}
+      </span>
+
+      <!-- Divider -->
+      <div class="my-6 border-t"></div>
+
+      <!-- Info -->
+      <div class="space-y-4 text-sm max-w-md mx-auto">
+        <div class="flex items-center justify-between">
+          <span class="text-gray-400">Email</span>
+          <span class="font-medium">{{ authServices.useInfo.email }}</span>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <span class="text-gray-400">Phone</span>
+          <span class="font-medium">{{ authServices.useInfo.phone }}</span>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <span class="text-gray-400">Status</span>
+          <span class="font-semibold" [class]="authServices.useInfo.active
+              ? 'text-green-600'
+              : 'text-red-600'">
+            {{ authServices.useInfo.active ? 'Active' : 'Inactive' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 }
