@@ -32,9 +32,6 @@ export class CardDetailsProductComponent {
     if (this.product) {
       this.totalQuantity = this.product.quantity;
     }
-    if (this.authServices.isAuth()) {
-      this.wishlistServices.getAllProductsInWishlist();
-    }
   }
   incrementITem() {
     if (this.quantityOfItem < this.totalQuantity) {

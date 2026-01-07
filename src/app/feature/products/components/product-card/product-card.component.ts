@@ -20,20 +20,20 @@ import { Product } from '../../../wishlist/interfaces/IFavProdReq';
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent {
   @Input({ required: true }) product!: Products;
   private readonly cartServices = inject(CartService);
   public readonly wishlistServices = inject(WishlistService);
   public readonly authServices = inject(AuthService);
 
-  ngOnInit() {
-    if (this.authServices.isAuth()) {
-      // this.wishlistServices.wishlistID();
-      this.wishlistServices.getAllProductsInWishlist();
-    } else {
-      this.wishlistServices.reset();
-    }
-  }
+  // ngOnInit() {
+  //   if (this.authServices.isAuth()) {
+  //     // this.wishlistServices.wishlistID();
+  //     this.wishlistServices.getAllProductsInWishlist();
+  //   } else {
+  //     this.wishlistServices.reset();
+  //   }
+  // }
   //spinner
   // private readonly ngxSpinnerService = inject(NgxSpinnerService);
   isLike = false;

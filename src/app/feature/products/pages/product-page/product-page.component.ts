@@ -12,6 +12,8 @@ import { MainSliderProdComponent } from '../../components/main-slider-prod/main-
 import { CategoriesService } from '../../../categories/services/categories.service';
 import { CategpryProdComponent } from '../../../categories/components/categpry-prod/categpry-prod.component';
 import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/bread-crumb.component';
+import { AuthService } from '../../../auth/services/auth.service';
+import { WishlistService } from '../../../wishlist/services/wishlist.service';
 @Component({
   selector: 'app-product-page',
   imports: [
@@ -34,6 +36,8 @@ export class ProductPageComponent implements OnInit {
   private readonly activeRoute = inject(ActivatedRoute);
   private readonly viewportScrolle = inject(ViewportScroller);
   public readonly categoryServices = inject(CategoriesService);
+  private readonly authServices = inject(AuthService);
+  private readonly wishlistServices = inject(WishlistService);
   textSearch = '';
   //when change number of page
 
@@ -52,6 +56,12 @@ export class ProductPageComponent implements OnInit {
   }
   getAllProducts() {
     this.productsService.getAllProducts(this.page, this.limit);
+    if (this.authServices.isAuth()) {
+      // this.wishlistServices.wishlistID();
+      this.wishlistServices.getAllProductsInWishlist();
+    } else {
+      this.wishlistServices.reset();
+    }
   }
   getAllCategory() {
     this.categoryServices.getAllCategories();

@@ -29,7 +29,6 @@ export class App {
     this.authServices.checkAuthOnInit();
   }
   ngAfterViewInit() {
-    // اعمل الـ Modal متاح عالمياً
     if (isPlatformBrowser(this.platID)) {
       (window as any).openAuthModal = () => this.authModal.open();
     }

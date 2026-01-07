@@ -7,6 +7,8 @@ import { ViewportScroller } from '@angular/common';
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
 import { Details } from '../../interfaces/IPRoductDetails';
 import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/bread-crumb.component';
+import { AuthService } from '../../../auth/services/auth.service';
+import { WishlistService } from '../../../wishlist/services/wishlist.service';
 
 @Component({
   selector: 'app-product-details',
@@ -23,6 +25,16 @@ export class ProductDetailsComponent {
   private readonly activeRouter = inject(ActivatedRoute);
   public readonly productsService = inject(ProductsService);
   public readonly viewportScroller = inject(ViewportScroller);
+  private readonly authServices = inject(AuthService);
+  private readonly wishlistServices = inject(WishlistService);
+  ngOnInit(): void {
+    if (this.authServices.isAuth()) {
+      // this.wishlistServices.wishlistID();
+      this.wishlistServices.getAllProductsInWishlist();
+    } else {
+      this.wishlistServices.reset();
+    }
+  }
   load = true;
   productDetails!: Details;
   productId!: string;
