@@ -113,13 +113,15 @@
       <div class="relative hidden lg:block">
         <a routerLink="/cart" class="flex flex-col items-center gap-1 hover:text-primary transition">
           <i class="fa-solid fa-cart-shopping text-xl"></i>
-
+          @if (authService.isAuth()) {
           @if (cartServices.numOfCartItems) {
           <span class="absolute -top-1 -right-2 flex items-center justify-center
-                      w-5 h-5 text-2xs font-bold text-white
-                      bg-danger rounded-full">
+                        w-5 h-5 text-2xs font-bold text-white
+                        bg-danger rounded-full">
             {{ cartServices.numOfCartItems }}
           </span>
+          }
+
           }
         </a>
       </div>
@@ -128,23 +130,22 @@
 
       <!-- User Account -->
       <div class="relative">
-        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full
-         bg-gray-100 hover:bg-gray-200 transition cursor-pointer" (click)="openMenuAuth = !openMenuAuth">
+        <div class="flex items-center gap-2 px-2 sm:px-3 py-1.5 rounded-full
+  bg-gray-100 hover:bg-gray-200 transition cursor-pointer" (click)="openMenuAuth = !openMenuAuth">
 
           <!-- Avatar -->
-          <button type="button" class="w-9 h-9 flex lg:hidden items-center justify-center rounded-full
-           bg-main-500 text-white">
-
-            <i class="fa-solid fa-user text-sm"></i>
+          <button type="button" class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full
+    bg-main-500 text-white">
+            <i class="fa-solid fa-user text-xs sm:text-sm"></i>
           </button>
 
           <!-- Name -->
           @if (authService.isAuth()) {
-          <span class="text-sm font-medium capitalize hidden sm:inline cursor-pointer">
+          <span class="text-xs sm:text-sm font-medium capitalize hidden sm:inline cursor-pointer">
             {{ authService.useInfo?.name }}
           </span>
           } @else {
-          <span class="text-sm font-medium text-gray-500 hidden sm:inline cursor-pointer">
+          <span class="text-xs sm:text-sm font-medium text-gray-500 hidden sm:inline cursor-pointer">
             Guest
           </span>
           }

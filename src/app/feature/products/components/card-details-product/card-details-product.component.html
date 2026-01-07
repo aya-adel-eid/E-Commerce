@@ -4,147 +4,145 @@
 @else {
 
 <div
-  class=" grid sm:gap-8 lg:gap-0 h-4/10 grid-cols-12 justify-center   bg-neutral-primary-soft p-6 border border-default rounded-3xl shadow-main w-full   py-10  sm:mt-12">
-  <div class="img xl:col-span-6 sm:col-span-12">
-    <!-- <img class=" w-full rounded-base h-[600px]  mb-4 md:mb-0 " [src]="product.imageCover" alt=""> -->
+  class="grid sm:gap-8 lg:gap-0 h-auto grid-cols-1 lg:grid-cols-12 justify-center bg-neutral-primary-soft p-4 sm:p-6 border border-default rounded-3xl shadow-main w-full py-6 sm:py-10 mt-6 sm:mt-12">
 
+  <!-- Images Section -->
+  <div class="img lg:col-span-6 col-span-1 mb-6 lg:mb-0">
+    <div class="flex flex-col sm:flex-row gap-2 items-start sm:items-center">
 
-    <div class=" flex  gap-2  items-center  space-y-4 ">
-      <!-- width20 -->
-
-      <div class=" space-y-4   ">
-
-
-
+      <!-- Thumbnail Images -->
+      <div class="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-visible w-full sm:w-auto pb-2 sm:pb-0">
         @for (image of product.images; track $index) {
-
-
-        <div class="">
-          <img class="h-[90px] max-w-full rounded-3xl cursor-pointer" [src]="image" [alt]="product.title"
-            (mouseover)="mainImage.src=image">
+        <div class="flex-shrink-0">
+          <img class="h-[70px] sm:h-[90px] w-[70px] sm:w-auto rounded-2xl sm:rounded-3xl cursor-pointer" [src]="image"
+            [alt]="product.title" (mouseover)="mainImage.src=image">
         </div>
-
         }
-
-
-
       </div>
-      <div class="">
-        <img class=" max-w-full rounded-4xl h-[500px]" [src]="product.imageCover" alt="" #mainImage imagePlaceHolder>
+
+      <!-- Main Image -->
+      <div class="w-full">
+        <img class="w-full rounded-3xl sm:rounded-4xl h-[300px] sm:h-[400px] lg:h-[500px] object-cover"
+          [src]="product.imageCover" alt="" #mainImage imagePlaceHolder>
       </div>
     </div>
-
   </div>
-  <div class="flex flex-col  md:p-4 leading-normal xl:col-span-5 sm:col-span-12 px-6">
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-heading py-7">{{product.title}}</h5>
-    <div class="pb-5">
-      <span><i class="fa-solid fa-star text-rating "></i></span>
-      <span><i class="fa-solid fa-star text-rating"></i></span>
-      <span><i class="fa-solid fa-star text-rating"></i></span>
-      <span><i class="fa-solid fa-star text-rating"></i></span>
-      <i class="fa-solid fa-star-half-stroke text-rating"></i>
-      <span class="px-3">{{product.ratingsQuantity}} Review</span>
-      <span class=" border-s-2 border-gray-300 "></span>
-      <span class="space-x-3">
 
-        <a href="#" class="text-sm font-medium text-fg-brand ps-3 "><i
-            class="fa-brands fa-facebook text-gray-400"></i></a>
-        <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-brands fa-twitter text-gray-400"></i></a>
-        <a href="#" class="text-sm font-medium text-fg-brand "><i class="fa-solid fa-phone text-gray-400"></i></a>
+  <!-- Product Details Section -->
+  <div class="flex flex-col leading-normal lg:col-span-6 col-span-1 px-2 sm:px-6">
+
+    <!-- Title -->
+    <h5 class="mb-2 text-xl sm:text-2xl font-bold tracking-tight text-heading py-4 sm:py-7">
+      {{product.title}}
+    </h5>
+
+    <!-- Rating & Social -->
+    <div class="pb-5 flex flex-wrap items-center gap-2">
+      <div class="flex items-center gap-1">
+        <span><i class="fa-solid fa-star text-rating"></i></span>
+        <span><i class="fa-solid fa-star text-rating"></i></span>
+        <span><i class="fa-solid fa-star text-rating"></i></span>
+        <span><i class="fa-solid fa-star text-rating"></i></span>
+        <i class="fa-solid fa-star-half-stroke text-rating"></i>
+        <span class="px-2 sm:px-3 text-sm sm:text-base">{{product.ratingsQuantity}} Review</span>
+      </div>
+
+      <span class="hidden sm:inline border-s-2 border-gray-300 h-4"></span>
+
+      <span class="flex gap-2 sm:gap-3">
+        <a href="#" class="text-sm font-medium text-fg-brand">
+          <i class="fa-brands fa-facebook text-gray-400"></i>
+        </a>
+        <a href="#" class="text-sm font-medium text-fg-brand">
+          <i class="fa-brands fa-twitter text-gray-400"></i>
+        </a>
+        <a href="#" class="text-sm font-medium text-fg-brand">
+          <i class="fa-solid fa-phone text-gray-400"></i>
+        </a>
       </span>
     </div>
-    <a href="" class="coursor-pointer py-2 font-bold">
 
-      <span class=" uppercase  w-fit text-[16px] text-gray-500">
-        <span class="text-black">
-
-          category :
-        </span>
-        {{product.category.name}}</span>
+    <!-- Category -->
+    <a href="" class="cursor-pointer py-2 font-bold">
+      <span class="uppercase w-fit text-sm sm:text-[16px] text-gray-500">
+        <span class="text-black">category : </span>
+        {{product.category.name}}
+      </span>
     </a>
-    <a href="" class="coursor-pointer py-2 font-bold">
 
-      <span class="  uppercase     w-fit text-[16px] text-gray-500">
-        <span class="text-black">
-
-          brand :
-        </span>
-        {{product.brand.name}}</span>
+    <!-- Brand -->
+    <a href="" class="cursor-pointer py-2 font-bold">
+      <span class="uppercase w-fit text-sm sm:text-[16px] text-gray-500">
+        <span class="text-black">brand : </span>
+        {{product.brand.name}}
+      </span>
     </a>
-    <span class="uppercase w-fit text-[18px] font-bold">Stock :
-      <span class="text-gray-500">{{totalQuantity}}</span>
+
+    <!-- Stock -->
+    <span class="uppercase w-fit text-base sm:text-[18px] font-bold">
+      Stock : <span class="text-gray-500">{{totalQuantity}}</span>
     </span>
 
-    <p class="mb-6 text-xl text-gray-600 pt-3"><span class="text-gray-500">Brief Description :
-      </span>{{product.description}}</p>
+    <!-- Description -->
+    <p class="mb-4 sm:mb-6 text-base sm:text-xl text-gray-600 pt-3">
+      <span class="text-gray-500">Brief Description : </span>
+      {{product.description}}
+    </p>
 
-    <div class="pb-6 flex justify-between w-5/6">
-      <span class="text-3xl font-bold text-main-600">{{product.price}} $</span>
+    <!-- Price & Wishlist -->
+    <div
+      class="pb-4 sm:pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 w-full sm:w-5/6">
+      <span class="text-2xl sm:text-3xl font-bold text-main-600">{{product.price}} $</span>
+
       @if (this.authServices.isAuth()) {
       @if (this.wishlistServices.isInWishlist()(product._id)) {
-      <button (click)="removeProductInWishlist(product._id)">
-        <i class="fa-solid fa-heart text-xl text-red-500 hover:text-red-300" #iconFav></i>
-        <span class="text-xl font-bold capitalize text-gray-500"> Add to wishlist</span>
+      <button (click)="removeProductInWishlist(product._id)" class="flex items-center gap-2">
+        <i class="fa-solid fa-heart text-lg sm:text-xl text-red-500 hover:text-red-300" #iconFav></i>
+        <span class="text-base sm:text-xl font-bold capitalize text-gray-500">Add to wishlist</span>
+      </button>
+      } @else {
+      <button (click)="addToWishlist(product._id)" class="flex items-center gap-2">
+        <i class="fa-solid fa-heart text-lg sm:text-xl hover:text-main-400" #iconFav></i>
+        <span class="text-base sm:text-xl font-bold capitalize text-gray-500">Add to wishlist</span>
       </button>
       }
-      @else {
-      <button (click)="addToWishlist(product._id)">
-        <i class="fa-solid fa-heart text-xl  hover:text-main-400" #iconFav></i>
-        <span class="text-xl font-bold capitalize text-gray-500"> Add to wishlist</span>
-      </button>
-
-      }
-      }
-      @else {
-      <button (click)="addToWishlist(product._id)">
-        <i class="fa-solid fa-heart text-xl  hover:text-main-400" #iconFav></i>
-        <span class="text-xl font-bold capitalize text-gray-500"> Add to wishlist</span>
+      } @else {
+      <button (click)="addToWishlist(product._id)" class="flex items-center gap-2">
+        <i class="fa-solid fa-heart text-lg sm:text-xl hover:text-main-400" #iconFav></i>
+        <span class="text-base sm:text-xl font-bold capitalize text-gray-500">Add to wishlist</span>
       </button>
       }
-
-      <!-- <span (mouseenter)="icon.classList.add('text-main-400')"
-        (mouseleave)="!isLike &&icon.classList.remove('text-main-400')" (click)="addToWishlist(product._id)"
-        class="cursor-pointer"><i class="fa-solid fa-heart text-3xl" #icon [class.text-main-400]="isLike"></i>
-        <span class="text-xl font-bold capitalize text-gray-500"> Add to wishlist</span></span> -->
     </div>
-    <!-- quantity -->
 
-
-    <h5 class="text-gray-500 font-bold uppercase">quantity</h5>
-    <div class="bg-light border border-gray-500/50 rounded py-2 px-4 flex w-fit space-x-3 my-3">
-      <button (click)="decrementtITem()"><i class="fa-solid fa-minus cursor-pointer"></i></button>
+    <!-- Quantity -->
+    <h5 class="text-gray-500 font-bold uppercase text-sm sm:text-base">quantity</h5>
+    <div
+      class="bg-light border border-gray-500/50 rounded py-2 px-4 flex w-full sm:w-fit gap-3 my-3 justify-center sm:justify-start">
+      <button (click)="decrementtITem()">
+        <i class="fa-solid fa-minus cursor-pointer"></i>
+      </button>
       <span class="border-l-2 border-gray-300 border-r-2 px-3">{{quantityOfItem}}</span>
-      <button (click)="incrementITem()"><i class="fa-solid fa-plus cursor-pointer"></i></button>
-
-
+      <button (click)="incrementITem()">
+        <i class="fa-solid fa-plus cursor-pointer"></i>
+      </button>
     </div>
 
-
-
-
-
-
-    <div class="space-x-3">
-      <button type="button" class=" w-2/5 py-3 text-xl btn-cart  hover:bg-black" (click)=" addToCart(product._id)">
-
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row gap-3">
+      <button type="button" class="w-full sm:w-2/5 py-3 text-lg sm:text-xl btn-cart hover:bg-black"
+        (click)="addToCart(product._id)">
         @if(isLoading){
         adding...<i class="fas fa-spinner fa-spin"></i>
+        } @else {
+        <span><i class="fa-solid fa-cart-plus"></i></span> ADD TO CART
         }
-
-
-        @else {
-
-        <span><i class="fa-solid fa-cart-plus"></i></span> ADD
-        TO
-        CART
-        }
-
       </button>
-      <button type="button" class=" w-4/9 py-3 text-xl btn-cart  bg-black hover:bg-main-500">
-        <i class="fa-regular fa-credit-card"></i> Buy it now
 
+      <button type="button" class="w-full sm:w-4/9 py-3 text-lg sm:text-xl btn-cart bg-black hover:bg-main-500">
+        <i class="fa-regular fa-credit-card"></i> Buy it now
       </button>
     </div>
+
   </div>
 </div>
 }
