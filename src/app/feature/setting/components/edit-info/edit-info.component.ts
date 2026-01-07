@@ -61,8 +61,6 @@ export class EditInfoComponent {
     }
   }
   sendData() {
-    this.isLoading = true;
-
     if (this.editInfo.valid) {
       this.isLoading = true;
       this.settingServices.editInfoUser(this.editInfo.value).subscribe({
