@@ -3,7 +3,8 @@
   <nav class="flex  p-3" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
       <li class="inline-flex items-center">
-        <a routerLink="/home" class="inline-flex items-center text-xl font-medium text-body hover:text-gray-700">
+        <a routerLink="/home"
+          class="inline-flex items-center sm:text-sm sm:font-medium lg:text-xl lg:font-semibold text-body hover:text-gray-700">
           <svg class="w-4 h-4 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
             fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -22,7 +23,7 @@
               d="m9 5 7 7-7 7" />
           </svg>
           <a [routerLink]="'/'+path.toLowerCase()"
-            class="inline-flex items-center text-xl font-semibold text-main-500 hover:text-main-700">{{path}}</a>
+            class="inline-flex items-center sm:text-sm sm:font-medium lg:text-xl lg:font-semibold text-main-500 hover:text-main-700">{{path}}</a>
         </div>
       </li>
       }

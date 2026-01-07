@@ -41,12 +41,70 @@
   @else {
 
   <div class="system-Grid py-7">
-    @for (product of productService.allProducts; track product._id) {
+    @for (product of productService.allProducts.slice(0,15); track product._id) {
 
     <app-product-card [product]="product"></app-product-card>
     }
   </div>
+
+  <!-- more Products -->
+  <div>
+    @defer (on interaction) {
+    <div class="system-Grid py-7">
+
+      @for (product of productService.allProducts.slice(15); track product._id) {
+
+      <app-product-card [product]="product"></app-product-card>
+      }
+    </div>
+    }
+    @placeholder {
+    <div class=" text-center w-full pt-5 mb-7">
+      <button class="btnn p-5 ">see more Product</button>
+
+    </div>
+    }
+    @loading {
+    <app-loading-screen></app-loading-screen>
+    }
+  </div>
   }
 
+  }
+  <!-- brand -->
+  @if (!brandServices.allBrands) {
+  <app-loading-screen></app-loading-screen>
+  }
+  @else {
+  <div class="mb-5">
+
+    <div #titleBrand>
+
+      <app-section-title [title]="'Shoping By Brand'"></app-section-title>
+    </div>
+    @defer( on viewport(titleBrand) ){
+    <div>
+      <div>
+        <owl-carousel-o [options]="customOptions">
+
+          @for (brand of brandServices.allBrands; track brand._id) {
+          <ng-template carouselSlide [id]="brand._id">
+            <div class="cursor-pointer border-4 border-main-500 bg-white p-4 rounded-3xl">
+              <div class="image" [routerLink]="['/brand',brand._id]"
+                (click)="brandServices.getSpecificBrand(brand._id)">
+                <img [src]="brand.image" [alt]="brand.name" class="h-[230px]">
+              </div>
+              <h3 class="font-bold text-xl text-gray-600 pt-4 text-center">{{brand.name}}</h3>
+            </div>
+          </ng-template>
+          }
+        </owl-carousel-o>
+      </div>
+    </div>
+    }
+    @loading {
+    <app-loading-screen></app-loading-screen>
+    }
+  </div>
   }
 </div>

@@ -1,5 +1,5 @@
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { CartDetails, ICartResp, Product } from '../interfaces/ICartResp';
+import { CartDetails, ICartResp, Product, Product2 } from '../interfaces/ICartResp';
 import { BaseHttp } from '../../../core/services/utilites/base-http';
 import { APIS_KYS } from '../../../core/contstants/APIS_KYS';
 import { STORED_KEYS } from '../../../core/contstants/storedKey';
@@ -14,6 +14,7 @@ export class CartService extends BaseHttp {
   userCart!: CartDetails;
   private readonly plat_id = inject(PLATFORM_ID);
   numOfCartItems!: number;
+
   getAllProductsInCart() {
     if (isPlatformBrowser(this.plat_id)) {
       return this.httpClient.get<ICartResp>(APIS_KYS.CART.data).subscribe({
@@ -33,6 +34,7 @@ export class CartService extends BaseHttp {
     return this.httpClient.put<ICartResp>(`${APIS_KYS.CART.data}/${id}`, count).subscribe({
       next: (resp) => {
         this.userCart = resp.data;
+
         this.numOfCartItems = resp.numOfCartItems;
       },
       error: (err) => {},

@@ -46,6 +46,7 @@ export class CardDetailsProductComponent {
     }
   }
   //
+
   removeProductInWishlist(id: string) {
     this.wishlistServices.deleteProductInWishlist(id);
   }

@@ -11,7 +11,7 @@ export const errorsInterceptor: HttpInterceptorFn = (req, next) => {
         toaster.error('no internet connection');
       }
       if (error.status === 401) {
-        toaster.error('unauthorized');
+        toaster.error('You must be logged in to access this page.');
       }
       return throwError(() => error);
     })
