@@ -8,7 +8,8 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   if (
     !req.urlWithParams.includes('cart') &&
     !req.urlWithParams.includes('orders') &&
-    !req.urlWithParams.includes('wishlist')
+    !req.urlWithParams.includes('wishlist') &&
+    !req.urlWithParams.includes('changeMyPassword')
   )
     return next(req);
   const platform_id = inject(PLATFORM_ID);

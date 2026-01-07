@@ -6,5 +6,6 @@ export const ORDERS_ROUTES: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/orders-page/orders-page.component').then((c) => c.OrdersPageComponent),
+    title: 'AllORders',
   },
 ];

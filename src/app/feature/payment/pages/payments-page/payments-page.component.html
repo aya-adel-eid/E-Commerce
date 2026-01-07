@@ -1,21 +1,24 @@
 <section class=" bg-white overflow-hidden">
-  <div class="bg-red p-5">
+  <div class="content">
 
-    <app-bread-crumb [arrPaths]="['Payment']"></app-bread-crumb>
-  </div>
-  <div class=" h-screen flex justify-center items-center my-15">
-    <div class="lg:grid lg:grid-cols-2 lg:items-center lg:h-full content mt-6">
-      <div class="bg-[#F4F8FB] px-18 py-18 w-full rounded-3xl shadow-main">
-        <div class="title py-5">
-          <h2 class="text-3xl text-main-600 font-bold text-center">Fresh Cart</h2>
-        </div>
-        <div>
-          <app-payment-form></app-payment-form>
-        </div>
-      </div>
-      <div class="mb-8">
-        <img src="/images/payment.avif" class="w-full" alt="" />
+    <div class="bg-red p-5 mt-5">
 
+      <app-bread-crumb [arrPaths]="['Payment']"></app-bread-crumb>
+    </div>
+    <div class="  flex justify-center items-center my-15">
+      <div class="lg:grid lg:grid-cols-2 lg:items-center lg:h-full content mt-6">
+        <div class="bg-[#F4F8FB] px-18 py-18 w-full rounded-3xl shadow-main">
+          <div class="title py-5">
+            <h2 class="text-3xl text-main-600 font-bold text-center">Fresh Cart</h2>
+          </div>
+          <div>
+            <app-payment-form></app-payment-form>
+          </div>
+        </div>
+        <div class="mb-8">
+          <img src="/images/payment.avif" class="w-full" alt="" />
+
+        </div>
       </div>
     </div>
   </div>

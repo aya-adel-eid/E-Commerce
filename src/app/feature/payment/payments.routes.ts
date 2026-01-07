@@ -6,5 +6,6 @@ export const PAYMENTS_ROUTES: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/payments-page/payments-page.component').then((c) => c.PaymentsPageComponent),
+    title: 'CheckOut',
   },
 ];

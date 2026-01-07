@@ -6,5 +6,6 @@ export const CART_ROUTES: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/cart-page/cart-page.component').then((c) => c.CartPageComponent),
+    title: 'Cart',
   },
 ];

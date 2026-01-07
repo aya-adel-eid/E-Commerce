@@ -35,6 +35,7 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomePageComponent,
+        title: 'Products',
       },
       {
         path: 'product',
@@ -48,6 +49,7 @@ export const routes: Routes = [
           import('./feature/products/pages/product-details/product-details.component').then(
             (c) => c.ProductDetailsComponent
           ),
+        title: 'ProductDetails',
       },
       {
         path: 'details/:id/:slug',
@@ -55,6 +57,7 @@ export const routes: Routes = [
           import('./feature/products/pages/product-details/product-details.component').then(
             (c) => c.ProductDetailsComponent
           ),
+        title: 'ProductDetails',
       },
       {
         path: 'categories',
@@ -71,6 +74,7 @@ export const routes: Routes = [
           import('./feature/products/pages/products-by-brands/products-by-brands.component').then(
             (c) => c.ProductsByBrandsComponent
           ),
+        title: 'ProductsByBrands',
       },
       //
       {
@@ -79,6 +83,7 @@ export const routes: Routes = [
           import('./feature/products/pages/product-by-category/product-by-category.component').then(
             (c) => c.ProductByCategoryComponent
           ),
+        title: 'ProductsByCategory',
       },
     ],
   },
@@ -98,18 +103,6 @@ export const routes: Routes = [
 
     component: MainLayout,
     children: [
-      // { path: 'home', children: HOME_ROUTES },
-      // {
-      //   path: 'product',
-      //   children: PRODUCTS_ROUTes,
-      // },
-      // { path: 'details/:id', component: ProductDetailsComponent },
-      // { path: 'details/:id/:slug', component: ProductDetailsComponent },
-      // { path: 'categories', children: Categories_Routes },
-      // { path: 'brand', children: BRANDS_ROUTES },
-      // { path: 'brands/:id', component: ProductsByBrandsComponent },
-
-      // { path: 'categories/:id', component: ProductByCategoryComponent },
       {
         path: 'cart',
         loadChildren: () => import('./feature/cart/cart.routes').then((c) => c.CART_ROUTES),
@@ -134,18 +127,27 @@ export const routes: Routes = [
           import('./feature/auth/pages/user-info/user-info.component').then(
             (c) => c.UserInfoComponent
           ),
+        title: 'UserInfo',
+      },
+      {
+        path: 'changePassword',
+        loadComponent: () =>
+          import('./feature/setting/pages/change-password//change-password.component').then(
+            (c) => c.ChangePasswordComponent
+          ),
       },
     ],
   },
-  //gust
 
   //not
   {
     path: 'not-found',
     component: NotFoundComponent,
+    title: 'NoFound',
   },
   {
     path: '**',
     component: NotFoundComponent,
+    title: 'NoFound',
   },
 ];

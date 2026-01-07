@@ -7,5 +7,6 @@ export const PRODUCTS_ROUTes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/product-page/product-page.component').then((c) => c.ProductPageComponent),
+    title: 'Products',
   },
 ];
