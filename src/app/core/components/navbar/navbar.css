@@ -1,0 +1,6 @@
+:deep-host .owl-dots {
+  display: none !important;
+}
+:deep-host .owl-stage {
+  overflow: hidden !important;
+}

@@ -14,16 +14,16 @@
       <div class="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-visible w-full sm:w-auto pb-2 sm:pb-0">
         @for (image of product.images; track $index) {
         <div class="flex-shrink-0">
-          <img class="h-[70px] sm:h-[90px] w-[70px] sm:w-auto rounded-2xl sm:rounded-3xl cursor-pointer" [src]="image"
-            [alt]="product.title" (mouseover)="mainImage.src=image">
+          <img class="lg:h-[150px] sm:h-[90px] w-[70px] sm:w-auto rounded-2xl sm:rounded-3xl cursor-pointer"
+            [src]="image" [alt]="product.title" (mouseover)="mainImage.src=image">
         </div>
         }
       </div>
 
       <!-- Main Image -->
       <div class="w-full">
-        <img class="w-full rounded-3xl sm:rounded-4xl h-[300px] sm:h-[400px] lg:h-[500px] object-cover"
-          [src]="product.imageCover" alt="" #mainImage imagePlaceHolder>
+        <img class="w-full rounded-3xl sm:rounded-4xl h-[300px] sm:h-[400px] lg:h-[700px] " [src]="product.imageCover"
+          alt="" #mainImage imagePlaceHolder>
       </div>
     </div>
   </div>

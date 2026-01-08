@@ -9,6 +9,7 @@ import { Footer } from './core/components/footer/footer';
 import { ModalComponent } from './shared/components/modal/modal.component';
 import { isPlatformBrowser } from '@angular/common';
 import { AuthService } from './feature/auth/services/auth.service';
+import { NavbarService } from './core/components/navbar/navbar.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { AuthService } from './feature/auth/services/auth.service';
 export class App {
   protected readonly title = signal('E-commerce01');
   private readonly flowbiteService = inject(FlowbiteService);
+  public readonly navbarServices = inject(NavbarService);
   private readonly platID = inject(PLATFORM_ID);
   @ViewChild(ModalComponent) authModal!: ModalComponent;
   private readonly authServices = inject(AuthService);
