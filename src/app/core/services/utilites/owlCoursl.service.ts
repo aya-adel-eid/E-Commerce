@@ -9,10 +9,10 @@ export function getOwlOptions(options?: OwlOptions): OwlOptions {
     pullDrag: true,
     dots: false,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: [],
     responsive: options?.responsive ? options.responsive : {},
     items: options?.items ? options.items : 0,
 
-    nav: options?.nav ? options.nav : true,
+    nav: options?.nav ? options.nav : false,
   };
 }

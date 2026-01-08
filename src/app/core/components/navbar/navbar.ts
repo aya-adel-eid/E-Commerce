@@ -42,7 +42,6 @@ export class Navbar implements OnInit {
     items: 1,
     nav: false,
     autoplay: true,
-    dots: false,
   });
   @HostListener('window:scroll') onScroll() {
     if (scrollY > 40) {
