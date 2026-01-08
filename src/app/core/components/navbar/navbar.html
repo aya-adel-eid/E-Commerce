@@ -1,4 +1,6 @@
 <header class="fixed w-full z-50 top-0 start-0">
+
+
   <div class="bg-main-400 py-5 text-center grid sm:grid-cols-1 lg:grid-cols-3 transition-all duration-700"
     [class]="navbarServices.scroll()?'hidden':''">
     <div class="sm:hidden lg:block">
@@ -8,6 +10,9 @@
       </a>
 
     </div>
+    @defer (on idle; hydrate on viewport) {
+
+
     <div class=" ">
       <owl-carousel-o [options]="customOptions">
         <ng-template carouselSlide>
@@ -18,6 +23,8 @@
         </ng-template>
       </owl-carousel-o>
     </div>
+
+    }
     <div class=" space-x-2.5 text-white sm:hidden lg:block">
       <i class="fa-brands fa-facebook"></i>
       <i class="fa-brands fa-instagram"></i>
@@ -26,6 +33,7 @@
     </div>
 
   </div>
+
 
   <nav class="bg-neutral-primary  border-b border-default">
     <div class="content flex items-center justify-between mx-auto p-4">

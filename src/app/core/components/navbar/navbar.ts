@@ -24,8 +24,10 @@ export class Navbar implements OnInit {
   name!: string;
   openMenuAuth = true;
   openBar = true;
+  isBrowser = false;
   ngOnInit(): void {
     if (isPlatformBrowser(this.platID)) {
+      this.isBrowser = true;
       if (this.authService.isAuth()) {
         this.getProductsCart();
         this.authService.getInfo(localStorage.getItem(STORED_KEYS.UserId)!);
