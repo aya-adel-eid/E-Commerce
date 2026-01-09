@@ -19,6 +19,7 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { loadingSpinnerInterceptor } from './core/interceptors/loading-spinner-interceptor';
 import { tokenInterceptor } from './core/interceptors/token-interceptor';
 import { errorsInterceptor } from './core/interceptors/errors-interceptor';
+import { cacheInterceptor } from './core/interceptors/cache-interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -28,7 +29,12 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(
       withFetch(),
-      withInterceptors([loadingSpinnerInterceptor, tokenInterceptor, errorsInterceptor])
+      withInterceptors([
+        loadingSpinnerInterceptor,
+        tokenInterceptor,
+        errorsInterceptor,
+        cacheInterceptor,
+      ])
     ),
     provideToastr(),
   ],
