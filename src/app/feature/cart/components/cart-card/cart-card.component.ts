@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { UpdataData } from '../../interfaces/IUptadeCartResp';
 import { CurrencyPipe } from '@angular/common';
 import { ImagePlaceHolderDirective } from '../../../../shared/directives/image-place-holder.directive';
+import { WishlistService } from '../../../wishlist/services/wishlist.service';
 
 @Component({
   selector: 'app-cart-card',
@@ -19,10 +20,19 @@ export class CartCardComponent {
   isLike = false;
   updateCartUser!: UpdataData;
   private readonly cartServices = inject(CartService);
+  public readonly wishlistServices = inject(WishlistService);
   updateProductCount(_count: number, id: string) {
     this.cartServices.updateCartItem({ count: _count }, id);
   }
   removeCartItem(id: string) {
     this.cartServices.removeCartItem(id);
+  }
+  //wishlist
+  addToWishlist(productID: string) {
+    this.isLike = false;
+    this.wishlistServices.addProductToWishlist({ productId: productID });
+  }
+  removeProductInWishlist(id: string) {
+    this.wishlistServices.deleteProductInWishlist(id);
   }
 }
