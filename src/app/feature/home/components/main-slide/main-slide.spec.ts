@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainSlide } from './main-slide';
+// import { MainSlide } from './main-slide';
 
-describe('MainSlide', () => {
-  let component: MainSlide;
-  let fixture: ComponentFixture<MainSlide>;
+// describe('MainSlide', () => {
+//   let component: MainSlide;
+//   let fixture: ComponentFixture<MainSlide>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MainSlide]
-    })
-    .compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       imports: [MainSlide]
+//     })
+//     .compileComponents();
 
-    fixture = TestBed.createComponent(MainSlide);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(MainSlide);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

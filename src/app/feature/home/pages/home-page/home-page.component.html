@@ -1,6 +1,6 @@
 <section class="content">
   @defer (on idle;hydrate on viewport) {
-  @if (isBrowser) {
+  @if (isBrowser()) {
 
   <app-main-slide></app-main-slide>
   }

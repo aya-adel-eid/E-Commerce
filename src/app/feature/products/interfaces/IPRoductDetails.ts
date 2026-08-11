@@ -17,7 +17,7 @@ export interface Brand {
   name: string;
   slug: string;
   image: string;
-  createdAt: string;
+  createdAt?: string;
 }
 
 export interface Details {

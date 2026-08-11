@@ -20,6 +20,8 @@ import { loadingSpinnerInterceptor } from './core/interceptors/loading-spinner-i
 import { tokenInterceptor } from './core/interceptors/token-interceptor';
 import { errorsInterceptor } from './core/interceptors/errors-interceptor';
 import { cacheInterceptor } from './core/interceptors/cache-interceptor';
+
+import { environment } from '../environments/environment';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -34,7 +36,7 @@ export const appConfig: ApplicationConfig = {
         tokenInterceptor,
         errorsInterceptor,
         cacheInterceptor,
-      ])
+      ]),
     ),
     provideToastr(),
   ],

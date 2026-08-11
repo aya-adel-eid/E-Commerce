@@ -19,16 +19,17 @@ export class ProductsService extends BaseHttp {
   resultsBrands: number = 0;
   getAllProducts(page: number = 1, limit: number | null = null) {
     this.loadingPage = true;
-    return this.httpClient
-      .get<IAllProducts>(`${APIS_KYS.PRODUCTS.allProducts}?page=${page}&limit=${limit}`)
-      .subscribe({
-        next: (resp) => {
-          this.allProducts = resp.data;
-          this.total = resp.results;
+    return this.httpClient.get<IAllProducts>(
+      `${APIS_KYS.PRODUCTS.allProducts}?page=${page}&limit=${limit}`,
+    );
+    // .subscribe({
+    //   next: (resp) => {
+    //     this.allProducts = resp.data;
+    //     this.total = resp.results;
 
-          this.loadingPage = false;
-        },
-      });
+    //     this.loadingPage = false;
+    //   },
+    // });
   }
   filterProductByPrice(price: number) {
     return this.httpClient

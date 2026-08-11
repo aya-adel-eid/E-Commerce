@@ -27,7 +27,14 @@ export class HomeProductsComponent implements OnInit {
     this.getAllBrands();
   }
   getAllProducts() {
-    this.productService.getAllProducts();
+    this.productService.getAllProducts().subscribe({
+      next: (resp) => {
+        this.productService.allProducts = resp.data;
+        this.productService.total = resp.results;
+
+        this.productService.loadingPage = false;
+      },
+    });
   }
   getAllBrands() {
     this.brandServices.getAllBrands();

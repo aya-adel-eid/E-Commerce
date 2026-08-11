@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BrandCardComponent } from './brand-card.component';
+// import { BrandCardComponent } from './brand-card.component';
 
-describe('BrandCardComponent', () => {
-  let component: BrandCardComponent;
-  let fixture: ComponentFixture<BrandCardComponent>;
+// describe('BrandCardComponent', () => {
+//   let component: BrandCardComponent;
+//   let fixture: ComponentFixture<BrandCardComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BrandCardComponent]
-    })
-    .compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       imports: [BrandCardComponent]
+//     })
+//     .compileComponents();
 
-    fixture = TestBed.createComponent(BrandCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(BrandCardComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

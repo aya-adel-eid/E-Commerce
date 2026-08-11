@@ -1,7 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { inject, PLATFORM_ID } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { platform } from 'os';
+
 import { STORED_KEYS } from '../contstants/storedKey';
 import { AuthService } from '../../feature/auth/services/auth.service';
 

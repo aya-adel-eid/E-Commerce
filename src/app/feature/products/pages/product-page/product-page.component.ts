@@ -55,7 +55,14 @@ export class ProductPageComponent implements OnInit {
     this.getAllCategory();
   }
   getAllProducts() {
-    this.productsService.getAllProducts(this.page, this.limit);
+    this.productsService.getAllProducts(this.page, this.limit).subscribe({
+      next: (resp) => {
+        this.productsService.allProducts = resp.data;
+        this.productsService.total = resp.results;
+
+        this.productsService.loadingPage = false;
+      },
+    });
     if (this.authServices.isAuth()) {
       // this.wishlistServices.wishlistID();
       this.wishlistServices.getAllProductsInWishlist();
