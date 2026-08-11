@@ -6,7 +6,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "dist/my-app/**"
+      "includeFiles": "dist/E-commerce01/**"
     }
   }
 }
