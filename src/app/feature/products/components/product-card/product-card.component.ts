@@ -7,16 +7,14 @@ import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { WishlistService } from '../../../wishlist/services/wishlist.service';
 import { ImagePlaceHolderDirective } from '../../../../shared/directives/image-place-holder.directive';
-import { CardDetailsProductComponent } from '../card-details-product/card-details-product.component';
 import { CheckpricePipe } from '../../../../shared/pipes/checkprice-pipe';
 import { AuthService } from '../../../auth/services/auth.service';
-import { Product } from '../../../wishlist/interfaces/IFavProdReq';
 
 // import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-card',
-  imports: [RouterLink, ImagePlaceHolderDirective, CardDetailsProductComponent, CheckpricePipe],
+  imports: [RouterLink, ImagePlaceHolderDirective, CheckpricePipe],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',
 })
