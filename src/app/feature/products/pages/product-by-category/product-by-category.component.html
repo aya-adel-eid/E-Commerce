@@ -1,41 +1,87 @@
-<section class="content py-8">
-  @if(!productService.productsByCategory){
-  <app-loading-screen></app-loading-screen>
-  }
-  @else {
-  @if(categoryService.category){
+<section class="content pb-10">
+  @if (!productService.productsByCategory) {
+    <app-loading-screen></app-loading-screen>
+  } @else {
+    <!-- Breadcrumb -->
+    @if (categoryService.category) {
+      <div class="pb-3 pt-6">
+        <app-bread-crumb
+          [arrPaths]="['Categories', categoryService.category.name]"
+        ></app-bread-crumb>
+      </div>
 
-  <div class="titl bg-[#F5F5F5]  flex justify-center py-10 mb-4">
-    <div class="image borded border-4 border-main-300 relative rounded-full">
-      <img [src]="categoryService.category.image" [alt]="categoryService.category.name"
-        class="rounded-full h-37.5 w-37.5">
+      <!-- Hero -->
       <div
-        class="absolute inline-flex items-center justify-center w-12 h-12 text-xs font-bold text-white bg-main-300 border-2 border-buffer rounded-full -top-2 -end-2">
-        {{productService.resultsCategory}}</div>
+        class="relative overflow-hidden rounded-3xl bg-linear-to-br from-main-600 via-main-500 to-main-400 px-6 py-10 shadow-lg sm:px-12"
+      >
+        <!-- decorative circles -->
+        <span class="absolute -end-10 -top-10 size-48 rounded-full bg-white/10"></span>
+        <span class="absolute -bottom-16 start-1/3 size-40 rounded-full bg-white/10"></span>
 
-    </div>
-    <h3 class="text-center py-10 text-4xl px-6 font-bold text-main-600 items-end">{{categoryService.category.name}}</h3>
-  </div>
-  <div class="bg-red p-5">
+        <div
+          class="relative flex flex-col items-center gap-6 text-center sm:flex-row sm:text-start"
+        >
+          <!-- Image -->
+          <div class="relative shrink-0">
+            <div
+              class="size-32 overflow-hidden rounded-full border-4 border-white/80 bg-white shadow-xl sm:size-36"
+            >
+              <img
+                [src]="categoryService.category.image"
+                [alt]="categoryService.category.name"
+                class="size-full object-cover"
+              />
+            </div>
+            <span
+              class="absolute -end-1 -top-1 grid min-w-11 place-items-center rounded-full bg-white px-2 py-2.5 text-sm font-extrabold text-main-600 shadow-lg ring-4 ring-main-500/30"
+            >
+              {{ productService.resultsCategory }}
+            </span>
+          </div>
 
-    <app-bread-crumb [arrPaths]="['Categories',categoryService.category.name]"></app-bread-crumb>
-  </div>
-  }
-  @if(productService.productsByCategory.length===0){
-  <div class="py-8 w-full flex flex-col justify-center items-center">
-    <h3 class="text-3xl text-gray-800 py-8 ">There are no products available for this brand at the moment</h3>
-    <button class="btnn px-8 py-6 cursor-pointer" routerLink="/categories">Back TO Page Categories</button>
-  </div>
-  }
-  @else {
-
-
-
-  <div class="system-Grid xl:grid-cols-5 mt-6">
-    @for (product of productService.productsByCategory; track $index) {
-    <app-product-card [product]="product"></app-product-card>
+          <!-- Text -->
+          <div class="min-w-0">
+            <span
+              class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-[0.25em] text-white backdrop-blur"
+            >
+              <i class="fa-solid fa-layer-group text-[11px]"></i>
+              Category
+            </span>
+            <h1 class="mt-3 text-3xl font-extrabold text-white sm:text-5xl">
+              {{ categoryService.category.name }}
+            </h1>
+            <p class="mt-2 text-sm text-white/80 sm:text-base">
+              {{ productService.resultsCategory }} product(s) available in this category
+            </p>
+          </div>
+        </div>
+      </div>
     }
-  </div>
-  }
+
+    <!-- Products -->
+    @if (productService.productsByCategory.length === 0) {
+      <div class="flex flex-col items-center justify-center gap-4 py-20 text-center">
+        <span class="grid size-24 place-items-center rounded-full bg-main-500/10 text-main-500">
+          <i class="fa-solid fa-box-open text-4xl"></i>
+        </span>
+        <h3 class="text-2xl font-bold text-gray-800">
+          No products available in this category right now
+        </h3>
+        <p class="max-w-md text-gray-500">Check back soon, or explore our other categories.</p>
+        <a
+          routerLink="/categories"
+          class="mt-2 inline-flex items-center gap-2 rounded-full bg-main-500 px-8 py-3 text-sm font-bold text-white shadow transition hover:bg-main-600 hover:shadow-lg"
+        >
+          <i class="fa-solid fa-arrow-left rtl:rotate-180"></i>
+          Back to Categories
+        </a>
+      </div>
+    } @else {
+      <div class="system-Grid mt-10 xl:grid-cols-5">
+        @for (product of productService.productsByCategory; track product._id) {
+          <app-product-card [product]="product"></app-product-card>
+        }
+      </div>
+    }
   }
 </section>

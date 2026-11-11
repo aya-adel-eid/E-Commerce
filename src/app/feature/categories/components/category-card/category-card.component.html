@@ -1,10 +1,10 @@
 <a
   [routerLink]="['/categories', category._id]"
   (click)="categoriesServices.getSpecificCategory(category._id)"
-  class="group relative flex cursor-pointer flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-main-500 hover:shadow-2xl"
+  class="group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-main-500 hover:shadow-2xl sm:rounded-3xl"
 >
   <!-- Image -->
-  <div class="relative aspect-4/5 overflow-hidden bg-gray-100">
+  <div class="relative aspect-square overflow-hidden bg-gray-100 sm:aspect-4/5">
     <img
       imagePlaceHolder
       loading="lazy"
@@ -21,7 +21,7 @@
     <!-- date badge -->
     @if (category.createdAt) {
       <span
-        class="absolute start-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-gray-600 shadow backdrop-blur"
+        class="absolute start-3 top-3 hidden items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-gray-600 shadow backdrop-blur sm:inline-flex"
       >
         <i class="fa-regular fa-calendar text-main-500"></i>
         {{ category.createdAt | date: 'mediumDate' }}
@@ -30,21 +30,23 @@
   </div>
 
   <!-- Info -->
-  <div class="flex items-center justify-between gap-3 p-5">
+  <div class="flex items-center justify-between gap-2 p-3 sm:gap-3 sm:p-5">
     <div class="min-w-0">
-      <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-main-500">Category</span>
+      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-main-500 sm:text-[11px]">
+        Category
+      </span>
       <h5
-        class="truncate text-xl font-extrabold text-gray-800 transition-colors group-hover:text-main-500"
+        class="truncate text-base font-extrabold text-gray-800 transition-colors group-hover:text-main-500 sm:text-xl"
       >
         {{ category.name }}
       </h5>
     </div>
 
     <span
-      class="grid size-11 shrink-0 place-items-center rounded-full bg-main-500/10 text-main-500 transition-all duration-300 group-hover:bg-main-500 group-hover:text-white"
+      class="grid size-9 shrink-0 place-items-center rounded-full bg-main-500/10 text-main-500 transition-all duration-300 group-hover:bg-main-500 group-hover:text-white sm:size-11"
     >
       <i
-        class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-0.5 rtl:rotate-180"
+        class="fa-solid fa-arrow-right text-sm transition-transform duration-300 group-hover:translate-x-0.5 rtl:rotate-180"
       ></i>
     </span>
   </div>
