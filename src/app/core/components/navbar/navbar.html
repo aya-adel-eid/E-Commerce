@@ -9,22 +9,20 @@
         <span>010 000 0000</span>
       </a>
     </div>
-    @defer (on idle; hydrate on viewport) {
-      <div class=" ">
-        <owl-carousel-o [options]="customOptions">
-          <ng-template carouselSlide>
-            <h2 class="text-white font-bold sm:text-sm lg:text-xl">
-              شحن مجاني عند الدفع الاونلاين
-            </h2>
-          </ng-template>
-          <ng-template carouselSlide>
-            <h2 class="text-white font-bold sm:text-sm lg:text-xl">
-              شحن مجاني للطلبات التي تزيد عن 1500 جنيه
-            </h2>
-          </ng-template>
-        </owl-carousel-o>
-      </div>
-    }
+
+    <div class=" ">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide>
+          <h2 class="text-white font-bold sm:text-sm lg:text-xl">شحن مجاني عند الدفع الاونلاين</h2>
+        </ng-template>
+        <ng-template carouselSlide>
+          <h2 class="text-white font-bold sm:text-sm lg:text-xl">
+            شحن مجاني للطلبات التي تزيد عن 1500 جنيه
+          </h2>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+
     <div class="space-x-2.5 text-white sm:hidden lg:block">
       <i class="fa-brands fa-facebook"></i>
       <i class="fa-brands fa-instagram"></i>
@@ -174,7 +172,6 @@
                     ChangePass
                   </a>
                 </li>
-
               } @else {
                 <li>
                   <a

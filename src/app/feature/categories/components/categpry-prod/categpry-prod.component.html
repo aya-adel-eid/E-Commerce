@@ -1,8 +1,22 @@
-<div class="text-center cursor-pointer" [routerLink]="['/categories',category._id]"
-  (click)="categoryServices.getSpecificCategory(category._id)">
-  <div class="bg-white">
-    <img [src]="category.image" class=" rounded-full size-35" [alt]="category.name" />
-
+<a
+  [routerLink]="['/categories', category._id]"
+  (click)="categoryServices.getSpecificCategory(category._id)"
+  class="group flex flex-col items-center gap-3 text-center"
+>
+  <div
+    class="aspect-square w-full overflow-hidden rounded-full border-2 border-gray-100 bg-white p-1 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-main-500 group-hover:shadow-lg"
+  >
+    <img
+      [src]="category.image"
+      [alt]="category.name"
+      loading="lazy"
+      class="size-full rounded-full object-cover transition-transform duration-500 group-hover:scale-110"
+    />
   </div>
-  <h2 class="py-5">{{category.name}}</h2>
-</div>
+
+  <h2
+    class="line-clamp-2 text-sm font-semibold text-gray-700 transition-colors group-hover:text-main-500 sm:text-base"
+  >
+    {{ category.name }}
+  </h2>
+</a>

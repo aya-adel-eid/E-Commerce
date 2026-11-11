@@ -3,7 +3,7 @@ import { ProductsService } from '../../services/products.service';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { SectionTitleComponent } from '../../../../shared/components/section-title/section-title.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
 import { Filter } from '../../../../shared/pipes/filter.pipe';
@@ -26,6 +26,7 @@ import { WishlistService } from '../../../wishlist/services/wishlist.service';
     MainSliderProdComponent,
     CategpryProdComponent,
     BreadCrumbComponent,
+    RouterLink,
   ],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.css',
@@ -40,6 +41,12 @@ export class ProductPageComponent implements OnInit {
   private readonly wishlistServices = inject(WishlistService);
   textSearch = '';
   //when change number of page
+  cards = [
+    { icon: 'fa-truck-fast', title: 'Free Shipping', text: 'On orders over 1500 EGP' },
+    { icon: 'fa-shield-halved', title: 'Secure Payment', text: '100% protected checkout' },
+    { icon: 'fa-rotate-left', title: 'Easy Returns', text: '14-day return policy' },
+    { icon: 'fa-headset', title: '24/7 Support', text: 'We are always here' },
+  ];
 
   page: number = 1;
   limit = 12;

@@ -1,4 +1,29 @@
-<header>
-  <h2 class="sm:text-xl md:text-2xl  lg:text-4xl font-bold my-4 uppercase py-4 text-center text-main-600">fresh cart
-    -{{title}}</h2>
+<header class="my-10 flex flex-col items-center text-center">
+  <!-- Label -->
+  <span
+    class="inline-flex items-center gap-2 rounded-full bg-main-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-main-600 ring-1 ring-main-500/20"
+  >
+    <i class="fa-solid fa-cart-shopping text-[11px]"></i>
+    Fresh Cart
+  </span>
+
+  <!-- Title -->
+  <h2
+    class="mt-4 bg-linear-to-r from-main-600 via-main-400 to-main-600 bg-clip-text text-3xl font-extrabold capitalize leading-tight text-transparent sm:text-4xl"
+  >
+    {{ title }}
+  </h2>
+
+  <!-- Divider -->
+  <div class="mt-4 flex items-center gap-3" aria-hidden="true">
+    <span
+      class="h-0.5 w-12 rounded-full bg-linear-to-r from-transparent to-main-500 sm:w-20"
+    ></span>
+    <span
+      class="size-2.5 rotate-45 rounded-xs bg-main-500 shadow-[0_0_0_4px] shadow-main-500/20"
+    ></span>
+    <span
+      class="h-0.5 w-12 rounded-full bg-linear-to-l from-transparent to-main-500 sm:w-20"
+    ></span>
+  </div>
 </header>

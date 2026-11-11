@@ -34,7 +34,7 @@ export const appConfig: ApplicationConfig = {
         tokenInterceptor,
         errorsInterceptor,
         cacheInterceptor,
-      ])
+      ]),
     ),
     provideToastr(),
   ],
