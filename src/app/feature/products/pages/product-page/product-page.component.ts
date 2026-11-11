@@ -40,6 +40,7 @@ export class ProductPageComponent implements OnInit {
   private readonly authServices = inject(AuthService);
   private readonly wishlistServices = inject(WishlistService);
   textSearch = '';
+
   //when change number of page
   cards = [
     { icon: 'fa-truck-fast', title: 'Free Shipping', text: 'On orders over 1500 EGP' },
