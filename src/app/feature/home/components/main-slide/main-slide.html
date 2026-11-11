@@ -1,17 +1,69 @@
-<div class="grid grid-cols-12">
-  <div class="col-span-9">
-    <owl-carousel-o [options]="customOptions">
-      <ng-template carouselSlide> <img src="/images/img1.avif" class="w-full h-[300px]" alt="product1"></ng-template>
-      <ng-template carouselSlide> <img src="/images/img2.avif" class="w-full h-[300px]" alt="product2"></ng-template>
-      <ng-template carouselSlide> <img src="/images/img3.avif" class="w-full h-[300px]" alt="product3"></ng-template>
-      <ng-template carouselSlide> <img src="/images/img4.avif" class="w-full h-[300px]" alt="product4"></ng-template>
-      <ng-template carouselSlide> <img src="/images/img5.avif" class="w-full h-[300px]" alt="product5"></ng-template>
-      <ng-template carouselSlide> <img src="/images/img6.avif" class="w-full h-[300px]" alt="product6"></ng-template>
-      <ng-template carouselSlide> <img src="/images/img7.avif" class="w-full h-[300px]" alt="product7"></ng-template>
-    </owl-carousel-o>
+<div class="grid grid-cols-12 gap-4 py-4">
+  <!-- Main slider -->
+  <div class="col-span-12 min-w-0 lg:col-span-9">
+    <div class="overflow-hidden rounded-3xl shadow-lg">
+      <owl-carousel-o [options]="customOptions">
+        @for (slide of slides; track slide.img) {
+          <ng-template carouselSlide>
+            <div class="relative h-56 sm:h-72 lg:h-80">
+              <img [src]="slide.img" [alt]="slide.title" class="size-full object-cover" />
+
+              <!-- gradient overlay -->
+              <div
+                class="absolute inset-0 bg-linear-to-r from-black/70 via-black/25 to-transparent"
+              ></div>
+
+              <!-- content -->
+              <div
+                class="absolute inset-y-0 start-0 flex max-w-sm flex-col justify-center gap-2 px-6 sm:px-10"
+              >
+                <span
+                  class="w-fit rounded-full bg-main-500 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-white"
+                >
+                  {{ slide.tag }}
+                </span>
+                <h2 class="text-xl font-extrabold leading-tight text-white sm:text-3xl">
+                  {{ slide.title }}
+                </h2>
+                <a
+                  routerLink="/products"
+                  class="mt-1 w-fit rounded-full bg-white px-5 py-2 text-sm font-bold text-gray-900 shadow transition hover:bg-main-500 hover:text-white"
+                >
+                  Shop Now <i class="fa-solid fa-arrow-right ms-1 text-xs"></i>
+                </a>
+              </div>
+            </div>
+          </ng-template>
+        }
+      </owl-carousel-o>
+    </div>
   </div>
-  <div class="col-span-3">
-    <img src="/images/slider-image-2.jpeg" class="h-[150px] w-full" alt="slider1">
-    <img src="/images/slider-image-3.jpeg" class="h-[150px] w-full" alt="slider2">
+
+  <!-- Side banners -->
+  <div class="col-span-12 grid min-w-0 grid-cols-2 gap-4 lg:col-span-3 lg:grid-cols-1">
+    @for (b of banners; track b.img) {
+      <a
+        routerLink="/product"
+        class="group relative block h-32 overflow-hidden rounded-3xl shadow-md sm:h-40 lg:h-[9.5rem]"
+      >
+        <img
+          [src]="b.img"
+          [alt]="b.title"
+          loading="lazy"
+          class="size-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div
+          class="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent"
+        ></div>
+        <div class="absolute inset-x-0 bottom-0 flex items-center justify-between p-4">
+          <span class="text-sm font-bold text-white sm:text-base">{{ b.title }}</span>
+          <span
+            class="grid size-8 place-items-center rounded-full bg-white/90 text-main-600 transition group-hover:bg-main-500 group-hover:text-white"
+          >
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </span>
+        </div>
+      </a>
+    }
   </div>
 </div>

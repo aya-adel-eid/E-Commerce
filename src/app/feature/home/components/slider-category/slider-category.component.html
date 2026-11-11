@@ -1,18 +1,47 @@
 <div>
   <app-section-title [title]="'Popular Categories'"></app-section-title>
-  <owl-carousel-o [options]="customOptions">
 
-    @for (category of categoryService.allCategories; track category._id) {
-    <ng-template carouselSlide [id]="category._id">
-      <div class="cursor-pointer">
-        <div class="image" [routerLink]="['/categories',category._id]"
-          (click)="categoryService.getSpecificCategory(category._id)">
-          <img [src]="category.image" [alt]="category.name" class="h-[230px]">
-        </div>
-        <h3 class="font-bold text-xl text-gray-600 pt-4 text-center">{{category.name}}</h3>
-      </div>
-    </ng-template>
-    }
+  @if (categoryService.allCategories?.length) {
+    <owl-carousel-o [options]="customOptions">
+      @for (category of categoryService.allCategories; track category._id) {
+        <ng-template carouselSlide [id]="category._id">
+          <a
+            [routerLink]="['/categories', category._id]"
+            (click)="categoryService.getSpecificCategory(category._id)"
+            class="group relative m-2 block h-72 cursor-pointer overflow-hidden rounded-3xl bg-gray-100 shadow-md transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl"
+          >
+            <img
+              [src]="category.image"
+              [alt]="category.name"
+              loading="lazy"
+              class="size-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
 
-  </owl-carousel-o>
+            <!-- gradient overlay -->
+            <div
+              class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500 group-hover:from-main-600/90"
+            ></div>
+
+            <!-- content -->
+            <div class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5">
+              <div class="min-w-0">
+                <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/70">
+                  Category
+                </span>
+                <h3 class="truncate text-xl font-extrabold text-white">{{ category.name }}</h3>
+              </div>
+
+              <span
+                class="grid size-10 shrink-0 place-items-center rounded-full bg-white/90 text-main-600 shadow transition-all duration-500 group-hover:translate-x-0 group-hover:bg-white group-hover:opacity-100 md:translate-x-3 md:opacity-0"
+              >
+                <i class="fa-solid fa-arrow-right text-sm"></i>
+              </span>
+            </div>
+          </a>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  } @else {
+    <app-loading-screen></app-loading-screen>
+  }
 </div>

@@ -7,6 +7,7 @@ import { BrandsService } from '../../../brand/services/brands.service';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { getOwlOptions } from '../../../../core/services/utilites/owlCoursl.service';
 import { RouterLink } from '@angular/router';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 @Component({
   selector: 'app-home-products',
   imports: [
@@ -22,6 +23,13 @@ import { RouterLink } from '@angular/router';
 export class HomeProductsComponent implements OnInit {
   public readonly productService = inject(ProductsService);
   public readonly brandServices = inject(BrandsService);
+  priceInput$ = new Subject<number>();
+
+  constructor() {
+    this.priceInput$
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((v) => this.productService.filterProductByPrice(v));
+  }
   ngOnInit(): void {
     this.getAllProducts();
     this.getAllBrands();

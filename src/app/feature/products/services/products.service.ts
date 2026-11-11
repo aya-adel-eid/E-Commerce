@@ -31,13 +31,16 @@ export class ProductsService extends BaseHttp {
       });
   }
   filterProductByPrice(price: number) {
-    return this.httpClient
-      .get<IAllProducts>(`${APIS_KYS.PRODUCTS.allProducts}?price[gte]=${price}`)
-      .subscribe({
-        next: (resp) => {
-          this.allProducts = resp.data;
-        },
-      });
+    const url =
+      price > 0
+        ? `${APIS_KYS.PRODUCTS.allProducts}?price[gte]=${price}`
+        : APIS_KYS.PRODUCTS.allProducts;
+
+    return this.httpClient.get<IAllProducts>(url).subscribe({
+      next: (resp) => {
+        this.allProducts = resp.data;
+      },
+    });
   }
   getProductById(productID: string) {
     return this.httpClient.get<IPRoductDetails>(APIS_KYS.PRODUCTS.allProducts + `/${productID}`);
