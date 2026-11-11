@@ -3,10 +3,11 @@ import { WishlistService } from '../../services/wishlist.service';
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
 import { CardProductWishlistComponent } from '../../../products/components/card-product-wishlist/card-product-wishlist.component';
 import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/bread-crumb.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-wishlist-page',
-  imports: [LoadingScreenComponent, CardProductWishlistComponent, BreadCrumbComponent],
+  imports: [LoadingScreenComponent, CardProductWishlistComponent, BreadCrumbComponent, RouterLink],
   templateUrl: './wishlist-page.component.html',
   styleUrl: './wishlist-page.component.css',
 })

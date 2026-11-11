@@ -1,27 +1,66 @@
-<section class="content py-8">
-  <div class="title mt-7">
-    <h2 class="text-3xl font-bold my-4 uppercase py-4 text-center text-main-500">wishlist<i
-        class="fa-solid fa-heart"></i></h2>
-  </div>
-  <div class="bg-red p-5">
-
+<section class="content pb-12">
+  <!-- Breadcrumb -->
+  <div class="pb-3 pt-6">
     <app-bread-crumb [arrPaths]="['Wishlist']"></app-bread-crumb>
   </div>
-  @if(!wishlistServices.wishlist){
-  <app-loading-screen></app-loading-screen>
-  }
-  @else {
-  @if (wishlistServices.wishlist.length==0) {
-  <h2 class="text-center text-6xl">Your wishlist is empty <span><i class="fa-solid fa-heart text-red-600"></i></span>
-  </h2>
-  }
-  @else{
 
-  <div class="system-Grid ">
-    @for (prod of wishlistServices.wishlist; track prod._id) {
-    <app-card-product-wishlist [product]="prod"></app-card-product-wishlist>
+  <!-- Header -->
+  <header class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <div class="flex items-center gap-4">
+      <span class="h-14 w-1.5 rounded-full bg-linear-to-b from-red-400 to-red-600"></span>
+      <div>
+        <span
+          class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-red-500"
+        >
+          <i class="fa-solid fa-heart text-[11px]"></i>
+          Saved items
+        </span>
+        <h1 class="text-3xl font-extrabold text-gray-800 sm:text-4xl">
+          My <span class="text-main-500">Wishlist</span>
+        </h1>
+      </div>
+    </div>
+
+    @if (wishlistServices.wishlist?.length) {
+      <span
+        class="inline-flex w-fit items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-sm font-bold text-red-500 ring-1 ring-red-100"
+      >
+        <i class="fa-solid fa-heart"></i>
+        {{ wishlistServices.wishlist.length }}
+        {{ wishlistServices.wishlist.length === 1 ? 'item' : 'items' }}
+      </span>
     }
-  </div>
-  }
+  </header>
+
+  @if (!wishlistServices.wishlist) {
+    <app-loading-screen></app-loading-screen>
+  } @else {
+    @if (wishlistServices.wishlist.length === 0) {
+      <!-- Empty state -->
+      <div
+        class="flex flex-col items-center justify-center gap-4 rounded-3xl border border-dashed border-gray-200 bg-white/70 px-6 py-16 text-center sm:py-24"
+      >
+        <span class="grid size-24 place-items-center rounded-full bg-red-50 text-red-400">
+          <i class="fa-regular fa-heart text-4xl"></i>
+        </span>
+        <h2 class="text-2xl font-extrabold text-gray-800 sm:text-3xl">Your wishlist is empty</h2>
+        <p class="max-w-md text-gray-500">
+          Tap the heart on any product to save it here and find it again later.
+        </p>
+        <a
+          routerLink="/product"
+          class="mt-2 inline-flex items-center gap-2 rounded-full bg-main-500 px-8 py-3 text-sm font-bold text-white shadow transition hover:bg-main-600 hover:shadow-lg"
+        >
+          <i class="fa-solid fa-bag-shopping"></i>
+          Start shopping
+        </a>
+      </div>
+    } @else {
+      <div class="system-Grid">
+        @for (prod of wishlistServices.wishlist; track prod._id) {
+          <app-card-product-wishlist [product]="prod"></app-card-product-wishlist>
+        }
+      </div>
+    }
   }
 </section>
