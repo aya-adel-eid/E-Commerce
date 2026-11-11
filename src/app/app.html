@@ -1,15 +1,28 @@
-<div class="min-h-screen flex flex-col ">
-  <div class=" grow" [class]="navbarServices.scroll()?'pt-14':'pt-30'">
-
+<div class="min-h-screen flex flex-col">
+  <div class="grow" [class]="navbarServices.scroll() ? 'pt-17' : 'pt-26'">
     <router-outlet></router-outlet>
     <app-modal></app-modal>
   </div>
   <app-footer></app-footer>
 </div>
 <ngx-spinner name="ball-scale" type="ball-scale-multiple"></ngx-spinner>
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" name="cube-transition" type="cube-transition"
-  [fullScreen]="true">
-  <img src="/images/freshcart-logo.svg" alt="">
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  name="cube-transition"
+  type="cube-transition"
+  [fullScreen]="true"
+>
+  <img src="/images/freshcart-logo.svg" alt="" />
 </ngx-spinner>
-<ngx-spinner bdColor="rgb(255,255,255)" size="medium" color="#36a897" name="atom" type="ball-atom" [fullScreen]="true">
-  <img src="/images/freshcart-logo.svg" alt=""></ngx-spinner>
+<ngx-spinner
+  bdColor="rgb(255,255,255)"
+  size="medium"
+  color="#36a897"
+  name="atom"
+  type="ball-atom"
+  [fullScreen]="true"
+>
+  <img src="/images/freshcart-logo.svg" alt=""
+/></ngx-spinner>
