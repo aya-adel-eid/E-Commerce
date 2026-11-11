@@ -25,6 +25,12 @@ export class Navbar implements OnInit {
   openMenuAuth = true;
   openBar = true;
   isBrowser = false;
+  links = [
+    { path: '/home', label: 'Home', icon: 'fa-house' },
+    { path: '/product', label: 'Products', icon: 'fa-bag-shopping' },
+    { path: '/categories', label: 'Categories', icon: 'fa-layer-group' },
+    { path: '/brand', label: 'Brands', icon: 'fa-tags' },
+  ];
   ngOnInit(): void {
     if (isPlatformBrowser(this.platID)) {
       this.isBrowser = true;

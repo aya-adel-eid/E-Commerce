@@ -1,6 +1,32 @@
-:deep-host .owl-dots {
-  display: none !important;
+.announce span {
+  opacity: 0;
+  animation: announce 8s infinite;
 }
-:deep-host .owl-stage {
-  overflow: hidden !important;
+.announce span:nth-child(2) {
+  animation-delay: 4s;
+}
+@keyframes announce {
+  0%,
+  5% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  10%,
+  45% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50%,
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .announce span {
+    animation: none;
+  }
+  .announce span:first-child {
+    opacity: 1;
+  }
 }

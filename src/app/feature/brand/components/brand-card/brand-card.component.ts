@@ -3,10 +3,11 @@ import { Brand } from '../../interfaces/IAllBrands';
 import { RouterLink } from '@angular/router';
 import { BrandsService } from '../../services/brands.service';
 import { ImagePlaceHolderDirective } from '../../../../shared/directives/image-place-holder.directive';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-brand-card',
-  imports: [RouterLink, ImagePlaceHolderDirective],
+  imports: [RouterLink, ImagePlaceHolderDirective, DatePipe],
   templateUrl: './brand-card.component.html',
   styleUrl: './brand-card.component.css',
 })

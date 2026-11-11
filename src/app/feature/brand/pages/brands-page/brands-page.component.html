@@ -1,18 +1,15 @@
 <section class="content py-7">
   <app-section-title [title]="'Shopping By Brands'"></app-section-title>
-  <div class=" p-5">
-
+  <div class="p-5">
     <app-bread-crumb [arrPaths]="['Brand']"></app-bread-crumb>
   </div>
-  @if(!brandService.allBrands){
-  <app-loading-screen></app-loading-screen>
-  }
-  @else {
-
-  <div class="system-Grid ">
-    @for (brand of brandService.allBrands ; track brand._id) {
-    <app-brand-card [brand]="brand"></app-brand-card>
-    }
-  </div>
+  @if (!brandService.allBrands) {
+    <app-loading-screen></app-loading-screen>
+  } @else {
+    <div class="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      @for (brand of brandService.allBrands; track brand._id) {
+        <app-brand-card [brand]="brand"></app-brand-card>
+      }
+    </div>
   }
 </section>

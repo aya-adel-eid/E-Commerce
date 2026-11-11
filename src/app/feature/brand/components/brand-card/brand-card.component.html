@@ -1,25 +1,48 @@
-<div class="bg-neutral-primary-soft block border-3 border-gray-300 rounded-base text-center cursor-pointer
-         shadow-md group overflow-hidden
-         transition-all
-         duration-200 ease-out
-         hover:shadow-xl hover:border-main-500">
-  <!-- / [queryParams]="{'brand':brand._id}" [fragment]="brand.name" -->
-  <div [routerLink]="['/brands',brand._id]" (click)="getSpecificBrand(brand._id)">
+<a
+  [routerLink]="['/brands', brand._id]"
+  (click)="getSpecificBrand(brand._id)"
+  class="group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-main-500 hover:shadow-2xl sm:rounded-3xl"
+>
+  <!-- Image -->
+  <div class="relative aspect-square overflow-hidden bg-gray-50">
+    <img
+      imagePlaceHolder
+      loading="lazy"
+      [src]="brand.image"
+      [alt]="brand.name"
+      class="size-full object-contain p-6 transition-transform duration-700 group-hover:scale-110 sm:p-8"
+    />
 
-
-    <img class="rounded-t-base w-full h-[320px]
-             transition-transform duration-300 ease-out
-             group-hover:scale-105" [src]="brand.image" [alt]="brand.name" imagePlaceHolder />
-
+    <!-- date badge -->
+    @if (brand.createdAt) {
+      <span
+        class="absolute start-3 top-3 hidden items-center gap-1.5 rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-gray-600 shadow sm:inline-flex"
+      >
+        <i class="fa-regular fa-calendar text-main-500"></i>
+        {{ brand.createdAt | date: 'mediumDate' }}
+      </span>
+    }
   </div>
-  <div class="p-6 text-center">
 
-    <a (click)="getSpecificBrand(brand._id)">
-      <h5 class="mt-3 mb-6 text-2xl font-semibold
-      tracking-tight text-heading group-hover:font-bold group-hover:text-main-500">{{brand.name}}</h5>
-    </a>
-    <span class='text-gray-500'>
-      {{brand.createdAt}}
+  <!-- Info -->
+  <div class="flex items-center justify-between gap-2 border-t border-gray-100 p-3 sm:gap-3 sm:p-5">
+    <div class="min-w-0">
+      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-main-500 sm:text-[11px]">
+        Brand
+      </span>
+      <h5
+        class="truncate text-base font-extrabold text-gray-800 transition-colors group-hover:text-main-500 sm:text-xl"
+      >
+        {{ brand.name }}
+      </h5>
+    </div>
+
+    <span
+      class="grid size-9 shrink-0 place-items-center rounded-full bg-main-500/10 text-main-500 transition-all duration-300 group-hover:bg-main-500 group-hover:text-white sm:size-11"
+    >
+      <i
+        class="fa-solid fa-arrow-right text-sm transition-transform duration-300 group-hover:translate-x-0.5 rtl:rotate-180"
+      ></i>
     </span>
   </div>
-</div>
+</a>

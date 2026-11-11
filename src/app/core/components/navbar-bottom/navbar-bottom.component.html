@@ -1,47 +1,33 @@
-<nav class="fixed bottom-0 left-0 w-full z-50 bg-neutral-primary border-t border-default shadow-md lg:hidden">
+@if (authServices.isAuth()) {
+  <nav
+    class="fixed inset-x-0 bottom-0 z-50 border-t border-gray-100 bg-white/90 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_20px_rgba(0,0,0,0.06)] backdrop-blur-md lg:hidden"
+    aria-label="Bottom navigation"
+  >
+    <ul class="mx-auto flex max-w-md items-center justify-around px-2 py-2">
+      @for (t of tabs; track t.path) {
+        <li class="flex-1">
+          <a
+            [routerLink]="t.path"
+            routerLinkActive="active-tab"
+            class="tab group relative flex flex-col items-center gap-0.5 rounded-2xl py-1.5 text-gray-500 transition-colors hover:text-main-600"
+          >
+            <span
+              class="tab-icon relative grid h-8 w-12 place-items-center rounded-full transition-all duration-300"
+            >
+              <i class="fa-solid {{ t.icon }} text-lg"></i>
 
-  <ul class="flex items-center justify-around py-3 text-sm font-medium text-gray-600">
-
-    <!-- Wishlist -->
-    @if(authServices.isAuth()){
-
-
-    <li class="flex flex-col items-center gap-1 cursor-pointer">
-      <a routerLink="/wishlist" class="flex flex-col items-center gap-1 hover:text-danger transition">
-        <i class="fa-solid fa-heart text-xl"></i>
-        <span class="text-xs">Wishlist</span>
-      </a>
-    </li>
-
-
-    <!-- Products -->
-    <li class="flex flex-col items-center gap-1 cursor-pointer">
-      <a routerLink="/product" class="flex flex-col items-center gap-1 hover:text-primary transition">
-        <i class="fa-solid fa-store text-xl"></i>
-        <span class="text-xs">Products</span>
-      </a>
-    </li>
-
-    <!-- Cart -->
-
-    <li class="relative flex flex-col items-center gap-1 cursor-pointer">
-      <a routerLink="/cart" class="flex flex-col items-center gap-1 hover:text-primary transition">
-
-        <i class="fa-solid fa-cart-shopping text-xl"></i>
-
-        @if (cartServices.numOfCartItems) {
-        <span class="absolute -top-1 -right-2 flex items-center justify-center
-                       w-5 h-5 text-[10px] font-bold text-white
-                       bg-danger rounded-full">
-          {{ cartServices.numOfCartItems }}
-        </span>
-        }
-
-        <span class="text-xs">Cart</span>
-      </a>
-    </li>
-    }
-
-
-  </ul>
-</nav>
+              @if (t.path === '/cart' && cartServices.numOfCartItems) {
+                <span
+                  class="absolute -end-0.5 -top-1 grid min-w-5 place-items-center rounded-full bg-danger px-1 text-[10px] font-bold leading-5 text-white ring-2 ring-white"
+                >
+                  {{ cartServices.numOfCartItems }}
+                </span>
+              }
+            </span>
+            <span class="text-[11px] font-semibold">{{ t.label }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+}

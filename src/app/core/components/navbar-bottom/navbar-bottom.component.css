@@ -1,0 +1,7 @@
+.active-tab {
+  color: var(--color-main-600, #1f8a7a);
+}
+.active-tab .tab-icon {
+  background: color-mix(in srgb, var(--color-main-500, #36a897) 15%, transparent);
+  transform: translateY(-2px);
+}

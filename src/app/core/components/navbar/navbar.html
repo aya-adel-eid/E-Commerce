@@ -1,248 +1,203 @@
-<header class="fixed w-full z-50 top-0 start-0">
-  <div
-    class="bg-main-400 sm:py-2 lg:py-5 text-center grid sm:grid-cols-1 lg:grid-cols-3 transition-all duration-700"
-    [class]="navbarServices.scroll() ? 'hidden' : ''"
-  >
-    <div class="sm:hidden lg:block">
-      <a href="tel:+201000000000" class="flex items-center justify-center space-x-1.5 text-white">
-        <i class="fa-solid fa-phone-volume"></i>
-        <span>010 000 0000</span>
-      </a>
-    </div>
+<header class="fixed inset-x-0 top-0 z-50">
+  <!-- Top bar -->
+  @if (!navbarServices.scroll()) {
+    <div class="bg-main-500 text-white">
+      <div class="content mx-auto flex items-center justify-between gap-4 px-4 py-2 text-sm">
+        <a href="tel:+201000000000" class="hidden items-center gap-2 font-medium lg:flex">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span dir="ltr">010 000 0000</span>
+        </a>
 
-    <div class=" ">
-      <owl-carousel-o [options]="customOptions">
-        <ng-template carouselSlide>
-          <h2 class="text-white font-bold sm:text-sm lg:text-xl">شحن مجاني عند الدفع الاونلاين</h2>
-        </ng-template>
-        <ng-template carouselSlide>
-          <h2 class="text-white font-bold sm:text-sm lg:text-xl">
-            شحن مجاني للطلبات التي تزيد عن 1500 جنيه
-          </h2>
-        </ng-template>
-      </owl-carousel-o>
-    </div>
-
-    <div class="space-x-2.5 text-white sm:hidden lg:block">
-      <i class="fa-brands fa-facebook"></i>
-      <i class="fa-brands fa-instagram"></i>
-      <i class="fa-brands fa-twitter"></i>
-      <i class="fa-brands fa-tiktok"></i>
-    </div>
-  </div>
-
-  <nav class="bg-neutral-primary border-b border-default">
-    <div class="content flex items-center justify-between mx-auto p-4">
-      <!-- Logo -->
-      <a routerLink="/home" class="flex items-center space-x-3">
-        <img src="./images/freshcart-logo.svg" class="h-7" alt="FreshCart Logo" />
-      </a>
-
-      <!-- Desktop Navigation Menu (Hidden on mobile) -->
-      <div class="hidden lg:block">
-        <ul class="flex flex-row items-center space-x-7">
-          <li>
-            <a
-              routerLink="/home"
-              routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-              class="text-gray-500 hover:text-gray-900"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a
-              routerLink="/product"
-              routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-              class="text-gray-500 hover:text-gray-900"
-              >Products</a
-            >
-          </li>
-          <li>
-            <a
-              routerLink="/categories"
-              class="text-gray-500 hover:text-gray-900"
-              routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-              >Categories</a
-            >
-          </li>
-          <li>
-            <a
-              routerLink="/brand"
-              class="text-gray-500 hover:text-gray-900"
-              routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-              >Brands</a
-            >
-          </li>
-        </ul>
-      </div>
-
-      <div class="flex items-center space-x-7 rtl:space-x-reverse">
-        @if (authService.isAuth()) {
-          <!-- Wishlist -->
-          <div class="hidden lg:block">
-            <a
-              routerLink="/wishlist"
-              class="flex flex-col items-center gap-1 hover:text-danger transition"
-            >
-              <i class="fa-solid fa-heart text-xl"></i>
-            </a>
-          </div>
-
-          <!-- Cart -->
-          <div class="relative hidden lg:block">
-            <a
-              routerLink="/cart"
-              class="flex flex-col items-center gap-1 hover:text-primary transition"
-            >
-              <i class="fa-solid fa-cart-shopping text-xl"></i>
-              @if (authService.isAuth()) {
-                @if (cartServices.numOfCartItems) {
-                  <span
-                    class="absolute -top-1 -right-2 flex items-center justify-center w-5 h-5 text-2xs font-bold text-white bg-danger rounded-full"
-                  >
-                    {{ cartServices.numOfCartItems }}
-                  </span>
-                }
-              }
-            </a>
-          </div>
-        }
-
-        <!-- User Account -->
-        <div class="relative">
-          <div
-            class="flex items-center gap-2 px-2 sm:px-3 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition cursor-pointer"
-            (click)="openMenuAuth = !openMenuAuth"
-          >
-            <!-- Avatar -->
-            <button
-              type="button"
-              class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-main-500 text-white"
-            >
-              <i class="fa-solid fa-user text-xs sm:text-sm"></i>
-            </button>
-
-            <!-- Name -->
-            @if (authService.isAuth()) {
-              <span
-                class="text-xs sm:text-sm font-medium capitalize hidden sm:inline cursor-pointer"
-              >
-                {{ authService.useInfo.name }}
-              </span>
-            } @else {
-              <span
-                class="text-xs sm:text-sm font-medium text-gray-500 hidden sm:inline cursor-pointer"
-              >
-                Guest
-              </span>
-            }
-          </div>
-
-          <!-- Dropdown menu -->
-          <div
-            class="z-50 absolute top-full right-0 mt-2 bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
-            [class.hidden]="openMenuAuth"
-          >
-            <ul class="p-2 text-sm space-y-3">
-              @if (authService.isAuth()) {
-                <li>
-                  <a
-                    class="cursor-pointer text-gray-500 hover:text-gray-900 block py-2"
-                    (click)="logOut()"
-                    routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-                  >
-                    Logout <i class="fa-solid fa-right-from-bracket"></i>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="cursor-pointer text-gray-500 hover:text-gray-900 block py-2"
-                    routerLink="/profile"
-                    routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-                  >
-                    <i class="fa-regular fa-address-card"></i> Profile
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="cursor-pointer text-gray-500 hover:text-gray-900 block py-2"
-                    routerLink="/changePassword"
-                    routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-                  >
-                    ChangePass
-                  </a>
-                </li>
-              } @else {
-                <li>
-                  <a
-                    routerLink="/login"
-                    class="text-gray-500 hover:text-gray-900 block py-2"
-                    routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-                    >Login</a
-                  >
-                </li>
-                <li>
-                  <a
-                    routerLink="/register"
-                    class="text-gray-500 hover:text-gray-900 block py-2"
-                    routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-                    >Register</a
-                  >
-                </li>
-              }
-            </ul>
-          </div>
+        <!-- Announcements (CSS only, no carousel library) -->
+        <div class="announce relative h-6 flex-1 overflow-hidden text-center font-bold">
+          <span class="absolute inset-0">شحن مجاني عند الدفع الاونلاين</span>
+          <span class="absolute inset-0">شحن مجاني للطلبات التي تزيد عن 1500 جنيه</span>
         </div>
 
-        <!-- Mobile Menu Button -->
+        <div class="hidden items-center gap-3 lg:flex">
+          <a aria-label="Facebook" class="transition hover:scale-110"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a aria-label="Instagram" class="transition hover:scale-110"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a aria-label="Twitter" class="transition hover:scale-110"
+            ><i class="fa-brands fa-twitter"></i
+          ></a>
+          <a aria-label="TikTok" class="transition hover:scale-110"
+            ><i class="fa-brands fa-tiktok"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+  }
 
+  <!-- Main nav -->
+  <nav
+    class="border-b border-gray-100 bg-white/90 backdrop-blur-md transition-shadow duration-300"
+    [class.shadow-md]="navbarServices.scroll()"
+  >
+    <div class="content mx-auto flex items-center justify-between gap-4 px-4 py-3">
+      <!-- Logo -->
+      <a routerLink="/home" class="shrink-0" aria-label="FreshCart home">
+        <img
+          src="./images/freshcart-logo.svg"
+          class="h-7 w-auto"
+          width="140"
+          height="28"
+          alt="FreshCart"
+          fetchpriority="high"
+        />
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="hidden items-center gap-2 lg:flex">
+        @for (l of links; track l.path) {
+          <li>
+            <a
+              [routerLink]="l.path"
+              routerLinkActive="bg-main-500 !text-white shadow"
+              class="rounded-full px-5 py-2 font-medium text-gray-600 transition hover:bg-main-500/10 hover:text-main-600"
+            >
+              {{ l.label }}
+            </a>
+          </li>
+        }
+      </ul>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        @if (authService.isAuth()) {
+          <a
+            routerLink="/wishlist"
+            aria-label="Wishlist"
+            class="grid size-10 place-items-center rounded-full text-gray-600 transition hover:bg-red-50 hover:text-danger"
+          >
+            <i class="fa-solid fa-heart text-lg"></i>
+          </a>
+
+          <a
+            routerLink="/cart"
+            aria-label="Cart"
+            class="relative grid size-10 place-items-center rounded-full text-gray-600 transition hover:bg-main-500/10 hover:text-main-600"
+          >
+            <i class="fa-solid fa-cart-shopping text-lg"></i>
+            @if (cartServices.numOfCartItems) {
+              <span
+                class="absolute -end-0.5 -top-0.5 grid min-w-5 place-items-center rounded-full bg-danger px-1 text-[10px] font-bold leading-5 text-white ring-2 ring-white"
+              >
+                {{ cartServices.numOfCartItems }}
+              </span>
+            }
+          </a>
+        }
+
+        <!-- User -->
+        <div class="relative">
+          <button
+            type="button"
+            (click)="openMenuAuth = !openMenuAuth"
+            class="flex cursor-pointer items-center gap-2 rounded-full bg-gray-100 p-1 pe-1 transition hover:bg-gray-200 sm:pe-4"
+            aria-haspopup="menu"
+          >
+            <span
+              class="grid size-8 place-items-center rounded-full bg-main-500 text-white sm:size-9"
+            >
+              <i class="fa-solid fa-user text-xs sm:text-sm"></i>
+            </span>
+            <span class="hidden text-sm font-medium capitalize text-gray-700 sm:inline">
+              @if (authService.isAuth()) {
+                {{ authService.useInfo.name }}
+              } @else {
+                Guest
+              }
+            </span>
+            <i class="fa-solid fa-chevron-down hidden text-[10px] text-gray-500 sm:inline"></i>
+          </button>
+
+          <!-- click-outside backdrop -->
+          @if (!openMenuAuth) {
+            <div class="fixed inset-0 z-40" (click)="openMenuAuth = true"></div>
+
+            <div
+              class="absolute end-0 top-full z-50 mt-2 w-52 overflow-hidden rounded-2xl border border-gray-100 bg-white p-2 shadow-xl"
+              role="menu"
+            >
+              @if (authService.isAuth()) {
+                <a
+                  routerLink="/profile"
+                  (click)="openMenuAuth = true"
+                  class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-gray-600 transition hover:bg-main-500/10 hover:text-main-600"
+                >
+                  <i class="fa-regular fa-address-card w-4"></i> Profile
+                </a>
+                <a
+                  routerLink="/changePassword"
+                  (click)="openMenuAuth = true"
+                  class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-gray-600 transition hover:bg-main-500/10 hover:text-main-600"
+                >
+                  <i class="fa-solid fa-key w-4"></i> Change password
+                </a>
+                <button
+                  type="button"
+                  (click)="logOut(); openMenuAuth = true"
+                  class="flex w-full cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-danger transition hover:bg-red-50"
+                >
+                  <i class="fa-solid fa-right-from-bracket w-4"></i> Logout
+                </button>
+              } @else {
+                <a
+                  routerLink="/login"
+                  (click)="openMenuAuth = true"
+                  class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-gray-600 transition hover:bg-main-500/10 hover:text-main-600"
+                >
+                  <i class="fa-solid fa-right-to-bracket w-4"></i> Login
+                </a>
+                <a
+                  routerLink="/register"
+                  (click)="openMenuAuth = true"
+                  class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-gray-600 transition hover:bg-main-500/10 hover:text-main-600"
+                >
+                  <i class="fa-solid fa-user-plus w-4"></i> Register
+                </a>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Mobile menu button -->
         <button
           type="button"
-          class="inline-flex items-center p-2 cursor-pointer w-10 h-10 justify-center text-sm text-body rounded-base lg:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
           (click)="openBar = !openBar"
+          [attr.aria-expanded]="!openBar"
+          aria-label="Toggle menu"
+          class="grid size-10 cursor-pointer place-items-center rounded-full text-gray-700 transition hover:bg-gray-100 lg:hidden"
         >
-          <span class="sr-only">Open main menu</span>
-          <i class="fa-solid fa-bars fa-xl"></i>
+          <i class="fa-solid text-lg" [class.fa-bars]="openBar" [class.fa-xmark]="!openBar"></i>
         </button>
       </div>
     </div>
 
-    <!-- Mobile Navigation Menu -->
-    <div class="lg:hidden border-t border-default" [class.hidden]="openBar">
-      <div class="content mx-auto">
-        <ul class="flex flex-col p-4 space-y-3">
-          <li>
-            <a
-              routerLink="/home"
-              class="text-gray-500 hover:text-gray-900 block py-2"
-              routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a
-              routerLink="/product"
-              class="text-gray-500 hover:text-gray-900 block py-2"
-              routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-              >Products</a
-            >
-          </li>
-          <li>
-            <a
-              routerLink="/categories"
-              class="text-gray-500 hover:text-gray-900 block py-2"
-              routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-              >Categories</a
-            >
-          </li>
-          <li>
-            <a
-              routerLink="/brand"
-              class="text-gray-500 hover:text-gray-900 block py-2"
-              routerLinkActive="btnn text-white px-5 hover:bg-main-600 hover:text-white"
-              >Brands</a
-            >
-          </li>
+    <!-- Mobile menu (smooth open/close) -->
+    <div
+      class="grid transition-[grid-template-rows] duration-300 ease-out lg:hidden"
+      [class]="openBar ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]'"
+    >
+      <div class="min-h-0 overflow-hidden">
+        <ul class="content mx-auto flex flex-col gap-1 border-t border-gray-100 p-3">
+          @for (l of links; track l.path) {
+            <li>
+              <a
+                [routerLink]="l.path"
+                (click)="openBar = true"
+                routerLinkActive="bg-main-500 !text-white"
+                class="flex items-center gap-3 rounded-xl px-4 py-3 font-medium text-gray-600 transition hover:bg-main-500/10"
+              >
+                <i class="fa-solid {{ l.icon }} w-5 text-center"></i>
+                {{ l.label }}
+              </a>
+            </li>
+          }
         </ul>
       </div>
     </div>

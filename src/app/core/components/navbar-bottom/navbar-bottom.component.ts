@@ -14,4 +14,10 @@ export class NavbarBottomComponent {
   @Input() user: boolean = true;
   public readonly cartServices = inject(CartService);
   public readonly authServices = inject(AuthService);
+  tabs = [
+    { path: '/home', label: 'Home', icon: 'fa-house' },
+    { path: '/product', label: 'Shop', icon: 'fa-store' },
+    { path: '/wishlist', label: 'Wishlist', icon: 'fa-heart' },
+    { path: '/cart', label: 'Cart', icon: 'fa-cart-shopping' },
+  ];
 }
