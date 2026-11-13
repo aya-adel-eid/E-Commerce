@@ -1,88 +1,94 @@
-<div class=" mx-auto">
-
-  <!-- Enhanced Cart Item -->
-  <div class="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 rounded-2xl border border-gray-100">
-    <div class="grid grid-cols-1 sm:grid-cols-12 gap-6">
-
-      <!-- Product Image -->
-      <div class="sm:col-span-3 lg:col-span-2 flex justify-center sm:justify-start">
-        <div
-          class="relative w-32 h-32 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-3 flex items-center justify-center group overflow-hidden">
-          <img [src]="cartData.imageCover" [alt]="cartData.title"
-            class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300" />
-        </div>
-      </div>
-
-      <!-- Product Details -->
-      <div class="sm:col-span-9 lg:col-span-10">
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between h-full gap-4">
-
-          <!-- Left Section: Title, Quantity, Actions -->
-          <div class="flex-1 space-y-4">
-
-            <!-- Product Title -->
-            <h3
-              class="text-lg sm:text-xl font-bold text-gray-900 line-clamp-2 hover:text-main-600 transition-colors cursor-pointer">
-              {{cartData.title}}
-            </h3>
-
-            <!-- Quantity Controls -->
-            <div class="flex flex-wrap items-center gap-4">
-              <span class="text-sm font-medium text-gray-600">Quantity:</span>
-              <div class="flex items-center bg-gray-100 border border-gray-200 rounded-lg overflow-hidden">
-                <button class="px-4 py-2 hover:bg-gray-200 transition-colors text-gray-700 font-semibold cursor-pointer"
-                  (click)="updateProductCount(count-1,cartData._id)">
-                  <i class="fa fa-minus"></i>
-                </button>
-                <span class="px-6 py-2 bg-white font-bold text-gray-900 border-x border-gray-200">{{count}}</span>
-                <button class="px-4 py-2 hover:bg-gray-200 transition-colors text-gray-700 font-semibold cursor-pointer"
-                  (click)="updateProductCount(count+1,cartData._id)">
-                  <i class="fa fa-plus"></i>
-                </button>
-              </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex flex-wrap items-center gap-4">
-              <!-- Remove Button -->
-              <button (click)="removeCartItem(cartData._id)"
-                class="flex items-center cursor-pointer gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors font-medium">
-                <i class="fa fa-trash"></i>
-                <span class="text-sm">Remove</span>
-              </button>
-
-              <!-- Add to Wishlist Button -->
-              @if (this.wishlistServices.isInWishlist()(cartData._id)) {
-              <button (click)="removeProductInWishlist(cartData._id)" class="cursor-pointer">
-                <i class="fa-solid fa-heart text-xl text-red-500 hover:text-red-300" #iconFav></i>
-                <span class="text-sm">Add to Wishlist</span>
-              </button>
-              }
-              @else {
-              <button (click)="addToWishlist(cartData._id)" class="cursor-pointer">
-                <i class="fa-solid fa-heart text-xl  hover:text-main-400" #iconFav></i>
-                <span class="text-sm">Add to Wishlist</span>
-              </button>
-
-              }
-
-            </div>
-          </div>
-
-          <!-- Right Section: Price -->
-          <div class="flex lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-2">
-            <span class="text-sm text-gray-500 lg:hidden">Total:</span>
-            <div class="text-right">
-              <p class="text-2xl sm:text-3xl font-bold text-gray-900">{{price*count |currency:'EGP'}}
-              </p>
-              <p class="text-sm text-gray-500 mt-1">{{price | currency:'EGP'}} each</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
+<article
+  class="flex flex-col gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-shadow duration-300 hover:shadow-md sm:flex-row sm:p-5"
+>
+  <!-- Image -->
+  <div
+    class="grid size-28 shrink-0 place-items-center self-center overflow-hidden rounded-xl bg-gray-50 p-2 sm:size-32 sm:self-start"
+  >
+    <img
+      [src]="cartData.imageCover"
+      [alt]="cartData.title"
+      loading="lazy"
+      class="size-full object-contain"
+    />
   </div>
 
-</div>
+  <!-- Details -->
+  <div class="flex min-w-0 flex-1 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+    <div class="min-w-0 space-y-3">
+      <!-- Title -->
+      <h3 class="line-clamp-2 text-base font-bold text-gray-800 sm:text-lg">
+        {{ cartData.title }}
+      </h3>
+
+      <!-- Quantity -->
+      <div class="flex items-center gap-3">
+        <span class="text-sm font-medium text-gray-500">Qty</span>
+        <div class="inline-flex items-center rounded-full border border-gray-200 bg-gray-50 p-1">
+          <button
+            type="button"
+            aria-label="Decrease quantity"
+            (click)="updateProductCount(count - 1, cartData._id)"
+            class="grid size-8 cursor-pointer place-items-center rounded-full text-gray-700 transition hover:bg-white hover:text-main-600 hover:shadow-sm active:scale-95"
+          >
+            <i class="fa-solid fa-minus text-xs"></i>
+          </button>
+          <span class="min-w-10 text-center text-sm font-bold text-gray-900">{{ count }}</span>
+          <button
+            type="button"
+            aria-label="Increase quantity"
+            (click)="updateProductCount(count + 1, cartData._id)"
+            class="grid size-8 cursor-pointer place-items-center rounded-full text-gray-700 transition hover:bg-white hover:text-main-600 hover:shadow-sm active:scale-95"
+          >
+            <i class="fa-solid fa-plus text-xs"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          (click)="removeCartItem(cartData._id)"
+          class="inline-flex cursor-pointer items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-medium text-red-600 transition hover:bg-red-50"
+        >
+          <i class="fa-solid fa-trash text-xs"></i>
+          Remove
+        </button>
+
+        @if (wishlistServices.isInWishlist()(cartData._id)) {
+          <button
+            type="button"
+            (click)="removeProductInWishlist(cartData._id)"
+            class="inline-flex cursor-pointer items-center gap-2 rounded-full bg-red-50 px-3.5 py-1.5 text-sm font-medium text-red-500 transition hover:bg-red-100"
+          >
+            <i class="fa-solid fa-heart text-xs"></i>
+            Saved
+          </button>
+        } @else {
+          <button
+            type="button"
+            (click)="addToWishlist(cartData._id)"
+            class="inline-flex cursor-pointer items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-medium text-gray-600 transition hover:bg-main-500/10 hover:text-main-600"
+          >
+            <i class="fa-regular fa-heart text-xs"></i>
+            Save for later
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div
+      class="flex items-center justify-between border-t border-gray-100 pt-3 lg:flex-col lg:items-end lg:justify-center lg:border-0 lg:pt-0"
+    >
+      <span class="text-sm text-gray-500 lg:hidden">Total</span>
+      <div class="text-end">
+        <p class="text-xl font-extrabold text-main-600 sm:text-2xl">
+          {{ price * count | currency: 'EGP' }}
+        </p>
+        <p class="text-xs text-gray-500">{{ price | currency: 'EGP' }} each</p>
+      </div>
+    </div>
+  </div>
+</article>

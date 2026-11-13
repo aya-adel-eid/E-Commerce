@@ -1,57 +1,166 @@
 @if (authServices.useInfo) {
-<div class="content mb-5">
-
-  <div class="w-full lg:w-2/3 mx-auto bg-white rounded-3xl shadow-xl overflow-hidden mt-12 ">
-
-    <!-- Top Section -->
-    <div class="bg-gradient-to-r from-main-500 to-main-700 h-32 relative">
+  <section class="content pb-12 pt-6">
+    <div class="mx-auto max-w-4xl">
+      <!-- Hero -->
       <div
-        class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-lg">
-        <span class="text-3xl font-bold text-main-500 uppercase">
-          {{ authServices.useInfo.name[0] }}
-        </span>
-      </div>
-    </div>
+        class="relative overflow-hidden rounded-[2rem] bg-linear-to-br from-main-700 via-main-500 to-main-400 px-6 pb-24 pt-10 shadow-xl sm:px-10"
+      >
+        <!-- decorative shapes -->
+        <span class="absolute -end-16 -top-16 size-56 rounded-full bg-white/10"></span>
+        <span class="absolute -bottom-20 start-10 size-44 rounded-full bg-white/10"></span>
+        <span
+          class="absolute end-1/4 top-6 size-6 rotate-45 rounded-md border-2 border-white/30"
+        ></span>
+        <span class="absolute start-1/3 top-10 size-3 rounded-full bg-white/40"></span>
 
-    <!-- Content -->
-    <div class="pt-16 pb-8 px-8 text-center">
-      <h2 class="text-2xl font-semibold capitalize">
-        {{ authServices.useInfo.name }}
-      </h2>
+        <div class="relative flex items-center justify-between gap-4">
+          <span
+            class="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-white backdrop-blur"
+          >
+            <i class="fa-solid fa-user text-[11px]"></i>
+            My profile
+          </span>
 
-      <span class="inline-block mt-2 px-4 py-1 rounded-full text-sm" [class]="authServices.useInfo.role === 'admin'
-          ? 'bg-red-100 text-red-600'
-          : 'bg-main-100 text-main-600'">
-        {{ authServices.useInfo.role }}
-      </span>
-
-      <!-- Divider -->
-      <div class="my-6 border-t"></div>
-
-      <!-- Info -->
-      <div class="space-y-4 text-sm max-w-md mx-auto">
-        <div class="flex items-center justify-between">
-          <span class="text-gray-400">Email</span>
-          <span class="font-medium">{{ authServices.useInfo.email }}</span>
-        </div>
-
-        <div class="flex items-center justify-between">
-          <span class="text-gray-400">Phone</span>
-          <span class="font-medium">{{ authServices.useInfo.phone }}</span>
-        </div>
-
-        <div class="flex items-center justify-between">
-          <span class="text-gray-400">Status</span>
-          <span class="font-semibold" [class]="authServices.useInfo.active
-              ? 'text-green-600'
-              : 'text-red-600'">
+          <span
+            class="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold backdrop-blur"
+            [class]="
+              authServices.useInfo.active
+                ? 'bg-white/90 text-green-600'
+                : 'bg-white/90 text-red-600'
+            "
+          >
+            <span
+              class="size-2 rounded-full"
+              [class]="authServices.useInfo.active ? 'bg-green-500' : 'bg-red-500'"
+            ></span>
             {{ authServices.useInfo.active ? 'Active' : 'Inactive' }}
           </span>
         </div>
       </div>
+
+      <!-- Card overlapping the hero -->
+      <div class="relative -mt-16 px-4 sm:px-8">
+        <div class="rounded-3xl border border-gray-100 bg-white p-6 shadow-xl sm:p-8">
+          <div class="flex flex-col items-center gap-5 text-center sm:flex-row sm:text-start">
+            <!-- Avatar -->
+            <div class="-mt-16 shrink-0 sm:-mt-20">
+              <div
+                class="rounded-full bg-linear-to-br from-main-300 via-main-500 to-main-700 p-1 shadow-xl ring-4 ring-white"
+              >
+                <span
+                  class="grid size-24 place-items-center rounded-full bg-white text-4xl font-extrabold uppercase text-main-600 sm:size-28"
+                >
+                  {{ authServices.useInfo.name[0] }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Name + role -->
+            <div class="min-w-0">
+              <h1 class="truncate text-2xl font-extrabold capitalize text-gray-800 sm:text-3xl">
+                {{ authServices.useInfo.name }}
+              </h1>
+              <span
+                class="mt-2 inline-flex items-center gap-2 rounded-full px-4 py-1 text-xs font-bold uppercase tracking-widest"
+                [class]="
+                  authServices.useInfo.role === 'admin'
+                    ? 'bg-red-50 text-red-600 ring-1 ring-red-100'
+                    : 'bg-main-500/10 text-main-600 ring-1 ring-main-500/20'
+                "
+              >
+                <i
+                  class="fa-solid"
+                  [class]="authServices.useInfo.role === 'admin' ? 'fa-crown' : 'fa-circle-user'"
+                ></i>
+                {{ authServices.useInfo.role }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Info tiles -->
+          <div class="mt-8 grid gap-3 sm:grid-cols-2">
+            <!-- Email -->
+            <div
+              class="group flex items-center gap-4 rounded-2xl border border-gray-100 bg-gray-50/70 p-4 transition hover:border-main-500/40 hover:bg-white hover:shadow-md"
+            >
+              <span
+                class="grid size-11 shrink-0 place-items-center rounded-xl bg-main-500/10 text-main-600"
+              >
+                <i class="fa-regular fa-envelope"></i>
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="text-[11px] font-bold uppercase tracking-widest text-gray-400">Email</p>
+                <p class="truncate text-sm font-semibold text-gray-800">
+                  {{ authServices.useInfo.email }}
+                </p>
+              </div>
+              <button
+                type="button"
+                aria-label="Copy email"
+                (click)="copy(authServices.useInfo.email)"
+                class="grid size-9 shrink-0 cursor-pointer place-items-center rounded-full text-gray-400 transition hover:bg-main-500/10 hover:text-main-600"
+              >
+                <i class="fa-regular fa-copy text-sm"></i>
+              </button>
+            </div>
+
+            <!-- Phone -->
+            <div
+              class="group flex items-center gap-4 rounded-2xl border border-gray-100 bg-gray-50/70 p-4 transition hover:border-main-500/40 hover:bg-white hover:shadow-md"
+            >
+              <span
+                class="grid size-11 shrink-0 place-items-center rounded-xl bg-main-500/10 text-main-600"
+              >
+                <i class="fa-solid fa-phone"></i>
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="text-[11px] font-bold uppercase tracking-widest text-gray-400">Phone</p>
+                <p class="truncate text-sm font-semibold text-gray-800" dir="ltr">
+                  {{ authServices.useInfo.phone }}
+                </p>
+              </div>
+              <button
+                type="button"
+                aria-label="Copy phone"
+                (click)="copy(authServices.useInfo.phone)"
+                class="grid size-9 shrink-0 cursor-pointer place-items-center rounded-full text-gray-400 transition hover:bg-main-500/10 hover:text-main-600"
+              >
+                <i class="fa-regular fa-copy text-sm"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick links -->
+          <div class="mt-8 border-t border-gray-100 pt-6">
+            <p class="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-gray-400">
+              Quick access
+            </p>
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              @for (
+                l of [
+                  { path: '/cart', label: 'My cart', icon: 'fa-cart-shopping' },
+                  { path: '/wishlist', label: 'Wishlist', icon: 'fa-heart' },
+                  { path: '/allorders', label: 'Orders', icon: 'fa-box' },
+                  { path: '/changePassword', label: 'Password', icon: 'fa-key' },
+                ];
+                track l.path
+              ) {
+                <a
+                  [routerLink]="l.path"
+                  class="group flex flex-col items-center gap-2 rounded-2xl border border-gray-100 bg-white p-4 text-center transition hover:-translate-y-1 hover:border-main-500 hover:shadow-lg"
+                >
+                  <span
+                    class="grid size-11 place-items-center rounded-full bg-main-500/10 text-main-600 transition group-hover:bg-main-500 group-hover:text-white"
+                  >
+                    <i class="fa-solid {{ l.icon }}"></i>
+                  </span>
+                  <span class="text-sm font-semibold text-gray-700">{{ l.label }}</span>
+                </a>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-  </div>
-</div>
-
+  </section>
 }
