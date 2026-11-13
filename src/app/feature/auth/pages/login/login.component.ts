@@ -8,4 +8,10 @@ import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/b
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {}
+export class LoginComponent {
+  icons = [
+    { icon: 'fa-truck-fast', text: 'Free shipping' },
+    { icon: 'fa-shield-halved', text: 'Secure payment' },
+    { icon: 'fa-rotate-left', text: 'Easy returns' },
+  ];
+}

@@ -42,14 +42,7 @@
       </div>
 
       <ul class="relative grid grid-cols-3 gap-3 text-center text-xs font-semibold">
-        @for (
-          f of [
-            { icon: 'fa-truck-fast', text: 'Free shipping' },
-            { icon: 'fa-shield-halved', text: 'Secure payment' },
-            { icon: 'fa-rotate-left', text: 'Easy returns' },
-          ];
-          track f.text
-        ) {
+        @for (f of icons; track f.text) {
           <li class="rounded-2xl bg-white/10 px-2 py-3 backdrop-blur">
             <i class="fa-solid {{ f.icon }} mb-1.5 block text-lg"></i>
             {{ f.text }}
