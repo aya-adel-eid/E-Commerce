@@ -4,6 +4,7 @@ import { OrderDetailsComponent } from '../../components/order-details/order-deta
 import { OrdrsService } from '../../services/ordrs.service';
 import { LoadingScreenComponent } from '../../../../shared/components/loading-screen/loading-screen.component';
 import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/bread-crumb.component';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-orders-page',
@@ -12,6 +13,7 @@ import { BreadCrumbComponent } from '../../../../shared/components/bread-crumb/b
     OrderDetailsComponent,
     LoadingScreenComponent,
     BreadCrumbComponent,
+    CurrencyPipe,
   ],
   templateUrl: './orders-page.component.html',
 
@@ -25,5 +27,8 @@ export class OrdersPageComponent implements OnInit {
   }
   getAllOrders() {
     this.ordersServices.getOrders();
+  }
+  copy(text: string) {
+    navigator.clipboard?.writeText(text);
   }
 }

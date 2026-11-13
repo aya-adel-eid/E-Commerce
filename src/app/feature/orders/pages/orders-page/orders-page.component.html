@@ -1,88 +1,173 @@
-<section class="content py-8 mt-8">
-  <div class=" p-5">
-
-    <app-bread-crumb [arrPaths]="['allorders']"></app-bread-crumb>
+<section class="content pb-12">
+  <!-- Breadcrumb -->
+  <div class="pb-3 pt-6">
+    <app-bread-crumb [arrPaths]="['Orders']"></app-bread-crumb>
   </div>
-  @if (!ordersServices.allOrders) {
-  <app-loading-screen></app-loading-screen>
-  }
-  @else {
 
-  <div class="space-y-6">
-
-    @for (objOrder of ordersServices.allOrders.reverse(); track objOrder._id) {
-
-    <div class="bg-main-100/70 rounded-3xl border border-gray-200
-                 shadow-sm px-8 py-6 space-y-6">
-
-      <!-- Order ID -->
-      <div class="flex justify-between">
-        <h2 class="text-base sm:text-lg font-semibold text-gray-800">
-          <span class="text-gray-600">Order ID:</span>
-          <span class="text-indigo-700 ms-2">{{ objOrder._id }}</span>
-        </h2>
-        <div class="space-x-4">
-          <span
-            class="bg-success-soft border border-success-subtle text-fg-success-strong text-xs font-medium px-4 py-1.5 rounded-full">
-            @if(objOrder.isPaid){
-            Paid
-            }
-            @else {
-            Not Paid
-            }
-          </span>
-          <span
-            class="bg-warning-soft border border-warning-subtle text-fg-warning text-xs font-medium px-4 py-1.5  rounded-full">
-            @if(objOrder.isDelivered){
-            Delivered
-            }
-            @else {
-            Not Delivered
-            }
-          </span>
-        </div>
-
-      </div>
-
-      <!-- Customer & Shipping Info -->
-      <app-order-details [userDetails]="objOrder.user" [shippingAddress]="objOrder.shippingAddress">
-      </app-order-details>
-
-      <!-- Items -->
+  <!-- Header -->
+  <header class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <div class="flex items-center gap-4">
+      <span class="h-14 w-1.5 rounded-full bg-linear-to-b from-main-400 to-main-600"></span>
       <div>
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">
-          Items
-        </h3>
-
-        <div class="space-y-4">
-          @for (itemCart of objOrder.cartItems; track itemCart._id) {
-          <app-orders-card [cartItem]="itemCart"></app-orders-card>
-          }
-        </div>
+        <span
+          class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-main-500"
+        >
+          <i class="fa-solid fa-box text-[11px]"></i>
+          Purchase history
+        </span>
+        <h1 class="text-3xl font-extrabold text-gray-800 sm:text-4xl">
+          My <span class="text-main-500">Orders</span>
+        </h1>
       </div>
-
-      <!-- Total & Action -->
-      <div class="flex items-center justify-between
-                   border-t border-gray-200 pt-4">
-
-        <p class="text-base font-semibold text-gray-800">
-          Total:
-          <span class="text-indigo-700 ms-1">
-            {{ objOrder.totalOrderPrice }}
-          </span>
-        </p>
-
-        <button class="btnn px-6 py-2 text-sm font-medium">
-          Payment {{objOrder.paymentMethodType}}
-        </button>
-      </div>
-
     </div>
 
+    @if (ordersServices.allOrders?.length) {
+      <span
+        class="inline-flex w-fit items-center gap-2 rounded-full bg-main-500/10 px-4 py-2 text-sm font-bold text-main-600 ring-1 ring-main-500/20"
+      >
+        <i class="fa-solid fa-receipt"></i>
+        {{ ordersServices.allOrders.length }}
+        {{ ordersServices.allOrders.length === 1 ? 'order' : 'orders' }}
+      </span>
     }
+  </header>
 
-  </div>
+  @if (!ordersServices.allOrders) {
+    <app-loading-screen></app-loading-screen>
+  } @else {
+    @if (ordersServices.allOrders.length === 0) {
+      <!-- Empty state -->
+      <div
+        class="flex flex-col items-center justify-center gap-4 rounded-3xl border border-dashed border-gray-200 bg-white/70 px-6 py-16 text-center sm:py-24"
+      >
+        <span class="grid size-24 place-items-center rounded-full bg-main-500/10 text-main-500">
+          <i class="fa-solid fa-box-open text-4xl"></i>
+        </span>
+        <h2 class="text-2xl font-extrabold text-gray-800 sm:text-3xl">No orders yet</h2>
+        <p class="max-w-md text-gray-500">When you place an order, it will show up here.</p>
+        <a
+          routerLink="/product"
+          class="mt-2 inline-flex items-center gap-2 rounded-full bg-main-500 px-8 py-3 text-sm font-bold text-white shadow transition hover:bg-main-600 hover:shadow-lg"
+        >
+          <i class="fa-solid fa-bag-shopping"></i>
+          Start shopping
+        </a>
+      </div>
+    } @else {
+      <div class="space-y-6">
+        @for (objOrder of ordersServices.allOrders.slice().reverse(); track objOrder._id) {
+          <article
+            class="overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg"
+          >
+            <!-- Order header -->
+            <div
+              class="flex flex-col gap-4 border-b border-gray-100 bg-main-500/5 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8"
+            >
+              <div class="min-w-0">
+                <p class="text-[11px] font-bold uppercase tracking-widest text-gray-400">
+                  Order ID
+                </p>
+                <div class="flex items-center gap-2">
+                  <span class="truncate font-mono text-sm font-bold text-gray-800 sm:text-base">
+                    #{{ objOrder._id }}
+                  </span>
+                  <button
+                    type="button"
+                    aria-label="Copy order id"
+                    (click)="copy(objOrder._id)"
+                    class="grid size-8 shrink-0 cursor-pointer place-items-center rounded-full text-gray-400 transition hover:bg-main-500/10 hover:text-main-600"
+                  >
+                    <i class="fa-regular fa-copy text-sm"></i>
+                  </button>
+                </div>
+              </div>
 
+              <div class="flex flex-wrap items-center gap-2">
+                <span
+                  class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold"
+                  [class]="
+                    objOrder.isPaid
+                      ? 'bg-green-50 text-green-600 ring-1 ring-green-100'
+                      : 'bg-red-50 text-red-600 ring-1 ring-red-100'
+                  "
+                >
+                  <i
+                    class="fa-solid"
+                    [class]="objOrder.isPaid ? 'fa-circle-check' : 'fa-circle-xmark'"
+                  ></i>
+                  {{ objOrder.isPaid ? 'Paid' : 'Not paid' }}
+                </span>
+
+                <span
+                  class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold"
+                  [class]="
+                    objOrder.isDelivered
+                      ? 'bg-green-50 text-green-600 ring-1 ring-green-100'
+                      : 'bg-amber-50 text-amber-600 ring-1 ring-amber-100'
+                  "
+                >
+                  <i
+                    class="fa-solid"
+                    [class]="objOrder.isDelivered ? 'fa-truck-fast' : 'fa-clock'"
+                  ></i>
+                  {{ objOrder.isDelivered ? 'Delivered' : 'Not delivered' }}
+                </span>
+              </div>
+            </div>
+
+            <div class="space-y-6 p-5 sm:p-8">
+              <!-- Customer & shipping -->
+              <app-order-details
+                [userDetails]="objOrder.user"
+                [shippingAddress]="objOrder.shippingAddress"
+              ></app-order-details>
+
+              <!-- Items -->
+              <div>
+                <h3 class="mb-4 flex items-center gap-2 text-lg font-bold text-gray-800">
+                  <i class="fa-solid fa-bag-shopping text-main-500"></i>
+                  Items
+                  <span class="text-sm font-medium text-gray-400">
+                    ({{ objOrder.cartItems.length }})
+                  </span>
+                </h3>
+
+                <div class="space-y-3">
+                  @for (itemCart of objOrder.cartItems; track itemCart._id) {
+                    <app-orders-card [cartItem]="itemCart"></app-orders-card>
+                  }
+                </div>
+              </div>
+
+              <!-- Total -->
+              <div
+                class="flex flex-col gap-3 border-t border-gray-100 pt-5 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <div>
+                  <p class="text-[11px] font-bold uppercase tracking-widest text-gray-400">Total</p>
+                  <p class="text-2xl font-extrabold text-main-600">
+                    {{ objOrder.totalOrderPrice | currency: 'EGP' }}
+                  </p>
+                </div>
+
+                <span
+                  class="inline-flex w-fit items-center gap-2 rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold capitalize text-gray-700"
+                >
+                  <i
+                    class="fa-solid"
+                    [class]="
+                      objOrder.paymentMethodType === 'card'
+                        ? 'fa-credit-card'
+                        : 'fa-money-bill-wave'
+                    "
+                  ></i>
+                  {{ objOrder.paymentMethodType }}
+                </span>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    }
   }
-
 </section>
