@@ -1,24 +1,20 @@
 import { Routes } from '@angular/router';
-import { MainLayout } from './core/layout/main-layout/main-layout';
 import { authGuard } from './core/gurd/auth-guard';
 import { loogedGuard } from './core/gurd/looged-guard';
-import { HomePageComponent } from './feature/home/pages/home-page/home-page.component';
-import { NotFoundComponent } from './feature/staticPages/not-found/not-found.component';
 
 export const routes: Routes = [
-  //auth
+  // guest
   {
     path: '',
     loadComponent: () => import('./core/layout/gust-layout/gust-layout').then((c) => c.GustLayout),
     children: [
-      {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
-      },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'home',
-        component: HomePageComponent,
+        loadComponent: () =>
+          import('./feature/home/pages/home-page/home-page.component').then(
+            (c) => c.HomePageComponent,
+          ),
         title: 'Products',
       },
       {
@@ -28,10 +24,9 @@ export const routes: Routes = [
       },
       {
         path: 'details/:id',
-
         loadComponent: () =>
           import('./feature/products/pages/product-details/product-details.component').then(
-            (c) => c.ProductDetailsComponent
+            (c) => c.ProductDetailsComponent,
           ),
         title: 'ProductDetails',
       },
@@ -39,7 +34,7 @@ export const routes: Routes = [
         path: 'details/:id/:slug',
         loadComponent: () =>
           import('./feature/products/pages/product-details/product-details.component').then(
-            (c) => c.ProductDetailsComponent
+            (c) => c.ProductDetailsComponent,
           ),
         title: 'ProductDetails',
       },
@@ -56,36 +51,34 @@ export const routes: Routes = [
         path: 'brands/:id',
         loadComponent: () =>
           import('./feature/products/pages/products-by-brands/products-by-brands.component').then(
-            (c) => c.ProductsByBrandsComponent
+            (c) => c.ProductsByBrandsComponent,
           ),
         title: 'ProductsByBrands',
       },
-      //
       {
         path: 'categories/:id',
         loadComponent: () =>
           import('./feature/products/pages/product-by-category/product-by-category.component').then(
-            (c) => c.ProductByCategoryComponent
+            (c) => c.ProductByCategoryComponent,
           ),
         title: 'ProductsByCategory',
       },
     ],
   },
+
+  // auth (login / register)
   {
     path: '',
     loadComponent: () => import('./core/layout/auth-layout/auth-layout').then((m) => m.AuthLayout),
     canActivate: [loogedGuard],
-
     loadChildren: () => import('./feature/auth/auth.routes').then((c) => c.AUth_ROutES),
   },
-  //gust
 
-  //user
+  // user (logged in)
   {
     path: '',
     canActivate: [authGuard],
-
-    component: MainLayout,
+    loadComponent: () => import('./core/layout/main-layout/main-layout').then((c) => c.MainLayout),
     children: [
       {
         path: 'cart',
@@ -109,29 +102,36 @@ export const routes: Routes = [
         path: 'profile',
         loadComponent: () =>
           import('./feature/auth/pages/user-info/user-info.component').then(
-            (c) => c.UserInfoComponent
+            (c) => c.UserInfoComponent,
           ),
         title: 'UserInfo',
       },
       {
         path: 'changePassword',
         loadComponent: () =>
-          import('./feature/setting/pages/change-password//change-password.component').then(
-            (c) => c.ChangePasswordComponent
+          import('./feature/setting/pages/change-password/change-password.component').then(
+            (c) => c.ChangePasswordComponent,
           ),
+        title: 'ChangePassword',
       },
     ],
   },
 
-  //not
+  // not found
   {
     path: 'not-found',
-    component: NotFoundComponent,
-    title: 'NoFound',
+    loadComponent: () =>
+      import('./feature/staticPages/not-found/not-found.component').then(
+        (c) => c.NotFoundComponent,
+      ),
+    title: 'NotFound',
   },
   {
     path: '**',
-    component: NotFoundComponent,
-    title: 'NoFound',
+    loadComponent: () =>
+      import('./feature/staticPages/not-found/not-found.component').then(
+        (c) => c.NotFoundComponent,
+      ),
+    title: 'NotFound',
   },
 ];

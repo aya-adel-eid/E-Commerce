@@ -1,7 +1,7 @@
 <div>
   <app-section-title [title]="'Popular Categories'"></app-section-title>
 
-  @if (categoryService.allCategories?.length) {
+  @if (categoryService.allCategories.length) {
     <owl-carousel-o [options]="customOptions">
       @for (category of categoryService.allCategories; track category._id) {
         <ng-template carouselSlide [id]="category._id">

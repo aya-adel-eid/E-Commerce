@@ -1,6 +1,6 @@
 <article
   class="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-main-400 hover:shadow-xl"
-  (mouseenter)="currentImag.src = product.images[0] ?? product.imageCover"
+  (mouseenter)="currentImag.src = product.images[0] || product.imageCover"
   (mouseleave)="currentImag.src = product.imageCover"
 >
   <!-- Image -->
